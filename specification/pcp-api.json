@@ -1,0 +1,12 @@
+{
+    "openapi":"3.0.2",
+    "info": {
+      "title":"PCP API",
+      "version":"1.0"
+    },
+    "servers": [
+      {"url":"https://api.server.test/opnc/v1/pcp"}
+    ],
+    "paths": {
+    }
+  }
