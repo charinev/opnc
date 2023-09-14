@@ -1,0 +1,108 @@
+{
+    "parameters": [
+        {
+            "schema": {
+                "type": "string"
+            },
+            "name": "rootCertificateId",
+            "in": "path",
+            "description": "The internal ID of the root certificate in the RCP.",
+            "required": true
+        }
+    ],
+    "get": {
+        "summary": "GetRootCertificate",
+        "description": "The getRootCert method can be used with the unique ID (UID) of a root certificate in the pool. The UID of each root certificate can be retreived through get all endpoint.",
+        "operationId": "getRootCertificateV1",
+        "tags": [
+            "GetRootCertificate"
+        ],
+        "responses": {
+            "200": {
+                "$ref": "../../components/responses/getRootCertificateRes.v1.json"
+            },
+            "400": {
+                "description": "Bad Request",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                    }
+                    }
+                }
+            },
+            "401": {
+                "description": "Unauthorized"
+                },
+            "403": {
+                "description": "Forbidden"
+            },
+            "404": {
+                "description": "Not Found",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        
+                    },
+                    "examples": {
+                        "ROOT NOT FOUND": {
+                        "value": {
+                            "errorMessages": [
+                            "Root certificate with the given ID is not found"
+                            ],
+                            "traceId": "c52fe6ad-1e39-4f6e-a0d0-e2d51aacf09f"
+                        }
+                        }
+                    }
+                    }
+                }
+            },
+            "500": {
+                "description": "Internal Server Error"
+            },
+            "502": {
+                "description": "Bad Gateway"
+            },
+            "503": {
+                "description": "Service Unavailable"
+            }
+        },
+        "security": [
+            {
+            "All_roles": []
+            }
+        ]
+    },
+    "delete": {
+        "summary": "DeleteRootCertificate",
+        "operationId": "deleteRootCertificateV1",
+        "description": "This method is used by the Ecosystem Operator to delete Root CAs from the Root Certificate Pool. This should not be used by other parties than the Root pool operator to prevent possible wrong usage.\nAlso 2 Factor authorization in the organization shall be considered\n\n<!-- theme: warning -->\n\n> A successful delete operation triggers events to all ecosystem users and informs about the deleletion of this Root CA. Existing OEM-Prov Certs or MO-Contract Certs which rely on this root CA, might not any more usable.",
+        "tags": [
+            "DeleteRootCertificate"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Admin": []
+          }
+        ]
+      }
+}

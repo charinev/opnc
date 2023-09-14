@@ -1,0 +1,16 @@
+
+{
+    "name": "iso15118Version",
+    "in": "query",
+    "description": "The ISO version which shall be used. If not set, ISO15118:2 will be used as default.",
+    "required": true,
+    "schema": {
+        "type": "string",
+        "example": "ISO15118-20",
+        "enum": [
+        "ISO15118-20",
+        "ISO15118-2"
+        ],
+        "default": "ISO15118-2"
+    }
+}

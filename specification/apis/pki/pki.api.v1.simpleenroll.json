@@ -1,0 +1,61 @@
+{
+"post": {
+    "summary": "SimpleEnrollCert",
+    "operationId": "simpleEnrollCertV1",
+    "tags": [
+      "SimpleEnrollCert"
+    ],
+    "description": "The EST interface receives CSRs from CPOs, MOs, OEMs, and CPSs, signs them, and delivers an ISO 15118 leaf certificate. The PKI Gateway/Certificate Manager creates the leaf certificates from the Sub 2 CA of the respective role. This interface can create leaf certificates for CPOs (SECC Certificate), MOs (Contract Certificate), OEMs (Provisioning Certificate), and CPSs (Provisioning Signing Certificates). An EST interface is a standard implementation described in RFC7030.",
+    "parameters": [
+      {
+        "$ref": "../../components/parameters/caDomainParam.json"
+      },
+      {
+        "$ref": "../../components/parameters/iso15118VersionParam.json"
+      }
+    ],
+    "requestBody": {
+      "content": {
+        "application/pkcs10": {
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "The body is the base64 encoded CSR (Certificate Siging Request).\n\n+++Requirements for EVSE Leafs+++\n\nWhen `{ca}` path parameter is `cpo`, the CSR CommonName must match to the <EVSID> regex format `^[A-Za-z]{2}[\\*]?\\w{3}[\\*]?[E][\\w\\*]{1,30}$`. \n\nWhere `EVSEID` = `<Country Code>` `<S>` `<EVSE Operator ID>` `<S>` `<ID Type>` `<Power Outlet ID>` \n\n `Country Code` = 2 ALPHA two alphanumeric characters \n\n `EVSE Operator ID` = 3 (ALPHA / DIGIT) three alphanumeric characters, defined and listed by eMI3 group \n\n `ID Type` = “E” one character “E” indicating that this ID represents an “EVSE” \n\n `Power Outlet ID` = (ALPHA / DIGIT) *30 (ALPHA / DIGIT / S) sequence of alphanumeric characters or separators \n\n `S` = optional separator \n\n Reference: ISO 15118-2:2014, Annex H, H.2.1 EVSEID Syntax"
+    },
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/pkcs7": {
+            "schema": {
+              "type": "string",
+              "description": "The response body is the base64 encoded PKCS7 blobb of the certificate"
+            }
+          }
+        },
+        "headers": {
+          "Content-Type": {
+            "schema": {
+              "type": "string"
+            },
+            "description": "application/pkcs7-mime; smime-type=certs-only"
+          }
+        }
+      },
+      "400": {
+        "description": "Bad Request"
+      },
+      "401": {
+        "description": "Unauthorized"
+      },
+      "403": {
+        "description": "Forbidden"
+      },
+      "5XX": {
+        "description": "Internal Server Error"
+      }
+    }
+  }
+}

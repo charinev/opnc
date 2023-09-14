@@ -1,0 +1,34 @@
+{
+    "openapi":"3.0.2",
+    "info": {
+        "title":"CCP API",
+        "version":"1.0",
+        "description": "CCP services API.",
+        "contact": {
+            "name": "CharIN e.V.",
+            "url": "https://charin.global",
+            "email": "coordination@charin.global"
+        },
+        "license": {
+            "name": "Attribution-ShareAlike 4.0 International",
+            "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+        }
+    },
+    "servers": [
+      {"url":"https://api.server.test/opnc/v1/ccp"}
+    ],
+    "tags": [],
+    "paths": {
+        "/name": {
+            "get": {
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+  }

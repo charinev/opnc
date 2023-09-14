@@ -1,0 +1,17 @@
+{
+    "description": "OK",
+    "content": {
+        "application/json": {
+            "schema": {
+                "title": "GetRootCertificateResponseV1",
+                "type": "object",
+                "properties": {
+                    "roootCertificate": {
+                        "$ref": "../schemas/rootCertificate.v1.json"
+                    }
+                }
+                
+            }
+        }
+    }
+}

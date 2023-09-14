@@ -1,0 +1,18 @@
+{
+    "name": "caDomain",
+    "in": "query",
+    "description": "The domain of the subCA the certificate is requested from.",
+    "required": true,
+    "schema": {
+      "type": "string",
+      "example": "mo",
+      "pattern": "^(\\w+-)?(mo|cpo|oem|cps|veh)$",
+      "enum": [
+        "mo",
+        "cpo",
+        "oem",
+        "cps",
+        "veh"
+      ]
+    }
+  }

@@ -1,0 +1,21 @@
+{
+    "description": "OK",
+    "content": {
+        "application/json": {
+            "schema": {
+                "title": "GetRootCertificatesResponseV1",
+                "type": "object",
+                "properties": {
+                    "roootCertificateCollection": {
+                        "type": "array",
+                        "description": "A list of selected root certificates.",
+                        "items": {
+                            "$ref": "../schemas/rootCertificate.v1.json"
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+}
