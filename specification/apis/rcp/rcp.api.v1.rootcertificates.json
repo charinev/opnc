@@ -74,7 +74,7 @@
           }
         },
         "requestBody": {
-            "$ref": "../../components/requests/putRootCertificateReq.v1.json"
+            "$ref": "../../components/requestBodies/putRootCertificateReq.v1.json"
         }
     }
 }

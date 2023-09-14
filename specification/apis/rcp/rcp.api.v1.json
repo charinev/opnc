@@ -27,5 +27,19 @@
       "/rootcertificates": {
         "$ref": "./rcp.api.v1.rootcertificates.json"
       }
+  },
+  "components": {
+    "parameters": {
+      "$ref": "../../components/parameters/_index.json"
+    },
+    "requestBodies": {
+      "$ref": "../../components/requestBodies/_index.json"
+    },
+    "responses": {
+      "$ref": "../../components/responses/_index.json"
+    },
+    "schemas": {
+      "$ref": "../../components/schemas/_index.json"
+    }
   }
 }

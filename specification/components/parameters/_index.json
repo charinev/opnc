@@ -1,0 +1,8 @@
+{
+    "caDomain": {
+        "$ref": "./caDomainParam.json"
+    },
+    "iso15118Version": {
+        "$ref": "./iso15118VersionParam.json"
+    }
+}
