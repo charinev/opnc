@@ -6,6 +6,11 @@
         "tags": [
             "GetRootCertificates"
         ],
+        "parameters": [
+            {
+                "$ref": "../../components/parameters/pkiTypeParam.v1.json"
+            }
+        ],
         "responses": {
             "200": {
                 "$ref": "../../components/responses/getRootCertificatesRes.v1.json"
