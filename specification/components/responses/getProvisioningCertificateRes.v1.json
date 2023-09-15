@@ -1,0 +1,30 @@
+{
+    "description": "OK",
+    "content": {
+      "application/json": {
+        "schema": {
+          "title": "GetProvisioningCertificateResV1",
+          "type": "object",
+          "properties": {
+            "provisioningCertificate": {
+                "$ref": "../schemas/provisioningCertificate.v1.json"
+            }
+          }
+        },
+        "examples": {
+          "example": {
+            "value": {
+              "OEMMessage": {
+                "subCA1Certificate": "",
+                "subCA2Certificate": "",
+                "vehicleCertificate": "",
+                "rootAuthorityKeyIdentifier": "",
+                "rootIssuerDistinguishedName": "",
+                "rootIssuerSerialNumber": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }

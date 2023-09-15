@@ -22,41 +22,11 @@
     "tags": [],
     "paths": {
       "/rootcertificates/{rootCertificateId}": {
-        "$ref": "./rcp.api.v1.rootcertificate.json"  
+        "$ref": "./rcp.api.v1.rootCertificateById.json"  
       },
       "/rootcertificates": {
-        "$ref": "./rcp.api.v1.rootcertificates.json"
-      }
-    },
-    "components": {
-      "parameters": {
-        "caDomain": {
-          "$ref": "../../components/parameters/caDomainParam.json"
-        },
-        "iso15118Version": {
-          "$ref": "../../components/parameters/iso15118VersionParam.json"
-        },
-        "pkiType": {
-          "$ref": "../../components/parameters/pkiTypeParam.v1.json"
-        }
-      },
-      "requestBodies": {
-        "putRootCertificateReq": {
-          "$ref": "../../components/requestBodies/putRootCertificateReq.v1.json"
-        }
-      },
-      "responses": {
-        "getRootCertificateRes": {
-          "$ref": "../../components/responses/getRootCertificateRes.v1.json"
-        },
-        "getRootCertificatesRes": {
-          "$ref": "../../components/responses/getRootCertificatesRes.v1.json"
-        }
-      },
-      "schemas": {
-        "rootCertificate": {
-          "$ref": "../../components/schemas/rootCertificate.v1.json"
-        }
+        "$ref": "./rcp.api.v1.rootCertificates.json"
       }
     }
+    
 }

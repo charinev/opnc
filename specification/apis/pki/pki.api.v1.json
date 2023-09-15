@@ -22,20 +22,10 @@
   "tags": [],
   "paths": {
       "/est/simpleenroll": {
-      "$ref": "./pki.api.v1.simpleenroll.json"      
+      "$ref": "./pki.api.v1.simpleEnroll.json"      
     },
     "/est/cacerts": {
-      "$ref": "./pki.api.v1.cacerts.json"
-    }
-  },
-  "components": {
-    "parameters": {
-      "caDomain": {
-        "$ref": "../../components/parameters/caDomainParam.json"
-      },
-      "iso15118Version": {
-        "$ref": "../../components/parameters/iso15118VersionParam.json"
-      }
+      "$ref": "./pki.api.v1.caCerts.json"
     }
   }
 }

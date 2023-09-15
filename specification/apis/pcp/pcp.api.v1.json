@@ -15,9 +15,14 @@
       }
     },
     "servers": [
-      {"url":"https://api.server.test/opnc/v1/pcp"}
+      {
+        "url":"https://api.server.test/opnc/v1/pcp"
+      }
     ],
     "tags": [],
     "paths": {
+      "/provisioncertificates/{pcid}": {
+        "$ref": "./pcp.api.v1.provisioningCertificateByPcid.json"
+      }
     }
   }

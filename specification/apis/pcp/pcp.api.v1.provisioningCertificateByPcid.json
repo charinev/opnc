@@ -1,0 +1,85 @@
+{
+    "parameters": [
+      {
+        "schema": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{17,18}$"
+        },
+        "name": "pcid",
+        "in": "path",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "get": {
+        "summary": "GetProvisioningCertificateByPCID",
+        "operationId": "getProvisioningCertificateV1",
+        "description": "This method is used by the MO to request Provisioning Certificates.\n\nBefore the delivery of OEM provisioning certificate from the PCP, it proceeds with the following steps:\n\n 1. Verifies the certificate status of each OEM certificate from the OCSP responders or CRL of an OEM.\n 2. Verifies trust chain with OEM root certificate\n\nFor each step, which cannot be validated, the PCP sends an error code to the MO.\nReturns a Provisioning Certificate V1 object if PCID/Prov Certificate was in the pool.\n\n",
+        "tags": [
+            "GetProvisioningCertificate"
+        ],
+        "parameters": [
+            {
+              "schema": {
+                "type": "boolean",
+                "default": "false",
+                "example": "true"
+              },
+              "in": "header",
+              "description": "if set to true - this call is not getting forwarded to other Ecosystems ",
+              "name": "broadcast"
+            }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "../../components/responses/getProvisioningCertificateRes.v1.json"
+          },
+          "400": {
+            "$ref": "../../components/responses/errors/errorRes.v1.json#/badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "$ref": "../../components/responses/errors/errorRes.v1.json#/notFoundError"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "delete": {
+        "summary": "DeleteProvisioningCertificateByPCID",
+        "operationId": "deleteProvisioningCertificateV1",
+        "tags": [
+          "DeleteProvisioningCertificate"
+        ],
+        "description": "This method is used by the OEM to depublish Provisioning Certificates.\n\n<!-- theme: warning -->\n\n> A successful deletes triggers a call to the DELETE method of the Contract Certificate Pool for all EMAIDs related to this PCID! In case of contract certificates issued by one of the Operator owned MO CAs, this also involves revocation of the same.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "../../components/responses/errors/errorRes.v1.json#/badRequestError"           
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "$ref": "../../components/responses/errors/errorRes.v1.json#/notFoundError"
+          }
+        }
+      }
+    }

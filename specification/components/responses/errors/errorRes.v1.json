@@ -1,0 +1,34 @@
+{
+  "badRequestError": {
+    "description": "Bad Request",
+    "content": {
+      "application/json": {
+        "schema": {
+          "title": "BadRequestErrorV1",
+          "type": "object",
+          "properties": {
+            "error": {
+              "$ref": "../../schemas/error.v1.json"
+            }
+          }
+        }
+      }
+    }
+  },
+  "notFoundError": {
+    "description": "Not Found",
+    "content": {
+      "application/json": {
+        "schema": {
+          "title": "NotFoundErrorV1",
+          "type": "object",
+          "properties": {
+            "error": {
+              "$ref": "../../schemas/error.v1.json"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+    "title": "Error",
+    "type": "object",
+    "properties": {
+      "errorMessages": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+          "type": "string"
+        }
+      },
+      "traceId": {
+        "type": "string",
+        "format": "uuid"
+      }
+    }
+  }

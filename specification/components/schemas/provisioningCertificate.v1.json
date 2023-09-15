@@ -1,0 +1,60 @@
+{
+    "type": "object",
+    "title": "Provisioning Certificate",
+    "description": "Object containing a provisioning certificate handled by the Provisioning Certificate Pool. Used on addOEM operation as request body.",
+    "x-examples": {
+      "example": {
+        "subCA1Certificate": "MIICdDCCAhqgAwIBAgIQd6E8MyXPT8KasimANSaOHDAKBggqhkjOPQQDAjBHMQswCQYDVQQGEwJERTEQMA4GA1UEChMHSHViamVjdDETMBEGCgmSJomT8ixkARkWA1YyRzERMA8GA1UEAxMIVjJHIFJvb3QwHhcNMTkwNzI0MTAxNTU1WhcNMjkwNzI0MTAxNTU1WjBZMQswCQYDVQQGEwJERTEVMBMGA1UEChMMSHViamVjdCBHbWJIMRMwEQYKCZImiZPyLGQBGRYDVjJHMR4wHAYDVQQDExVPRU0gU3ViMSBDQSBURVNUIEcxLjIwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAS5seXlzunHvx0hCoh8DszaqnViXGDv4cLozIJs7ci47tUxARhXcNF/tFbr6YK0DUse9fD9AHrFsBi5PlHwxg50o4HVMIHSMBIGA1UdEwEB/wQIMAYBAf8CAQEwEQYDVR0OBAoECEZzBfcYaWBDMEUGA1UdIAQ+MDwwOgYMKwYBBAGCxDUBAgEAMCowKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3Lmh1YmplY3QuY29tL3BraS8wEwYDVR0jBAwwCoAITnyuwUYTll4wPQYIKwYBBQUHAQEEMTAvMC0GCCsGAQUFBzABhiFodHRwOi8vb2NzcC10ZXN0Lmh1YmplY3QuY29tOjgwODAwDgYDVR0PAQH/BAQDAgEGMAoGCCqGSM49BAMCA0gAMEUCIQDL2D6vTsU+h5Z3HbrCG6NeIDv5P+YuIRlK0MeY3M106QIgLq6pBy39xwr5AFTVSMJG2l/ioze+Y2HCKfwpxf0zsAY=",
+        "subCA2Certificate": "MIICdDCCAhqgAwIBAgIQd6E8MyXPT8KasimANSaOHDAKBggqhkjOPQQDAjBHMQswCQYDVQQGEwJERTEQMA4GA1UEChMHSHViamVjdDETMBEGCgmSJomT8ixkARkWA1YyRzERMA8GA1UEAxMIVjJHIFJvb3QwHhcNMTkwNzI0MTAxNTU1WhcNMjkwNzI0MTAxNTU1WjBZMQswCQYDVQQGEwJERTEVMBMGA1UEChMMSHViamVjdCBHbWJIMRMwEQYKCZImiZPyLGQBGRYDVjJHMR4wHAYDVQQDExVPRU0gU3ViMSBDQSBURVNUIEcxLjIwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAS5seXlzunHvx0hCoh8DszaqnViXGDv4cLozIJs7ci47tUxARhXcNF/tFbr6YK0DUse9fD9AHrFsBi5PlHwxg50o4HVMIHSMBIGA1UdEwEB/wQIMAYBAf8CAQEwEQYDVR0OBAoECEZzBfcYaWBDMEUGA1UdIAQ+MDwwOgYMKwYBBAGCxDUBAgEAMCowKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3Lmh1YmplY3QuY29tL3BraS8wEwYDVR0jBAwwCoAITnyuwUYTll4wPQYIKwYBBQUHAQEEMTAvMC0GCCsGAQUFBzABhiFodHRwOi8vb2NzcC10ZXN0Lmh1YmplY3QuY29tOjgwODAwDgYDVR0PAQH/BAQDAgEGMAoGCCqGSM49BAMCA0gAMEUCIQDL2D6vTsU+h5Z3HbrCG6NeIDv5P+YuIRlK0MeY3M106QIgLq6pBy39xwr5AFTVSMJG2l/ioze+Y2HCKfwpxf0zsAY=",
+        "vehicleCertificate": "MIICdDCCAhqgAwIBAgIQd6E8MyXPT8KasimANSaOHDAKBggqhkjOPQQDAjBHMQswCQYDVQQGEwJERTEQMA4GA1UEChMHSHViamVjdDETMBEGCgmSJomT8ixkARkWA1YyRzERMA8GA1UEAxMIVjJHIFJvb3QwHhcNMTkwNzI0MTAxNTU1WhcNMjkwNzI0MTAxNTU1WjBZMQswCQYDVQQGEwJERTEVMBMGA1UEChMMSHViamVjdCBHbWJIMRMwEQYKCZImiZPyLGQBGRYDVjJHMR4wHAYDVQQDExVPRU0gU3ViMSBDQSBURVNUIEcxLjIwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAS5seXlzunHvx0hCoh8DszaqnViXGDv4cLozIJs7ci47tUxARhXcNF/tFbr6YK0DUse9fD9AHrFsBi5PlHwxg50o4HVMIHSMBIGA1UdEwEB/wQIMAYBAf8CAQEwEQYDVR0OBAoECEZzBfcYaWBDMEUGA1UdIAQ+MDwwOgYMKwYBBAGCxDUBAgEAMCowKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3Lmh1YmplY3QuY29tL3BraS8wEwYDVR0jBAwwCoAITnyuwUYTll4wPQYIKwYBBQUHAQEEMTAvMC0GCCsGAQUFBzABhiFodHRwOi8vb2NzcC10ZXN0Lmh1YmplY3QuY29tOjgwODAwDgYDVR0PAQH/BAQDAgEGMAoGCCqGSM49BAMCA0gAMEUCIQDL2D6vTsU+h5Z3HbrCG6NeIDv5P+YuIRlK0MeY3M106QIgLq6pBy39xwr5AFTVSMJG2l/ioze+Y2HCKfwpxf0zsAY="
+      }
+    },
+    "minProperties": 3,
+    "properties": {
+      "subCA1Certificate": {
+        "type": "string",
+        "description": "Sub CA 1 Certificate in base64 encoded DER form. Deprecated in this form, will be changed to `subCa1Certificate` in future releases.",
+        "example": "MIICcDCCAhagAwIBAgIQXMXiFXMtVoQuJEiVS6/hkDAKBggqhkjOPQQDAjBaMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMSHViamVjdCBJbmMuMRMwEQYKCZImiZPyLGQBGRYDVjJHMR8wHQYDVQQDExZVUyBWMkcgUm9vdCBDQSBURVNUIEcyMB4XDTIwMDQwMTIxNTk1OVoXDTMwMDQwMTIxNTk1OVowZTELMAkGA1UEBhMCVVMxHjAcBgNVBAoTFUVsZWN0cmlmeSBBbWVyaWNhIExMQzETMBEGCgmSJomT8ixkARkWA1YyRzEhMB8GA1UEAxMYVVMgT0VNIFN1YjEgQ0EgVEVTVCBHMi4xMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEsXy1jgnjOaAlV8XPoawTX6xVi5of7FpNCUvCT7MylIogG1wuNefIM4M5pmP2jwUqhFpnKqppUvWKj8QiTSxJj6OBsjCBrzASBgNVHRMBAf8ECDAGAQH/AgEBMBEGA1UdDgQKBAhKDP6+ZPsRazAZBgNVHSAEEjAQMA4GDCsGAQQBg64NAQIBAjATBgNVHSMEDDAKgAhPEzNrrjPLHDBGBggrBgEFBQcBAQQ6MDgwNgYIKwYBBQUHMAGGKmh0dHA6Ly9vY3NwLXRlc3QuZWxlY3RyaWZ5YW1lcmljYS5jb206ODA4MDAOBgNVHQ8BAf8EBAMCAQYwCgYIKoZIzj0EAwIDSAAwRQIgFbsW5u11EgVDNKlhWBPZXsy8USfHKrScrUMyRxyWJ2cCIQCvXRhAXn9SWLSoRtgU3ssFc/z++vCIO6RLTV/VMZAXiw=="
+      },
+      "subCA2Certificate": {
+        "type": "string",
+        "description": "Sub CA 2 Certificate in base64 encoded DER form. Optional for leaf certificates with only one intermediate certificate. Deprecated in this form, will be changed to `subCa2Certificate` in future releases.",
+        "example": "MIICfTCCAiOgAwIBAgIQV8r0UuTi+jfwY8ifpELM7jAKBggqhkjOPQQDAjBlMQswCQYDVQQGEwJVUzEeMBwGA1UEChMVRWxlY3RyaWZ5IEFtZXJpY2EgTExDMRMwEQYKCZImiZPyLGQBGRYDVjJHMSEwHwYDVQQDExhVUyBPRU0gU3ViMSBDQSBURVNUIEcyLjEwHhcNMjAwNDAxMjE1OTU5WhcNMzAwNDAxMjE1OTU5WjBnMQswCQYDVQQGEwJVUzEeMBwGA1UEChMVRWxlY3RyaWZ5IEFtZXJpY2EgTExDMRMwEQYKCZImiZPyLGQBGRYDVjJHMSMwIQYDVQQDExpVUyBPRU0gU3ViMiBDQSBURVNUIEcyLjEuMTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABDHsKEUHVmO1CnNsocXz8/Ix9nom93is1nIe2RvuCNNOTSQF15skyBu2tObjg5atZe+4D0FXll+pqafanYkHEhmjgbIwga8wEgYDVR0TAQH/BAgwBgEB/wIBADARBgNVHQ4ECgQISX1zCMOyu74wGQYDVR0gBBIwEDAOBgwrBgEEAYOuDQECAQIwEwYDVR0jBAwwCoAISgz+vmT7EWswRgYIKwYBBQUHAQEEOjA4MDYGCCsGAQUFBzABhipodHRwOi8vb2NzcC10ZXN0LmVsZWN0cmlmeWFtZXJpY2EuY29tOjgwODAwDgYDVR0PAQH/BAQDAgEGMAoGCCqGSM49BAMCA0gAMEUCIAvUXtdhtkSs31QApigXViBfI7GR7iZGN7dSQcSTEh/MAiEA22ao571oT6g1z81hdXe5o1dEOdp7dDLv8hfwhHKhDR4="
+      },
+      "vehicleCertificate": {
+        "type": "string",
+        "description": "Provisioning Certificate in base64 encoded DER form. Deprecated in this form. Will be renamed to `provisioningCertificate` in future versions.",
+        "example": "MIIChzCCAi2gAwIBAgIQZqyzB7Lsiy3AEgqy3j16qzAKBggqhkjOPQQDAjBnMQswCQYDVQQGEwJVUzEeMBwGA1UEChMVRWxlY3RyaWZ5IEFtZXJpY2EgTExDMRMwEQYKCZImiZPyLGQBGRYDVjJHMSMwIQYDVQQDExpVUyBPRU0gU3ViMiBDQSBURVNUIEcyLjEuMTAeFw0yMDA1MjcxNjI4MzlaFw0yNDA1MjcxNjI4MzlaMIGPMQswCQYDVQQGEwJERTEVMBMGA1UEChMMSHViamVjdCBHbWJIMRowGAYDVQQDExFodWJVc0VhVGVzdDAwMDAwNDEPMA0GA1UEBxMGQmVybGluMSswKQYJKoZIhvcNAQkBFhxzdXBwb3J0LmlzbzE1MTE4QGh1YmplY3QuY29tMQ8wDQYDVQQIEwZCZXJsaW4wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAQ6W3xDW/bnPdyocQAW+rpOK54rfjBQznrtMlBFwdyVM1PYzuEf3kJtIQ4n3TTTwnqxquFZ+Cl3LhfZb4BJYmFwo4GRMIGOMBEGA1UdDgQKBAhKko8a3LDPuzAcBgNVHREEFTATghFodWJVc0VhVGVzdDAwMDAwNDATBgNVHSMEDDAKgAhJfXMIw7K7vjBGBggrBgEFBQcBAQQ6MDgwNgYIKwYBBQUHMAGGKmh0dHA6Ly9vY3NwLXRlc3QuZWxlY3RyaWZ5YW1lcmljYS5jb206ODA4MDAKBggqhkjOPQQDAgNIADBFAiEAuKsKk8xKIFo7wkg7CGvzCQXR08LqHFkuEQJ5jNWc7GMCICNVExUixZWDbGl0rd4Kqq4s87tDOxFGx4o1tLMRdY47"
+      },
+      "xsdMsgDefNamespace": {
+        "type": "string",
+        "enum": [
+          "urn:iso:15118:2:2013:MsgDef"
+        ],
+        "description": "ISO15118 Version. If no version is entered - default: urn:iso:15118:2:2013:MsgDef",
+        "example": "urn:iso:15118:2:2013:MsgDef",
+        "default": "urn:iso:15118:2:2013:MsgDef"
+      },
+      "v2gRootAuthorityKeyIdentifiers": {
+        "type": "array",
+        "description": "List of root authority key identifiers in a hex formated string (with \":\"as separator) which are installed in the EV.",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+          "type": "string"
+        }
+      },
+      "previousPcid": {
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9]{17,18}$",
+        "minLength": 17,
+        "maxLength": 18,
+        "description": "if the PCID of a vehicle changed, the OEM can use this field to store the previous identifier"
+      }
+    },
+    "required": [
+      "subCA1Certificate",
+      "subCA2Certificate",
+      "vehicleCertificate"
+    ]
+  }
