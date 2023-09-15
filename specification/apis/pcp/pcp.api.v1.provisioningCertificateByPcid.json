@@ -1,20 +1,13 @@
 {
     "parameters": [
       {
-        "schema": {
-          "type": "string",
-          "pattern": "^[a-zA-Z0-9]{17,18}$"
-        },
-        "name": "pcid",
-        "in": "path",
-        "required": true,
-        "description": ""
+        "$ref": "../../components/parameters/pcidParam.v1.json"
       }
     ],
     "get": {
         "summary": "GetProvisioningCertificateByPCID",
         "operationId": "getProvisioningCertificateV1",
-        "description": "This method is used by the MO to request Provisioning Certificates.\n\nBefore the delivery of OEM provisioning certificate from the PCP, it proceeds with the following steps:\n\n 1. Verifies the certificate status of each OEM certificate from the OCSP responders or CRL of an OEM.\n 2. Verifies trust chain with OEM root certificate\n\nFor each step, which cannot be validated, the PCP sends an error code to the MO.\nReturns a Provisioning Certificate V1 object if PCID/Prov Certificate was in the pool.\n\n",
+        "description": "Get a provisioning certificate by pcid from PCP.",
         "tags": [
             "GetProvisioningCertificate"
         ],
@@ -22,8 +15,8 @@
             {
               "schema": {
                 "type": "boolean",
-                "default": "false",
-                "example": "true"
+                "default": false,
+                "example": true
               },
               "in": "header",
               "description": "if set to true - this call is not getting forwarded to other Ecosystems ",
@@ -35,7 +28,24 @@
             "$ref": "../../components/responses/getProvisioningCertificateRes.v1.json"
           },
           "400": {
-            "$ref": "../../components/responses/errors/errorRes.v1.json#/badRequestError"
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../../components/schemas/error.v1.json"
+                },
+                "examples": {
+                  "INVALID PCID": {
+                    "value": {
+                      "errorMessages": [
+                        "pcid : must match \"^[a-zA-Z0-9]{17,18}$\""
+                      ],
+                      "traceId": "1c8c56cb-b71f-46a5-8788-5ddcedc88e2a"
+                    }
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -44,7 +54,24 @@
             "description": "Forbidden"
           },
           "404": {
-            "$ref": "../../components/responses/errors/errorRes.v1.json#/notFoundError"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../../components/schemas/error.v1.json"
+                },
+                "examples": {
+                  "NOT FOUND": {
+                    "value": {
+                      "errorMessages": [
+                        "The OEM provisioning certificate with given PCID is not found."
+                      ],
+                      "traceId": "807838e3-b058-447c-b6f8-233638cefc18"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -69,7 +96,14 @@
             "description": "OK"
           },
           "400": {
-            "$ref": "../../components/responses/errors/errorRes.v1.json#/badRequestError"           
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../../components/schemas/error.v1.json"
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -78,7 +112,14 @@
             "description": "Forbidden"
           },
           "404": {
-            "$ref": "../../components/responses/errors/errorRes.v1.json#/notFoundError"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../../components/schemas/error.v1.json"
+                }
+              }
+            }
           }
         }
       }

@@ -25,8 +25,9 @@
                 "description": "Bad Request",
                 "content": {
                     "application/json": {
-                    "schema": {
-                    }
+                        "schema": {
+                            "$ref": "../../components/schemas/error.v1.json"
+                        }
                     }
                 }
             },
@@ -41,7 +42,7 @@
                 "content": {
                     "application/json": {
                     "schema": {
-                        
+                        "$ref": "../../components/schemas/error.v1.json"
                     },
                     "examples": {
                         "ROOT NOT FOUND": {
@@ -65,12 +66,7 @@
             "503": {
                 "description": "Service Unavailable"
             }
-        },
-        "security": [
-            {
-            "All_roles": []
-            }
-        ]
+        }
     },
     "delete": {
         "summary": "DeleteRootCertificate",
@@ -98,11 +94,6 @@
           "500": {
             "description": "Internal Server Error"
           }
-        },
-        "security": [
-          {
-            "Admin": []
-          }
-        ]
+        }
       }
 }

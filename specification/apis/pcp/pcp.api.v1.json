@@ -21,8 +21,14 @@
     ],
     "tags": [],
     "paths": {
-      "/provisioncertificates/{pcid}": {
+      "/provisioningcertificates/{pcid}": {
         "$ref": "./pcp.api.v1.provisioningCertificateByPcid.json"
+      },
+      "/provisioningcertificates":{
+        "$ref": "./pcp.api.v1.provisioningCertificates.json"
+      },
+      "/lookupvehicle/{pcid}":{
+        "$ref": "./pcp.api.v1.lookupVehicleByPcid.json"
       }
     }
   }

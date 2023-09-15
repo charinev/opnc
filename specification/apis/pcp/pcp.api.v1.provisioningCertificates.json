@@ -1,0 +1,77 @@
+{
+  "put": {
+    "summary": "AddProvisioningCertificate",
+    "operationId": "addProvisioningCertificateV1",
+    "description": "Add a provisioning certificate to the PCP.",
+    "tags": [
+      "AddProvisioningCertificate"
+    ],
+    "requestBody": {
+      "$ref": "../../components/requestBodies/putProvisioningCertificateReq.v1.json"
+    },
+    "responses": {
+      "200": {
+        "description": "OK"
+      },
+      "400": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../components/schemas/error.v1.json"
+            },
+            "examples": {
+              "INVALID PCID": {
+                "value": {
+                  "errorMessages": [
+                    "pcid : must match \"^[a-zA-Z0-9]{17,18}$\""
+                  ],
+                  "traceId": "1c8c56cb-b71f-46a5-8788-5ddcedc88e2a"
+                }
+              },
+              "INVALID POVISIONING CERTIFICATE": {
+                "value": {
+                  "errorMessages": [
+                    "Invalid certificate format on vehicleCertificate"
+                  ],
+                  "traceId": "9d84ead1-544b-42b4-908c-1b0113767e05"
+                }
+              },
+              "INVALID SUB CA 2 CERTIFICATE": {
+                "value": {
+                  "errorMessages": [
+                    "Invalid certificate format on subCa2Certificate"
+                  ],
+                  "traceId": "26af28c1-06a5-4c20-9d20-fbf8b851b1a6"
+                }
+              },
+              "INVALID SUB CA 1 CERTIFICATE": {
+                "value": {
+                  "errorMessages": [
+                    "Invalid certificate format on subCa1Certificate"
+                  ],
+                  "traceId": "26af28c1-06a5-4c20-9d20-fbf8b851b1a6"
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized"
+      },
+      "403": {
+        "description": "Forbidden"
+      },
+      "500": {
+        "description": "Internal Server Error"
+      },
+      "502": {
+        "description": "Bad Gateway"
+      },
+      "503": {
+        "description": "Service Unavailable"
+      }
+    }
+  }
+}

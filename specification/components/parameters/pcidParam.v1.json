@@ -1,0 +1,10 @@
+{
+    "name": "pcid",
+    "in": "path",
+    "required": true,
+    "description": "",
+    "schema": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9]{17,18}$"
+    }
+}

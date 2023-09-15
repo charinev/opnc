@@ -2,31 +2,8 @@
     "description": "Expects a V2G Root CA and the Root Type\n\n",
     "content": {
         "application/json": {
-        "schema": {
-            "description": "",
-            "type": "object",            
-            "properties": {
-                "caCertificate": {
-                    "type": "string",
-                    "example": "MIICTTCCAfOgAwIBAgIQALu7v...",
-                    "maxLength": 800
-                },
-                "rootType": {
-                    "type": "string",
-                    "minLength": 2,
-                    "enum": [
-                    "MO",
-                    "V2G",
-                    "OEM",
-                    "PE"
-                    ],
-                    "maxLength": 3
-                }
-                },
-                "required": [
-                "caCertificate",
-                "rootType"
-                ]
+            "schema": {
+                "$ref": "../schemas/rootCertificate.v1.json"
             }
         }
     }

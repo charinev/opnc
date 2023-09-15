@@ -1,0 +1,20 @@
+{
+    "description": "Expects a Provisioning Certificate.",
+    "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "../schemas/provisioningCertificate.v1.json"
+          },
+          "examples": {
+            "example complete": {
+              "value": {
+                "subCA1Certificate": "",
+                "subCA2Certificate": "",
+                "vehicleCertificate": "",
+                "xsdMsgDefNamespace": "urn:iso:15118:2:2013:MsgDef"
+              }
+            }
+          }
+        }
+      }
+}
