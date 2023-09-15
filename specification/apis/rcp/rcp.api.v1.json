@@ -38,13 +38,22 @@
         }
       },
       "requestBodies": {
-        "$ref": "../../components/requestBodies/_index.json"
+        "putRootCertificateReq": {
+          "$ref": "../../components/requestBodies/putRootCertificateReq.v1.json"
+        }
       },
       "responses": {
-        "$ref": "../../components/responses/_index.json"
+        "getRootCertificateRes": {
+          "$ref": "../../components/responses/getRootCertificateRes.v1.json"
+        },
+        "getRootCertificatesRes": {
+          "$ref": "../../components/responses/getRootCertificatesRes.v1.json"
+        }
       },
       "schemas": {
-        "$ref": "../../components/schemas/_index.json"
+        "rootCertificate": {
+          "$ref": "../../components/schemas/rootCertificate.v1.json"
+        }
       }
     }
 }

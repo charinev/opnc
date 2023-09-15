@@ -1,8 +1,0 @@
-{
-    "getRootCertificateRes": {
-        "$ref": "./getRootCertificateRes.v1.json"
-    },
-    "getRootCertificatesRes": {
-        "$ref": "./getRootCertificatesRes.v1.json"
-    }
-}

@@ -1,5 +1,0 @@
-{
-    "putRootCertificateReq": {
-        "$ref": "./putRootCertificateReq.v1.json"
-    }
-}
