@@ -35,6 +35,9 @@
         },
         "iso15118Version": {
           "$ref": "../../components/parameters/iso15118VersionParam.json"
+        },
+        "pkiType": {
+          "$ref": "../../components/parameters/pkiTypeParam.v1.json"
         }
       },
       "requestBodies": {

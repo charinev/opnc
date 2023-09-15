@@ -27,5 +27,15 @@
     "/est/cacerts": {
       "$ref": "./pki.api.v1.cacerts.json"
     }
+  },
+  "components": {
+    "parameters": {
+      "caDomain": {
+        "$ref": "../../components/parameters/caDomainParam.json"
+      },
+      "iso15118Version": {
+        "$ref": "../../components/parameters/iso15118VersionParam.json"
+      }
+    }
   }
 }
