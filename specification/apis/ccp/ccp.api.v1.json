@@ -17,7 +17,7 @@
     "servers": [
       {"url":"https://api.server.test/opnc/v1/ccp"}
     ],
-    "tags": [],
+    "tags": ["MO","CPO","OEM"],
     "paths": {
         "/contractData/emaid/{emaid}": {
             "$ref": "ccp.api.v1.contractDataByEmaid.json"
