@@ -1,0 +1,29 @@
+{
+    "type": "object",
+    "title": "GetContractDataResV1",
+    "x-examples": {
+        "example-1": {
+            "contractDataCollection": [
+                {
+                "pcid": "WMIP12345678901234",
+                "emaid": "EMP99C123456789",
+                "xsdMsgDefNamespace": "urn:iso:15118:2:2013:MsgDef",
+                "contractCertificate": "string",
+                "defaultContract": true,
+                "certValidFrom": "2019-08-24T14:15:22Z",
+                "certValidTo": "2019-08-24T14:15:22Z",
+                "cpsRootCertificateId": "",
+                "cpsRootDistinguishedName": "896b6655-180e-4304-b642-606bb00df8f0"
+                }
+            ]
+        }
+    },
+    "properties": {
+        "contractDataCollection": {
+        "type": "array",
+        "items": {
+            "$ref": "../schemas/contractData.v1.json"
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+  "title": "cpsV2GRootCertificateFingerprintParamV1",
+  "description": "",
+  "type": "string",
+  "pattern": "^[0-9a-fA-F]{8}\\-([0-9a-fA-F]{4}\\-){3}[0-9a-fA-F]{12}$",
+  "example": "896b6655-180e-4304-b642-606bb00df8f0"
+}

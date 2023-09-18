@@ -1,0 +1,7 @@
+{
+  "title": "cpsV2GRootCertificateFingerprintParamV1",
+  "description": "The SHA256 Fingerprint of the desired V2G root CA which shall was used to sign these data with the regarding CPS signing certificate. Its optional. If not given, the CPS will decide which CPS signing V2G PKI will be renurned\n",
+  "type": "string",
+  "pattern": "^[0-9a-fA-F]{8}\\-([0-9a-fA-F]{4}\\-){3}[0-9a-fA-F]{12}$",
+  "example": "896b6655-180e-4304-b642-606bb00df8f0"
+}

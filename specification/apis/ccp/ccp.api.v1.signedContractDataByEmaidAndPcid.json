@@ -1,0 +1,146 @@
+{
+    "get": {
+        "summary": "GetSignedContractDataByEmaidAndPcid",
+        "operationId": "getSignedContractDataByEmaidAndPcidV1",
+        "description": "The CCP offers this additional interface to provide signed contract data to OEM backends without the need of a CertificateInstallationRequest. The OEM backend requests the endpoint with an EMAID and a PCID to receive the certificateInstallationResponse.\n\nThe OEM backend must check the validity of the contract, before the installation into the car, whether it is expired or revoked.\n\n| Check                                            | \n|--------------------------------------------------|\n| Contract for EMAID must be existing in the pool. |",
+        "tags": [
+            "GetSignedContractDataByEmaidAndPcid"
+        ],
+        "parameters": [
+            {
+                "schema": {
+                  "$ref": "../../components/parameters/emaidParam.v1.json"
+                },
+                "name": "emaid",
+                "in": "path",
+                "required": true,
+                "description": "The EMAID of the requested contract."
+            },
+            {
+                "name": "pcid",
+                "in": "path",
+                "required": true,
+                "description": "The related provisioning certificate ID.",
+                "schema": {
+                  "$ref": "../../components/parameters/pcidParam.v1.json"
+                }
+            },
+            {
+                "schema": {
+                "type": "string",
+                "example": "00"
+                },
+                "in": "query",
+                "name": "sessionID",
+                "description": "Session ID as HEX shall be included into the xml if present",
+                "allowEmptyValue": true
+            },
+            {
+                "schema": {
+                "type": "string",
+                "default": "urn:iso:15118:2:2013:MsgDef",
+                "example": "urn:iso:15118:2:2013:MsgDef"
+                },
+                "in": "query",
+                "name": "xsdMsgDefNamespace",
+                "description": "To receive signed contract data for a specific ISO Version"
+            },
+            {
+                "schema": {
+                  "$ref": "../../components/parameters/cpsV2GRootCertificateFingerprintParam.v1.json"
+                },
+                "in": "query",
+                "name": "cpsV2GRootCertificateFingerprint",
+                "description": "The SHA256 Fingerprint of the desired V2G root CA which shall was used to sign these data with the regarding CPS signing certificate. Its optional. If not given, the CPS will decide which CPS signing V2G PKI will be renurned"
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                    "$ref": "../../components/responses/getSignedContractDataRes.v1.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../../components/schemas/error.v1.json"
+                },
+                "examples": {
+                  "Invalid PCID": {
+                    "value": {
+                      "errorMessages": [
+                        "pcid : must match \"^[a-zA-Z0-9]{17,18}$\""
+                      ],
+                      "traceId": "1c8c56cb-b71f-46a5-8788-5ddcedc88e2a"
+                    }
+                  },
+                  "Invalid EMAID": {
+                    "value": {
+                      "errorMessages": [
+                        "emaid : must match \"^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9}[-]?(\\w{1})?$\""
+                      ],
+                      "traceId": "02be5c05-298b-4503-a685-8126951e0233"
+                    }
+                  },
+                  "Invalid SessionID": {
+                    "value": {
+                      "errorMessages": [
+                        "Invalid SessionID format, make sure the length is maximum 8 characters and it is represented in HEX binary"
+                      ],
+                      "traceId": "5712b40b-5003-4553-8539-2d1edaf56b6a"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../../components/schemas/error.v1.json"
+                },
+                "examples": {
+                  "Not Found": {
+                    "value": {
+                      "errorMessages": [
+                        "The contract for the given EMAID not found."
+                      ],
+                      "traceId": "ddb3e897-30c3-4901-b5fe-383c5edeadcb"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "OEM": []
+          }
+        ]
+    }
+}

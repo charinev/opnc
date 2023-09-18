@@ -19,16 +19,23 @@
     ],
     "tags": [],
     "paths": {
-        "/name": {
-            "get": {
-                "description": "",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
+        "/contractData/emaid/{emaid}": {
+            "$ref": "ccp.api.v1.contractDataByEmaid.json"
+        },
+        "/contractData/pcid/{pcid}": {
+            "$ref": "ccp.api.v1.contractDataByPcid.json"
+        },
+        "/signedcontractdata": {
+            "$ref": "./ccp.api.v1.signedContractData.json"
+        },
+        "/signedcontractdata/{emaid}": {
+            "$ref": "./ccp.api.v1.signedContractDataByEmaid.json"
+        },
+        "/signedcontractdata/{emaid}/{pcid}": {
+            "$ref": "./ccp.api.v1.signedContractDataByEmaidAndPcid.json"
+        },
+        "/signedcontractdata/{emaid}/{pcid}/setdefault": {
+            "$ref": "./ccp.api.v1.signedContractDataSetDefault.json"
         }
     }
   }

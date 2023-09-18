@@ -1,7 +1,13 @@
 {
     "parameters": [
       {
-        "$ref": "../../components/parameters/pcidParam.v1.json"
+        "name": "pcid",
+        "in": "path",
+        "required": true,
+        "description": "",
+        "schema": {
+          "$ref": "../../components/parameters/pcidParam.v1.json"
+        }
       }
     ],
     "get": {
@@ -25,7 +31,28 @@
         ],
         "responses": {
           "200": {
-            "$ref": "../../components/responses/getProvisioningCertificateRes.v1.json"
+            "description": "OK",
+            "content": {
+                "application/json": {
+                    "schema": {
+                      "$ref": "../../components/responses/getProvisioningCertificateRes.v1.json"
+                    }
+                }
+            },
+            "examples": {
+              "example": {
+                "value": {
+                  "OEMMessage": {
+                    "subCA1Certificate": "",
+                    "subCA2Certificate": "",
+                    "vehicleCertificate": "",
+                    "rootAuthorityKeyIdentifier": "",
+                    "rootIssuerDistinguishedName": "",
+                    "rootIssuerSerialNumber": ""
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request",

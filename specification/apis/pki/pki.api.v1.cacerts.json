@@ -8,10 +8,22 @@
         "description": "Get the chain of CA certificates incl. Root CA.",
         "parameters": [
             {
-            "$ref": "../../components/parameters/caDomainParam.json"
+              "name": "caDomain",
+              "in": "query",
+              "description": "The domain of the subCA the certificate is requested from.",
+              "required": true,
+              "schema": {
+                "$ref": "../../components/parameters/caDomainParam.json"
+              }
             },
             {
-            "$ref": "../../components/parameters/iso15118VersionParam.json"
+              "name": "iso15118Version",
+              "in": "query",
+              "description": "The ISO version which shall be used. If not set, ISO15118:2 will be used as default.",
+              "required": true,
+              "schema": {
+                "$ref": "../../components/parameters/iso15118VersionParam.json"
+              }
             }
         ],
         "responses": {

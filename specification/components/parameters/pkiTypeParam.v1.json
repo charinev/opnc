@@ -1,14 +1,11 @@
 {
-    "schema": {
-        "type": "string",
-        "enum": [
-          "mo",
-          "v2g",
-          "oem",
-          "pe"
-        ]
-      },
-      "in": "query",
-      "name": "pkiType",
-      "description": "Optional parameter to filter for root certificates from V2G, MO or OEM PKI."
+  "title": "pkiTypeParamV1",
+  "description": "",
+  "type": "string",
+  "enum": [
+    "mo",
+    "v2g",
+    "oem",
+    "pe"
+  ]
 }

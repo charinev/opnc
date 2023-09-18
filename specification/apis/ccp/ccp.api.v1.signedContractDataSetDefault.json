@@ -1,0 +1,53 @@
+{
+    "post": {
+        "operationId": "setSignedContractDataAsDefaultV1",
+        "description": "Set an existing signed contract data as default.",
+        "summary": "SetSignedContractDataAsDefault",
+        "tags": [
+          "SetSignedContractDataAsDefault"
+        ],
+        "parameters": [
+            {
+                "schema": {
+                  "$ref": "../../components/parameters/emaidParam.v1.json"
+                },
+                "name": "emaid",
+                "in": "path",
+                "required": true,
+                "description": "The EMAID of the requested contract."
+            },
+            {
+                "name": "pcid",
+                "in": "path",
+                "required": true,
+                "description": "The related provisioning certificate ID.",
+                "schema": {
+                  "$ref": "../../components/parameters/pcidParam.v1.json"
+                }
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+}

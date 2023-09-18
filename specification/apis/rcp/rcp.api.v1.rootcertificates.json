@@ -8,12 +8,24 @@
         ],
         "parameters": [
             {
+                "in": "query",
+                "name": "pkiType",
+                "description": "Optional parameter to filter for root certificates from V2G, MO or OEM PKI.",
+                "schema": {
                 "$ref": "../../components/parameters/pkiTypeParam.v1.json"
+                }
             }
         ],
         "responses": {
             "200": {
-                "$ref": "../../components/responses/getRootCertificatesRes.v1.json"
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../components/responses/getRootCertificatesRes.v1.json"
+                        }
+                    }
+                }
             },
             "400": {
                 "description": "Bad Request",

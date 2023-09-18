@@ -1,0 +1,52 @@
+{
+    "title": "ContractDataV1",
+    "description": "",
+    "type": "object",
+    "properties": {
+        "pcid": {
+            "$ref": "../parameters/pcidParam.v1.json"
+        },
+        "emaid": {
+            "$ref": "../parameters/emaidParam.v1.json"
+        },
+        "xsdMsgDefNamespace": {
+            "$ref": "../parameters/xsdMsgDefNamespaceParam.v1.json"
+        },
+        "contractCertificate": {
+            "type": "string",
+            "description": "Contract Certificate in base64 encoded DER form",
+            "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
+            "maxLength": 800
+        },
+        "defaultContract": {
+            "type": "boolean",
+            "description": "If set to true it will get delivered as certificateInstallationResponse. the value is defined by the OEM/User if multiple contracts are stored in the CCP for one PCID.",
+            "example": true,
+            "enum": [
+                true,
+                false
+            ]
+        },
+        "certValidFrom": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-08-24T14:15:22Z",
+            "description": "Valid From Date and Time of contract certificate"
+        },
+        "certValidTo": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-08-24T14:15:22Z",
+            "description": "Valid to Date and Time of contract certificate"
+        },
+        "cpsRootCertificateDN": {
+            "type": "string",
+            "example": "896b6655-180e-4304-b642-606bb00df8f0",
+            "pattern": "^[0-9a-fA-F]{8}\\-([0-9a-fA-F]{4}\\-){3}[0-9a-fA-F]{12}$",
+            "description": "The DN of the desired V2G root CA"
+        },
+        "cpsV2GRootCertificateFingerprint": {
+            "$ref": "../parameters/cpsV2GRootCertificateFingerprintParam.v1.json"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "description": "",
+    "content": {
+        "application/json": {
+            "schema": {
+                "$ref": "../schemas/signedContractData.v1.json"
+            }
+        }
+    }
+}

@@ -1,5 +1,6 @@
 {
-    "title": "Error",
+    "title": "ErrorV1",
+    "description": "",
     "type": "object",
     "properties": {
       "errorMessages": {

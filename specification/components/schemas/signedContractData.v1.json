@@ -1,0 +1,33 @@
+{
+    "title": "SignedContractDataV1",
+    "description": "",
+    "type": "object",
+    "properties": {
+        "certificateInstallationRes": {
+            "type": "string",
+            "description": "Base64 encoded EXI - Contract installation response as defined in the ISO15118 standard"
+        },
+        "emaid": {
+            "$ref": "../parameters/emaidParam.v1.json"
+        },
+        "pcid": {
+            "$ref": "../parameters/pcidParam.v1.json"
+        },
+        "xsdMsgDefNamespace": {
+            "$ref": "../parameters/xsdMsgDefNamespaceParam.v1.json"
+        },
+        "metaData": {
+            "type": "string",
+            "description": "placeholder for future applications"
+        },
+        "cpsV2GRootCertificateFingerprint": {
+            "$ref": "../parameters/cpsV2GRootCertificateFingerprintParam.v1.json"
+        }
+    },
+    "required": [
+        "emaid",
+        "pcid",
+        "certificateInstallationRes",
+        "xsdMsgDefNamespace"
+    ]
+}

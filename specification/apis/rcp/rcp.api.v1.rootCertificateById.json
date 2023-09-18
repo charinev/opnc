@@ -19,7 +19,14 @@
         ],
         "responses": {
             "200": {
-                "$ref": "../../components/responses/getRootCertificateRes.v1.json"
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../components/responses/getRootCertificateRes.v1.json"
+                        }
+                    }
+                }
             },
             "400": {
                 "description": "Bad Request",

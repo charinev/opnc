@@ -1,0 +1,13 @@
+{
+    "title": "GetSignedContractDataResV1",
+    "type": "object",
+    "properties": {        
+        "signedContractDataCollection": {
+            "type": "array",
+            "description": "Collection of signed contract data objects incl. `certificateInstallationRes`.",
+            "items": {
+                "$ref": "../schemas/signedContractData.v1.json"
+            }
+        }
+    }
+}

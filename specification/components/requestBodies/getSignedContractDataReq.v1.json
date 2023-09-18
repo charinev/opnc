@@ -1,0 +1,39 @@
+{
+  "content": {
+    "application/json": {
+      "schema": {
+        "type": "object",
+        "title": "GetSignedContractDataReqV1",
+        "description": "",
+        "minProperties": 2,
+        "properties": {
+          "certificateInstallationReq": {
+            "type": "string",
+            "description": "base64 encoded"
+          },
+          "xsdMsgDefNamespace": {
+            "type": "string",
+            "description": "ISO Version",
+            "example": "urn:iso:15118:2:2013:MsgDef"
+          },
+          "metadata": {
+            "type": "string",
+            "description": "open for future usage"
+          }
+        },
+        "required": [
+          "certificateInstallationReq",
+          "xsdMsgDefNamespace"
+        ]
+      },     
+      "examples": {
+        "example-1": {
+          "value": {
+            "certificateInstallationReq": "",
+            "xsdMsgDefNamespace": "urn:iso:15118:2:2013:MsgDef"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,9 +1,15 @@
 {
     "parameters": [
-        {
+      {
+        "name": "pcid",
+        "in": "path",
+        "required": true,
+        "description": "",
+        "schema": {
           "$ref": "../../components/parameters/pcidParam.v1.json"
         }
-      ],
+      }
+    ],
     "get": {
         "summary": "LookUpVehicleByPCID",
         "operationId": "lookupVehicleV1",
