@@ -19,6 +19,14 @@
     ],
     "tags": [],
     "paths": {
-      
+      "/contractData/sign": {
+        "$ref": "./cps.api.v1.contractDataSign.json"
+      },
+      "/contractData/generateandsign": {
+        "$ref": "./cps.api.v1.contractDataGenerateAndSign.json"
+      },
+      "/cpsCertificates": {
+        "$ref": "./cps.api.v1.cpsCertificates.json"
+      }
     }
   }

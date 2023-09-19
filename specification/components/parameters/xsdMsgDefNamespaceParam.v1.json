@@ -1,7 +1,10 @@
 {
-  "title": "cpsV2GRootCertificateFingerprintParamV1",
-  "description": "",
+  "title": "xsdMsgDefNamespaceParamV1",
+  "description": "ISO15118 Version",
   "type": "string",
-  "pattern": "^[0-9a-fA-F]{8}\\-([0-9a-fA-F]{4}\\-){3}[0-9a-fA-F]{12}$",
-  "example": "896b6655-180e-4304-b642-606bb00df8f0"
+  "default": "urn:iso:15118:2:2013:MsgDef",
+  "enum": [
+    "urn:iso:15118:2:2013:MsgDef",
+    "urn:iso:15118:20:2020:MsgDef"
+  ]
 }

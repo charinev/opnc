@@ -22,6 +22,11 @@
         },
         "cpsV2GRootCertificateFingerprint": {
             "$ref": "../parameters/cpsV2GRootCertificateFingerprintParam.v1.json"
+        },
+        "cpsRootDistinguishedName": {
+            "type": "string",
+            "pattern": "^((CN|OU|O|C|DC|ST)=[^,]+,? ?)+$",
+            "description": "Reflects the v2g root distinguished name field. (informative)"
         }
     },
     "required": [

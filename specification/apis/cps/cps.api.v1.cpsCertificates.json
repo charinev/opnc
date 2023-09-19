@@ -1,0 +1,61 @@
+{
+    "get": {
+        "summary": "GetCpsCertificates",
+        "operationId": "getCpsCertificatesV1",
+        "description": "Get CPS certificates incl. certificate chain.",
+        "tags": [
+            "GetCpsCertificates"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../../components/responses/GetCpsCertificatesRes.v1.json"
+                }
+              },
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../../components/schemas/error.v1.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                    "$ref": "../../components/schemas/error.v1.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                    "$ref": "../../components/schemas/error.v1.json"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }

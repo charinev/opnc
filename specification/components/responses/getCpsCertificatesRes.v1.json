@@ -1,0 +1,33 @@
+{
+    "title": "GetCpsCertificatesResponseV1",
+    "description": "",
+    "type": "object",
+    "x-examples": {
+        "example-1": {
+            "cpsCertificateDataCollection": [
+                {
+                    "cpsCertificateChain": {
+                        "certificate": "",
+                        "subCa2Certificate": "",
+                        "subCa1Certificate": ""
+                    },
+                    "cpsDistinguishedName": "",
+                    "cpsRootDistinguishedName": "",
+                    "cpsCertificate": "",
+                    "validFrom": "2022-02-08T21:59:59Z",
+                    "validTo": "2022-05-08T21:59:59Z",
+                    "organizationName": "",
+                    "cpsRootCertificateId": ""
+                }
+            ]
+        }
+    },
+    "properties": {
+        "cpsCertificateDataCollection": {
+        "type": "array",
+        "items": {
+            "$ref": "../schemas/cpsCertificateChainData.v1.json"
+        }
+        }
+    }
+}

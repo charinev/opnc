@@ -1,0 +1,96 @@
+{
+    "put": {
+        "summary": "GenerateAndSignContractData",
+        "operationId": "generateAndSignContractDataV1",
+        "description": "This service creates and signs contractData for provided contract information. The contract certificate will be signed by the MO SUB CA2 which is derived from the V2G Root CA\n\nThe created and signed contractData is stored in the contract certificate pool for provisioning to the OEM- and CPO-backend. \n\nTo update a contractData, the interface must be called again with the same PCID and EMAID. The system will replace the old contractData with the new one.",
+        "tags": [
+            "GenerateAndSignContractData"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../../components/schemas/error.v1.json"
+                },
+                "examples": {
+                  "EMAID already used": {
+                    "value": {
+                      "errorMessages": [
+                        "Invalid Tupple - EMAID is already used by other PCID."
+                      ],
+                      "traceId": "3e002e2a-580b-48e4-88a5-6b782cae636b"
+                    }
+                  },
+                  "Invalid EMAID": {
+                    "value": {
+                      "errorMessages": [
+                        "emaid : must match \"^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9}[-]?(\\w{1})?$\""
+                      ],
+                      "traceId": "57a24dd5-08e2-4d78-8a77-b49b9db411f2"
+                    }
+                  },
+                  "Invalid PCID": {
+                    "value": {
+                      "errorMessages": [
+                        "pcid : must match \"^[a-zA-Z0-9]{17,18}$\""
+                      ],
+                      "traceId": "a29a7734-0599-4394-9300-d912a6bfd914"
+                    }
+                  },
+                  "Invalid Date": {
+                    "value": {
+                      "errorMessages": [
+                        "The given contractEnds date is in the past."
+                      ],
+                      "traceId": "8185b433-8598-463e-a83f-9dbfea8a33e0"
+                    }
+                  },
+                  "PCID not Available": {
+                    "value": {
+                      "errorMessages": [
+                        "The OEM provisioning certificate with the given PCID is not available."
+                      ],
+                      "traceId": "fb683590-7de9-4c3e-ae41-a83ccb578628"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../components/requestBodies/generateAndSignContractDataReq.v1.json"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "../../components/requestBodies/generateAndSignContractDataReq.v1.json"
+              }
+            }
+          }
+        }
+      }
+}

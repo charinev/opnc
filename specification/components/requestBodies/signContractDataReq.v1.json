@@ -1,0 +1,26 @@
+{
+    "title": "SignContractDataRequestV1",
+    "description": "",
+    "type": "object",
+    "properties": {
+        "contractCertificateData": {
+            "$ref": "../schemas/contractCertificateData.v1.json"
+        },
+        "pcid": {
+            "$ref": "../parameters/pcidParam.v1.json"
+        },
+        "emaid": {
+            "$ref": "../parameters/emaidParam.v1.json"
+        },
+        "xsdMsgDefNamespace": {
+            "$ref": "../parameters/xsdMsgDefNamespaceParam.v1.json"
+        },
+        "cpsV2GRootCertificateFingerprint": {
+            "$ref": "../parameters/cpsV2GRootCertificateFingerprintParam.v1.json"
+        }
+    },
+    "required": [
+        "contractCertificteData",
+        "xsdMsgDefNamespace"
+    ]
+}

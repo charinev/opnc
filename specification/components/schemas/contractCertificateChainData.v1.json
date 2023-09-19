@@ -1,0 +1,36 @@
+{
+    "title": "ContractCertificateDataV1",
+    "description": "Contract Data consisting of the contract certificate and its chain not including the MO Root CA itself. Furthermore the encrypted contract private key and the DH Public Key as descirbed in the ISO 15118 is included ",
+    "type": "object",
+    "x-examples": {
+        "example-1": {
+            "contractCertificateChain": {
+                "ertificate": "",
+                "subCa2Certificate": "",
+                "subCa1Certificate": "",
+                "contractSignatureEncryptedPrivateKey": "PD5/v8Z005yianHegxvs2vE/uRPOjBaP4byhAVwyj6APg6BFOZexCpCacHTxgELr",
+                "dHpublickey": "BC//bjmXFWisWCxnJeoA2kMBZmEHfx9h/ZKlTMhbJUvm6cdc/WBuKwPlC5qVHnxguI5RouU59fc9P3y2qU0Qu0c="
+                }
+            }
+    },
+    "properties": {
+        "contractCertificateChain": {
+            "$ref": "./certificateChain.v1.json"
+        },
+        "contractSignatureEncryptedPrivateKey": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Encryted contract certificate private key"
+        },
+        "dHpublickey": {
+        "type": "string",
+        "minLength": 1,
+        "description": "DH Public Key as defined in the ISO15118"
+        }
+    },
+    "required": [
+        "contractCertificateChain",
+        "contractSignatureEncryptedPrivateKey",
+        "dHpublickey"
+    ]
+}

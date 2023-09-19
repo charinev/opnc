@@ -1,39 +1,23 @@
 {
     "type": "object",
-    "title": "ProvisioningCertificateV1",
-    "description": "Object containing a provisioning certificate handled by the Provisioning Certificate Pool. Used on addOEM operation as request body.",
+    "title": "ProvisioningCertificateDataV1",
+    "description": "Object containing a provisioning certificate chain handled by the Provisioning Certificate Pool.",
     "x-examples": {
       "example": {
-        "subCA1Certificate": "",
-        "subCA2Certificate": "",
-        "provisioningCertificate": ""
+        "provisioningCertificateChain": {
+          "subCA1Certificate": "",
+          "subCA2Certificate": "",
+          "certificate": ""
+        }
       }
     },
     "minProperties": 3,
     "properties": {
-      "subCA1Certificate": {
-        "type": "string",
-        "description": "Sub CA 1 Certificate in base64 encoded DER form. Deprecated in this form, will be changed to `subCa1Certificate` in future releases.",
-        "example": ""
-      },
-      "subCA2Certificate": {
-        "type": "string",
-        "description": "Sub CA 2 Certificate in base64 encoded DER form. Optional for leaf certificates with only one intermediate certificate. Deprecated in this form, will be changed to `subCa2Certificate` in future releases.",
-        "example": ""
-      },
-      "provisioningCertificate": {
-        "type": "string",
-        "description": "Provisioning Certificate in base64 encoded DER form. Deprecated in this form. Will be renamed to `provisioningCertificate` in future versions.",
-        "example": ""
+      "provisioningCertificateChain": {
+        "$ref": "./certificateChain.v1.json"
       },
       "xsdMsgDefNamespace": {
-        "type": "string",
-        "enum": [
-          "urn:iso:15118:2:2013:MsgDef"
-        ],
-        "description": "ISO15118 Version. If no version is entered - default: urn:iso:15118:2:2013:MsgDef",
-        "example": "urn:iso:15118:2:2013:MsgDef",
-        "default": "urn:iso:15118:2:2013:MsgDef"
+        "$ref": "../parameters/xsdMsgDefNamespaceParam.v1.json"
       },
       "rootIssuerSerialNumber": {
         "type": "string",
@@ -65,8 +49,6 @@
       }
     },
     "required": [
-      "subCA1Certificate",
-      "subCA2Certificate",
-      "vehicleCertificate"
+      "provisioningCertificateChain"
     ]
   }

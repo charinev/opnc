@@ -1,0 +1,57 @@
+{
+    "title": "GenerateAndSignContractDataReqV1",
+    "type": "object",
+    "description": "",
+    "x-examples": {
+        "example": {
+            "contractBegins": "2021-05-11T00:00:00Z",
+            "contractEnds": "2022-12-10T11:42:59Z",
+            "pcid": "",
+            "emaid": "",
+            "xsdMsgDefNamespace": "urn:iso:15118:2:2013:MsgDef"
+        }
+    },
+    "properties": {
+        "contractBegins": {
+            "type": "string",
+            "description": "Timestamp the contract will begin at.",
+            "x-constraint": "@ValidDateTime",
+            "x-constraint-message": "The contractBegins does not match the specification"
+        },
+        "contractEnds": {
+            "type": "string",
+            "description": "Timestamp until the contract is active.",
+            "x-constraint": "@ValidDateTime",
+            "x-constraint-message": "The contractEnds does not match the specification"
+        },
+        "emaid": {
+            "$ref": "../parameters/emaidParam.v1.json"
+        },
+        "pcid": {
+            "$ref": "../parameters/pcidParam.v1.json"
+        },
+        "xsdMsgDefNamespace": {
+            "$ref": "../parameters/xsdMsgDefNamespaceParam.v1.json"
+        },
+        "subscriptionUrl": {
+            "type": "string",
+            "example": "https://testmo.com/subscriptions/v2g",
+            "pattern": "^(https?|http)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]",
+            "description": "URL which could be given by MO to allow extended information exchange for a given contract"
+        },
+        "cpsV2GRootCertificateFingerprint": {
+            "$ref": "../parameters/cpsV2GRootCertificateFingerprintParam.v1.json"
+        },
+        "metaData": {
+            "type": "string",
+            "description": "Placeholder for future adaption"
+        }
+    },
+    "required": [
+        "contractBegins",
+        "contractEnds",
+        "emaid",
+        "pcid",
+        "xsdMsgDefNamespace"
+    ]
+}

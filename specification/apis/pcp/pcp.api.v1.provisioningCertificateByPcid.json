@@ -38,20 +38,6 @@
                       "$ref": "../../components/responses/getProvisioningCertificateRes.v1.json"
                     }
                 }
-            },
-            "examples": {
-              "example": {
-                "value": {
-                  "OEMMessage": {
-                    "subCA1Certificate": "",
-                    "subCA2Certificate": "",
-                    "vehicleCertificate": "",
-                    "rootAuthorityKeyIdentifier": "",
-                    "rootIssuerDistinguishedName": "",
-                    "rootIssuerSerialNumber": ""
-                  }
-                }
-              }
             }
           },
           "400": {

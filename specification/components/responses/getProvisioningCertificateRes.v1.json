@@ -3,7 +3,7 @@
   "type": "object",
   "properties": {
     "provisioningCertificate": {
-        "$ref": "../schemas/provisioningCertificate.v1.json"
+        "$ref": "../schemas/provisioningCertificateChainData.v1.json"
     }
   }
 }

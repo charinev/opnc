@@ -1,0 +1,9 @@
+{
+    "title": "SignContractDataResV1",
+    "type": "object",
+    "properties": {        
+        "signedContractData": {
+            "$ref": "../schemas/signedContractData.v1.json"
+        }
+    }
+}
