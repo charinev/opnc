@@ -348,11 +348,13 @@
             "description": "An optional description of what the webhook is used for."
           },
           "enabledEvents": {
-            "$ref": "#/components/schemas/Events"
+                          "type": "array",
+                          "description": "We need to add WMI opjects"  
+                            },
+          "wmi":{
+              "type": "array",
+              "description": "We need to add WMI opjects"
           },
-          "wmi":[
-              "$ref": "#/components/schemas/WMIs"
-          ],
           "metadata": {
             "type": "object",
             "description": "Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format."
@@ -542,4 +544,4 @@
   }
 }
       
-  }
+  
