@@ -1,0 +1,171 @@
+{
+    "parameters": [
+      {
+        "schema": {
+          "type": "string"
+        },
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "Endpoint ID"
+      }
+    ],
+    "get": {
+        "operationId": "getEndpointByIdV1",
+        "description": "Returns webhook endpoint for a given ID",
+        "summary": "GetEndpointById",
+        "tags": [
+            "GetEndpointById"
+        ],
+        "responses": {
+            "200": {
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../components/responses/endpointRes.v1.json"
+                        },
+                        "examples": {
+                            "get-endpoint": {
+                                "value": {
+                                    "id": "xyzedjds",
+                                    "apiVersion": "v1",
+                                    "created": 1623760573,
+                                    "description": "Test webhook",
+                                    "enabledEvents": [
+                                        "oem.contract.created",
+                                        "oem.contract.deleted"
+                                    ],
+                                    "metadata": {},
+                                    "status": "enabled",
+                                    "url": "https://mywebhooks.com/payload",
+                                    "secret": "secret keyword",
+                                    "providerIds": [
+                                        "ABCDF",
+                                        "DEQUF"
+                                    ],
+                                    "wmis": [
+                                        "XXX",
+                                        "YYY",
+                                        "ZZZ"
+                                    ],
+                                    "userRole": "MO",
+                                    "userName": "Test User"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Bad Request"
+            },
+            "401": {
+                "description": "Unauthorized"
+            },
+            "403": {
+                "description": "Forbidden"
+            },
+            "404": {
+                "description": "Not Found"
+            },
+            "500": {
+                "description": "Internal Server Error"
+            }
+        }
+    },
+    "put": {
+        "summary": "UpdateEndpointById",
+        "operationId": "updateEndpointByIdV1",
+        "description": "Updates the webhook endpoint. You may edit the url, the list of enabled_events, and the status of your endpoint.",
+        "tags": [
+            "UpdateEndpointById"
+        ],
+        "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../components/requestBodies/putEndpointUpdateReq.v1.json"
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../components/responses/endpointRes.v1.json"
+                        },
+                        "examples": {
+                            "endpoint-updated": {
+                                "value": {
+                                    "id": "xyzedjds",
+                                    "apiVersion": "v1",
+                                    "created": 1623760573,
+                                    "description": "Test webhook",
+                                    "enabledEvents": [
+                                        "oem.contract.created",
+                                        "oem.contract.deleted"
+                                    ],
+                                    "wmi":[
+                                        "WPO",
+                                        "WVW",
+                                        "WAU"
+                                    ],
+                                    "metadata": {},
+                                    "status": "enabled",
+                                    "url": "https://mywebhooks.com/payload"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Bad Request"
+            },
+            "401": {
+                "description": "Unauthorized"
+            },
+            "403": {
+                "description": "Forbidden"
+            },
+            "404": {
+                "description": "Not Found"
+            },
+            "500": {
+                "description": "Internal Server Error"
+            }
+        }        
+    },
+    "delete": {
+        "summary": "DeleteEndpointById",
+        "operationId": "deleteEndpointByIdV1",
+        "description": "Delete an endpoint by ID",
+        "tags": [
+            "DeleteEndpointById"
+        ],
+        "responses": {
+            "200": {
+            "description": "OK"
+            },
+            "400": {
+            "description": "Bad Request"
+            },
+            "401": {
+            "description": "Unauthorized"
+            },
+            "403": {
+            "description": "Forbidden"
+            },
+            "404": {
+            "description": "Not Found"
+            },
+            "500": {
+            "description": "Internal Server Error"
+            }
+        }
+    }
+  }

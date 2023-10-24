@@ -1,0 +1,50 @@
+{
+    "title": "PutEndpointUpdateReqV1",
+    "type": "object",
+    "description": "",
+    "properties": {
+      "apiVersion": {
+        "type": "string",
+        "description": "Optional: Events sent to this endpoint will be generated with this version."
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional description of what the webhook is used for."
+      },
+      "enabledEvents": {
+        "$ref": "../../components/schemas/eventEnum.v1.json"
+      },
+      "metadata": {
+        "type": "object",
+        "description": "Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format."
+      },
+      "status": {
+        "type": "string",
+        "description": "The status of the webhook. It can be enabled or disabled."
+      },
+      "url": {
+        "type": "string",
+        "description": "The URL of the webhook endpoint.",
+        "x-oapi-codegen-extra-tags": {
+          "validate": "url,required"
+        }
+      }
+    },
+    "required": [
+      "url"
+    ],
+    "x-examples": {
+      "EndpointRequest example": {
+        "value": {
+          "description": "Description",
+          "enabledEvents": [
+            "contract.created",
+            "contract.deleted"
+          ],
+          "metadata": {},
+          "status": "enabled",
+          "url": "https://mywebhooks.com/payload"
+        }
+      }
+    }
+  }

@@ -1,53 +1,53 @@
 {
-    "put": {
-        "summary": "SignContractData",
-        "operationId": "signContractDataV1",
-        "description": "This interface signs contract data in the CPS and sends it back to the MO. By using the Parameter _PCID_ the Signed Contract Data are getting stored in the Contract Certificate Pool.",
-        "tags": [
-            "SignContractData"
-        ],
-        "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "../../components/requestBodies/signContractDataReq.v1.json"
-                }
-              }
+  "put": {
+    "summary": "SignContractData",
+    "operationId": "signContractDataV1",
+    "description": "This interface signs contract data in the CPS and sends it back to the MO. By using the Parameter _PCID_ the Signed Contract Data are getting stored in the Contract Certificate Pool.",
+    "tags": [
+        "SignContractData"
+    ],
+    "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../components/requestBodies/signContractDataReq.v1.json"
             }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "../../components/responses/signContractDataRes.v1.json"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "../../components/schemas/error.v1.json"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
+    },
+    "responses": {
+      "201": {
+        "description": "Created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../components/responses/signContractDataRes.v1.json"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../components/schemas/error.v1.json"
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized"
+      },
+      "403": {
+        "description": "Forbidden"
+      },
+      "404": {
+        "description": "Not Found"
+      },
+      "500": {
+        "description": "Internal Server Error"
       }
     }
+  }
+}

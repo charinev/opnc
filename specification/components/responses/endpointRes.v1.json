@@ -1,0 +1,103 @@
+{
+    "title": "EndpointResV1",
+    "type": "object",
+    "description": "",
+    "properties": {
+        "id": {
+            "type": "string",
+            "description": "Unique identifier for the object."
+        },
+        "apiVersion": {
+            "type": "string",
+            "description": "The API version events are rendered as for this webhook endpoint."
+        },
+        "created": {
+            "type": "integer",
+            "description": "Created DateTime of endpoint"
+        },
+        "description": {
+            "type": "string",
+            "description": "An optional description of what the webhook is used for."
+        },
+        "enabledEvents": {
+            "type": "array",
+            "description": "The list of events to enable for this endpoint.",
+            "items": {
+            "type": "string"
+            }
+        },
+        "metadata": {
+            "type": "object",
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format."
+        },
+        "status": {
+            "type": "string",
+            "description": "The status of the webhook. It can be enabled or disabled."
+        },
+        "url": {
+            "type": "string",
+            "description": "The URL of the webhook endpoint."
+        },
+        "secret": {
+            "type": "string",
+            "description": "The Secret of the webhook endpoint, it will be used authorization"
+        },
+        "providerIds": {
+            "type": "array",
+            "description": "The list of Provider ID's of MO user, provided when user role is MO",
+            "items": {
+            "type": "string"
+            }
+        },
+        "wmis": {
+            "type": "array",
+            "description": "The list of WMIs of OEM user, provided when user role is OEM",
+            "items": {
+            "type": "string"
+            }
+        },
+        "userRole": {
+            "type": "string",
+            "description": "User role e.g OEM, MO"
+        },
+        "userName": {
+            "type": "string",
+            "description": "UserName of the owner of the Webhook"
+        }
+    },
+    "required": [
+        "id",
+        "created",
+        "enabledEvents",
+        "url"
+    ],
+    "x-examples": {
+        "example": {
+            "value": {
+            "id": "xyzedjds",
+            "apiVersion": "v1",
+            "created": 1623760573,
+            "description": "Test webhook",
+            "enabledEvents": [
+                "oem.contract.created",
+                "oem.contract.deleted"
+            ],
+            "metadata": {},
+            "status": "enabled",
+            "url": "https://mywebhooks.com/payload",
+            "secret": "secret keyword",
+            "providerIds": [
+                "ABCDF",
+                "DEQUF"
+            ],
+            "wmis": [
+                "XXX",
+                "YYY",
+                "ZZZ"
+            ],
+            "userRole": "MO",
+            "userName": "Test User"
+            }
+        }
+    }
+}

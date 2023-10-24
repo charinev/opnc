@@ -1,0 +1,21 @@
+{
+    "title": "EventEnumV1",
+    "description": "",
+    "type": "string",
+    "enum": [
+      "root.cert.added",
+      "root.cert.expired",
+      "mo.prov.cert.updated",
+      "mo.prov.cert.deleted",
+      "mo.prov.cert.updated.factory.reset",
+      "mo.contract.delivered.to.oem",
+      "mo.contract.created.sent.to.oem",
+      "mo.contract.updated.sent.to.oem",
+      "mo.contract.deleted.sent.to.oem",
+      "mo.contract.rejected.by.oem",
+      "mo.contract.queued.to.oem",
+      "oem.contract.created",
+      "oem.contract.updated",
+      "oem.contract.deleted"
+    ]
+  }
