@@ -42,6 +42,9 @@
         "cpsV2GRootCertificateFingerprint": {
             "$ref": "../parameters/cpsV2GRootCertificateFingerprintParam.v1.json"
         },
+        "moRootCertificateFingerprint": {
+            "$ref": "../parameters/moRootCertificateFingerprintParam.v1.json"
+        },
         "metaData": {
             "type": "string",
             "description": "Placeholder for future adaption"
