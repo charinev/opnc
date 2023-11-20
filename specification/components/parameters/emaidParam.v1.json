@@ -4,5 +4,5 @@
     "description": "E-Mobility Authentication Identifier",
     "pattern": "^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9}[-]?(\\w{1})?$",
     "minLength": 14,
-    "maxLength": 15
+    "maxLength": 18
 }   
