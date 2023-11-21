@@ -1,6 +1,7 @@
 # OPNC
 CharIN Open Plug&amp;Charge Protocol (OPNC)
 
+![CharIN-Logo_Office_RGB](https://github.com/charinev/opnc/assets/83767351/1688cfe1-97de-46c7-9b97-65bcec242193)
 
 ## License
 
