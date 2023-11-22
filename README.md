@@ -5,7 +5,7 @@ Here you can find all documents and information about the open-source "Open Plug
 
 As it is important to achieve the best possible interoperability in the eMobility market it is crucial to use the same protocols in the Plug&Charge use case.
 
-## OPCP enables and reflects following use cases:
+## OPNC enables and reflects following use cases:
   - independent Service Operation
     - [RCP Service]
     - [PCP Service]
