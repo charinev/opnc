@@ -1,11 +1,11 @@
 {
-    "title": "ContractCertificateDataV1",
-    "description": "Contract Data consisting of the contract certificate and its chain not including the MO Root CA itself. Furthermore the encrypted contract private key and the DH Public Key as descirbed in the ISO 15118 is included ",
+    "title": "contractCertificateBundleV1",
+    "description": "Contract certificate bundle consisting of the contract certificate and its chain not including the MO Root CA itself. Furthermore the encrypted contract private key and the DH Public Key as descirbed in the ISO 15118 is included ",
     "type": "object",
     "x-examples": {
         "example-1": {
             "contractCertificateChain": {
-                "ertificate": "",
+                "certificate": "",
                 "subCa2Certificate": "",
                 "subCa1Certificate": "",
                 "contractSignatureEncryptedPrivateKey": "PD5/v8Z005yianHegxvs2vE/uRPOjBaP4byhAVwyj6APg6BFOZexCpCacHTxgELr",
@@ -14,6 +14,12 @@
             }
     },
     "properties": {
+        "pcid": {
+            "$ref": "../parameters/pcidParam.v1.json"
+        },
+        "emaid": {
+            "$ref": "../parameters/emaidParam.v1.json"
+        },
         "contractCertificateChain": {
             "$ref": "./certificateChain.v1.json"
         },
