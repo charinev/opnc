@@ -1,24 +1,40 @@
 {
     "parameters": [
-      {
-        "schema": {
-          "type": "string"
-        },
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "description": "Endpoint ID"
-      }
+        {
+            "schema": {
+                "type": "string"
+            },
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Endpoint ID"
+        }
     ],
     "get": {
         "operationId": "getEndpointByIdV1",
         "description": "Returns webhook endpoint for a given ID",
         "summary": "GetEndpointById",
+        "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            }
+        ],
         "tags": [
             "GetEndpointById"
         ],
         "responses": {
             "200": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "OK",
                 "content": {
                     "application/json": {
@@ -58,18 +74,58 @@
                 }
             },
             "400": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Bad Request"
             },
             "401": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Unauthorized"
             },
             "403": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Forbidden"
             },
             "404": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Not Found"
             },
             "500": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Internal Server Error"
             }
         }
@@ -78,6 +134,14 @@
         "summary": "UpdateEndpointById",
         "operationId": "updateEndpointByIdV1",
         "description": "Updates the webhook endpoint. You may edit the url, the list of enabled_events, and the status of your endpoint.",
+        "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            }
+        ],
         "tags": [
             "UpdateEndpointById"
         ],
@@ -92,6 +156,14 @@
         },
         "responses": {
             "200": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "OK",
                 "content": {
                     "application/json": {
@@ -109,7 +181,7 @@
                                         "oem.contract.created",
                                         "oem.contract.deleted"
                                     ],
-                                    "wmi":[
+                                    "wmi": [
                                         "WPO",
                                         "WVW",
                                         "WAU"
@@ -124,48 +196,145 @@
                 }
             },
             "400": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Bad Request"
             },
             "401": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Unauthorized"
             },
             "403": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Forbidden"
             },
             "404": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Not Found"
             },
             "500": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Internal Server Error"
             }
-        }        
+        }
     },
     "delete": {
         "summary": "DeleteEndpointById",
         "operationId": "deleteEndpointByIdV1",
         "description": "Delete an endpoint by ID",
+        "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            }
+        ],
         "tags": [
             "DeleteEndpointById"
         ],
         "responses": {
             "200": {
-            "description": "OK"
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
+                "description": "OK"
             },
             "400": {
-            "description": "Bad Request"
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
+                "description": "Bad Request"
             },
             "401": {
-            "description": "Unauthorized"
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
+
+                "description": "Unauthorized"
             },
             "403": {
-            "description": "Forbidden"
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
+                "description": "Forbidden"
             },
             "404": {
-            "description": "Not Found"
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
+                "description": "Not Found"
             },
             "500": {
-            "description": "Internal Server Error"
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
+                "description": "Internal Server Error"
             }
         }
     }
-  }
+}

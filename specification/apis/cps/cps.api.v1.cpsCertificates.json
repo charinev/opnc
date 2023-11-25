@@ -3,11 +3,27 @@
         "summary": "GetCpsCertificates",
         "operationId": "getCpsCertificatesV1",
         "description": "Get CPS certificates incl. certificate chain.",
+        "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            }
+        ],
         "tags": [
             "GetCpsCertificates"
         ],
         "responses": {
           "200": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "OK",
             "content": {
               "application/json": {
@@ -24,6 +40,14 @@
             }
           },
           "401": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Unauthorized",
             "content": {
               "application/json": {
@@ -34,6 +58,14 @@
             }
           },
           "403": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Forbidden",
             "content": {
               "application/json": {
@@ -44,6 +76,14 @@
             }
           },
           "404": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Not Found",
             "content": {
               "application/json": {
@@ -54,6 +94,14 @@
             }
           },
           "500": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Internal Server Error"
           }
         }
