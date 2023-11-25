@@ -1,0 +1,11 @@
+{
+    "description": "Forbidden",
+    "headers": {
+        "OPNC-Correlation-ID": {
+            "$ref": "../../parameters/headers/opncCorrelationId.v1.json"
+        },
+        "OPNC-Request-ID": {
+            "$ref": "../../parameters/headers/opncRequestId.v1.json"
+        }
+    }
+}

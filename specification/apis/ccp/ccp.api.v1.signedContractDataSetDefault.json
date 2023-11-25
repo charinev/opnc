@@ -8,6 +8,12 @@
         ],
         "parameters": [
             {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
+            {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
             {
@@ -40,25 +46,36 @@
         ],
         "responses": {
             "200": {
-                "description": "OK"
+                "description": "OK",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                }
             },
             "400": {
-                "description": "Bad Request"
+                "$ref": "../../components/responses/errorResponses/BadRequest.json"
             },
             "401": {
-                "description": "Unauthorized"
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
             },
             "403": {
-                "description": "Forbidden"
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
+            },
+            "404": {
+                "$ref": "../../components/responses/errorResponses/NotFound.json"
             },
             "500": {
-                "description": "Internal Server Error"
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
             },
             "502": {
-                "description": "Bad Gateway"
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
             },
             "503": {
-                "description": "Service Unavailable"
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
         }
     }

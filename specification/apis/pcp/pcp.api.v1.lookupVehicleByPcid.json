@@ -1,14 +1,32 @@
 {
     "parameters": [
-      {
-        "name": "pcid",
-        "in": "path",
-        "required": true,
-        "description": "",
-        "schema": {
-          "$ref": "../../components/parameters/pcidParam.v1.json"
+        {
+            "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+        },
+        {
+            "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+        },
+        {
+            "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
+        },
+        {
+            "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
+        },
+        {
+            "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+        },
+        {
+            "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
+        },
+        {
+            "name": "pcid",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+                "$ref": "../../components/parameters/pcidParam.v1.json"
+            }
         }
-      }
     ],
     "get": {
         "summary": "LookUpVehicleByPCID",
@@ -18,6 +36,12 @@
             "LookUpVehicle"
         ],
         "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
             {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
@@ -32,65 +56,86 @@
             }
         ],
         "responses": {
-        "200": {
-            "description": "OK"
-        },
-        "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "../../components/schemas/error.v1.json"
-                },
-                "examples": {
-                  "INVALID PCID": {
-                    "value": {
-                      "errorMessages": [
-                        "pcid : must match \"^[a-zA-Z0-9]{17,18}$\""
-                      ],
-                      "traceId": "1c8c56cb-b71f-46a5-8788-5ddcedc88e2a"
+            "200": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
                     }
-                  }
-                }
-              }
-            }
-        },
-        "401": {
-            "description": "Unauthorized"
-        },
-        "403": {
-            "description": "Forbidden"
-        },
-        "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                    "$ref": "../../components/schemas/error.v1.json"
                 },
-                "examples": {
-                  "NOT FOUND": {
-                    "value": {
-                      "errorMessages": [
-                        "The OEM provisioning certificate with given PCID is not found."
-                      ],
-                      "traceId": "807838e3-b058-447c-b6f8-233638cefc18"
+                "description": "OK"
+            },
+            "400": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
                     }
-                  }
+                },
+                "description": "Bad Request",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../components/schemas/error.v1.json"
+                        },
+                        "examples": {
+                            "INVALID PCID": {
+                                "value": {
+                                    "errorMessages": [
+                                        "pcid : must match \"^[a-zA-Z0-9]{17,18}$\""
+                                    ]
+                                }
+                            }
+                        }
+                    }
                 }
-              }
+            },
+            "404": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
+                "description": "Not Found",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../components/schemas/error.v1.json"
+                        },
+                        "examples": {
+                            "NOT FOUND": {
+                                "value": {
+                                    "errorMessages": [
+                                        "The OEM provisioning certificate with given PCID is not found."
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "401": {
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
+            },
+            "403": {
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
+            },
+            "500": {
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
+            },
+            "502": {
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
+            },
+            "503": {
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
-        },
-        "500": {
-            "description": "Internal Server Error"
-        },
-        "502": {
-            "description": "Bad Gateway"
-        },
-        "503": {
-            "description": "Service Unavailable"
         }
-        }
-            
     }
 }

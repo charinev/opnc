@@ -1,44 +1,78 @@
 {
-  "post": {
-    "summary": "RevokeCert",
-    "operationId": "revokeCertV1",
-    "tags": [
-      "RevokeCert"
-    ],
-    "description": "Revocation service for leaf certificates (SECC Certificate, Contract Certificate, OEM Contract Certificate, OEM Vehicle Certificate).\n\n *NB: A PKI certificate subscriber can only ask the revocation on one of his own certificates.* \n\n *NB2: A certificate can be revoked only by the Certificate Authority that delivered it.*",
-    "requestBody": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "../../components/requestBodies/revokeCertificateReq.v1.json"
-          },
-          "examples": {
-            "example": {
-              "value": {
-                "certificate": "MIIC8jCCApegAwIBAgIIVgSOEtL5U+owCgYIKoZIzj0EAwIwbjElMCMGA1UEAwwcU3ViQ0EyLUEtZU1TUF9Gb3JfQ0MtR2VuZXJpYzEMMAoGA1UECwwDU1RHMQ8wDQYDVQQKDAZHSVJFVkUxGTAXBgoJkiaJk/IsZAEZFglTdWJDQTItQ0MxCzAJBgNVBAYTAkZSMB4XDTI0MDEyMjEwMDE0NVoXDTI2MDEyMTEwMDE0NFowOTEYMBYGA1UEAwwPVFVBQUJjQXoyQks3SlJhMQwwCgYDVQQLDANTVEcxDzANBgNVBAoMBkdJUkVWRTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABAJdgL7lS8wUMIy8IOiM6SpH1Bjp5GWKFFCYx55bBoHC7yyo2b+GcQSnGRMKaB4F5t06fk1w9+P7uehhjmXwLFGjggFSMIIBTjAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFMgAjDsX1OyW40YHz/CTyEQx8iGrMFEGCCsGAQUFBwEBBEUwQzBBBggrBgEFBQcwAYY1aHR0cDovL29jc3AudGttZ2lydi5ldzEuYWlzLXN0ZzAzLmFjbG91ZC5nZW1hbHRvLmNvbS8wgZoGA1UdHwSBkjCBjzCBjKCBiaCBhoaBg2h0dHA6Ly9jcmwudGttZ2lydi5ldzEuYWlzLXN0ZzAzLmFjbG91ZC5nZW1hbHRvLmNvbTo4MC9jcmwvaXNzdWVyL0NOPVN1YkNBMi1BLWVNU1BfRm9yX0NDLUdlbmVyaWMsT1U9U1RHLE89R0lSRVZFLERDPVN1YkNBMi1DQyxDPUZSMB0GA1UdDgQWBBQ/vmRczFWeeSwQl28yZuABoCCj2jAOBgNVHQ8BAf8EBAMCA+gwCgYIKoZIzj0EAwIDSQAwRgIhAP13OVb18cdam6r+pbmqzy4n7332OZUMt7qK2W1a7Ns6AiEA0QKHeNa2ZSuv6jIhr1Z01XZUZHOROA1o2s/dNvfBKp8=",
-                "revocationReason": "privilegeWithdrawn"
-              }
+    "post": {
+        "summary": "RevokeCert",
+        "operationId": "revokeCertV1",
+        "tags": [
+            "RevokeCert"
+        ],
+        "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
             }
-          }
+        ],
+        "description": "Revocation service for leaf certificates (SECC Certificate, Contract Certificate, OEM Contract Certificate, OEM Vehicle Certificate).\n\n *NB: A PKI certificate subscriber can only ask the revocation on one of his own certificates.* \n\n *NB2: A certificate can be revoked only by the Certificate Authority that delivered it.*",
+        "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../components/requestBodies/revokeCertificateReq.v1.json"
+                    },
+                    "examples": {
+                        "example": {
+                            "value": {
+                                "certificate": "MIIC8jCCApegAwIBAgIIVgSOEtL5U+owCgYIKoZIzj0EAwIwbjElMCMGA1UEAwwcU3ViQ0EyLUEtZU1TUF9Gb3JfQ0MtR2VuZXJpYzEMMAoGA1UECwwDU1RHMQ8wDQYDVQQKDAZHSVJFVkUxGTAXBgoJkiaJk/IsZAEZFglTdWJDQTItQ0MxCzAJBgNVBAYTAkZSMB4XDTI0MDEyMjEwMDE0NVoXDTI2MDEyMTEwMDE0NFowOTEYMBYGA1UEAwwPVFVBQUJjQXoyQks3SlJhMQwwCgYDVQQLDANTVEcxDzANBgNVBAoMBkdJUkVWRTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABAJdgL7lS8wUMIy8IOiM6SpH1Bjp5GWKFFCYx55bBoHC7yyo2b+GcQSnGRMKaB4F5t06fk1w9+P7uehhjmXwLFGjggFSMIIBTjAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFMgAjDsX1OyW40YHz/CTyEQx8iGrMFEGCCsGAQUFBwEBBEUwQzBBBggrBgEFBQcwAYY1aHR0cDovL29jc3AudGttZ2lydi5ldzEuYWlzLXN0ZzAzLmFjbG91ZC5nZW1hbHRvLmNvbS8wgZoGA1UdHwSBkjCBjzCBjKCBiaCBhoaBg2h0dHA6Ly9jcmwudGttZ2lydi5ldzEuYWlzLXN0ZzAzLmFjbG91ZC5nZW1hbHRvLmNvbTo4MC9jcmwvaXNzdWVyL0NOPVN1YkNBMi1BLWVNU1BfRm9yX0NDLUdlbmVyaWMsT1U9U1RHLE89R0lSRVZFLERDPVN1YkNBMi1DQyxDPUZSMB0GA1UdDgQWBBQ/vmRczFWeeSwQl28yZuABoCCj2jAOBgNVHQ8BAf8EBAMCA+gwCgYIKoZIzj0EAwIDSQAwRgIhAP13OVb18cdam6r+pbmqzy4n7332OZUMt7qK2W1a7Ns6AiEA0QKHeNa2ZSuv6jIhr1Z01XZUZHOROA1o2s/dNvfBKp8=",
+                                "revocationReason": "privilegeWithdrawn"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                }
+            },
+            "400": {
+                "$ref": "../../components/responses/errorResponses/BadRequest.json"
+            },
+            "401": {
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
+            },
+            "403": {
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
+            },
+            "500": {
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
+            },
+            "502": {
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
+            },
+            "503": {
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
+            }
         }
-      }
-    },
-    "responses": {
-      "200": {
-        "description": "OK"
-      },
-      "400": {
-        "description": "Bad Request"
-      },
-      "401": {
-        "description": "Unauthorized"
-      },
-      "403": {
-        "description": "Forbidden"
-      },
-      "5XX": {
-        "description": "Internal Server Error"
-      }
     }
-  }
 }

@@ -1,0 +1,18 @@
+{
+    "description": "Not Found",
+    "headers": {
+        "OPNC-Correlation-ID": {
+            "$ref": "../../parameters/headers/opncCorrelationId.v1.json"
+        },
+        "OPNC-Request-ID": {
+            "$ref": "../../parameters/headers/opncRequestId.v1.json"
+        }
+    },
+    "content": {
+        "application/json": {
+            "schema": {
+                "$ref": "../../schemas/error.v1.json"
+            }
+        }
+    }
+}

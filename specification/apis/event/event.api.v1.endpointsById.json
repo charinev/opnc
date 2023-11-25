@@ -1,14 +1,14 @@
 {
     "parameters": [
-      {
-        "schema": {
-          "type": "string"
-        },
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "description": "Endpoint ID"
-      }
+        {
+            "schema": {
+                "type": "string"
+            },
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Endpoint ID"
+        }
     ],
     "get": {
         "operationId": "getEndpointByIdV1",
@@ -18,6 +18,12 @@
             "GetEndpointById"
         ],
         "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
             {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
@@ -33,6 +39,14 @@
         ],
         "responses": {
             "200": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "OK",
                 "content": {
                     "application/json": {
@@ -72,19 +86,25 @@
                 }
             },
             "400": {
-                "description": "Bad Request"
+                "$ref": "../../components/responses/errorResponses/BadRequest.json"
             },
             "401": {
-                "description": "Unauthorized"
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
             },
             "403": {
-                "description": "Forbidden"
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
             },
             "404": {
-                "description": "Not Found"
+                "$ref": "../../components/responses/errorResponses/NotFound.json"
             },
             "500": {
-                "description": "Internal Server Error"
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
+            },
+            "502": {
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
+            },
+            "503": {
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
         }
     },
@@ -106,6 +126,12 @@
         },
         "parameters": [
             {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
+            {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
             {
@@ -120,6 +146,14 @@
         ],
         "responses": {
             "200": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "OK",
                 "content": {
                     "application/json": {
@@ -137,7 +171,7 @@
                                         "oem.contract.created",
                                         "oem.contract.deleted"
                                     ],
-                                    "wmi":[
+                                    "wmi": [
                                         "WPO",
                                         "WVW",
                                         "WAU"
@@ -152,21 +186,27 @@
                 }
             },
             "400": {
-                "description": "Bad Request"
+                "$ref": "../../components/responses/errorResponses/BadRequest.json"
             },
             "401": {
-                "description": "Unauthorized"
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
             },
             "403": {
-                "description": "Forbidden"
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
             },
             "404": {
-                "description": "Not Found"
+                "$ref": "../../components/responses/errorResponses/NotFound.json"
             },
             "500": {
-                "description": "Internal Server Error"
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
+            },
+            "502": {
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
+            },
+            "503": {
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
-        }        
+        }
     },
     "delete": {
         "summary": "DeleteEndpointById",
@@ -176,6 +216,12 @@
             "DeleteEndpointById"
         ],
         "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
             {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
@@ -191,23 +237,37 @@
         ],
         "responses": {
             "200": {
-            "description": "OK"
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
+                "description": "OK"
             },
             "400": {
-            "description": "Bad Request"
+                "$ref": "../../components/responses/errorResponses/BadRequest.json"
             },
             "401": {
-            "description": "Unauthorized"
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
             },
             "403": {
-            "description": "Forbidden"
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
             },
             "404": {
-            "description": "Not Found"
+                "$ref": "../../components/responses/errorResponses/NotFound.json"
             },
             "500": {
-            "description": "Internal Server Error"
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
+            },
+            "502": {
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
+            },
+            "503": {
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
         }
     }
-  }
+}

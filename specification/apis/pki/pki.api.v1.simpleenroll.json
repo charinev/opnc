@@ -8,6 +8,12 @@
         "description": "The EST interface receives CSRs from CPOs, eMSPs, OEMs, and CPSs, signs them, and delivers an ISO 15118 leaf certificate. The PKI Gateway/Certificate Manager creates the leaf certificates from the Sub 2 CA of the respective role. This interface can create leaf certificates for CPOs (SECC Certificate), eMSPs (Contract Certificate), OEMs (Provisioning Certificate), and CPSs (Provisioning Signing Certificates). An EST interface is a standard implementation described in RFC7030.",
         "parameters": [
             {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
+            {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
             {
@@ -40,7 +46,7 @@
             {
                   "name": "algorithm",
                   "in": "path",
-                  "description": "Defines the algorithm for the PKI which shall be used."
+                  "description": "Defines the algorithm for the PKI which shall be used.",
                   "schema": {
                         "type": "string",
                         "enum": [
@@ -51,6 +57,7 @@
                     "default": "secp256r1",
                     "example": "secp521r1"
               }
+                }
         ],
         "requestBody": {
             "content": {
@@ -79,20 +86,32 @@
                             "type": "string"
                         },
                         "description": "application/pkcs7-mime; smime-type=certs-only"
+                    },
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
                     }
                 }
             },
             "400": {
-                "description": "Bad Request"
+                "$ref": "../../components/responses/errorResponses/BadRequest.json"
             },
             "401": {
-                "description": "Unauthorized"
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
             },
             "403": {
-                "description": "Forbidden"
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
             },
-            "5XX": {
-                "description": "Internal Server Error"
+            "500": {
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
+            },
+            "502": {
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
+            },
+            "503": {
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
         }
     }

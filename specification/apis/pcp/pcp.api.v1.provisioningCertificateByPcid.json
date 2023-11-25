@@ -29,6 +29,12 @@
                 "name": "broadcast"
             },
             {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
+            {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
             {
@@ -44,6 +50,14 @@
         "responses": {
             "200": {
                 "description": "OK",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "content": {
                     "application/json": {
                         "schema": {
@@ -54,6 +68,14 @@
             },
             "400": {
                 "description": "Bad Request",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "content": {
                     "application/json": {
                         "schema": {
@@ -72,14 +94,16 @@
                     }
                 }
             },
-            "401": {
-                "description": "Unauthorized"
-            },
-            "403": {
-                "description": "Forbidden"
-            },
             "404": {
                 "description": "Not Found",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "content": {
                     "application/json": {
                         "schema": {
@@ -98,14 +122,20 @@
                     }
                 }
             },
+            "401": {
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
+            },
+            "403": {
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
+            },
             "500": {
-                "description": "Internal Server Error"
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
             },
             "502": {
-                "description": "Bad Gateway"
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
             },
             "503": {
-                "description": "Service Unavailable"
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
         }
     },
@@ -116,6 +146,12 @@
             "DeleteProvisioningCertificate"
         ],
         "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
             {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
@@ -132,33 +168,36 @@
         "description": "This method is used by the OEM to depublish Provisioning Certificates.\n\n<!-- theme: warning -->\n\n> A successful deletes triggers a call to the DELETE method of the Contract Certificate Pool for all EMAIDs related to this PCID! In case of contract certificates issued by one of the Operator owned eMSP CAs, this also involves revocation of the same.",
         "responses": {
             "200": {
-                "description": "OK"
+                "description": "OK",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                }
             },
             "400": {
-                "description": "Bad Request",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "../../components/schemas/error.v1.json"
-                        }
-                    }
-                }
+                "$ref": "../../components/responses/errorResponses/BadRequest.json"
             },
             "401": {
-                "description": "Unauthorized"
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
             },
             "403": {
-                "description": "Forbidden"
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
             },
             "404": {
-                "description": "Not Found",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "../../components/schemas/error.v1.json"
-                        }
-                    }
-                }
+                "$ref": "../../components/responses/errorResponses/NotFound.json"
+            },
+            "500": {
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
+            },
+            "502": {
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
+            },
+            "503": {
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
         }
     }

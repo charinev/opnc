@@ -8,6 +8,12 @@
         ],
         "parameters": [
             {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
+            {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
             {
@@ -43,69 +49,67 @@
             }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "../../components/schemas/error.v1.json"
-                },
-                "examples": {
-                  "Invalid EMAID": {
-                    "value": {
-                      "errorMessages": [
-                        "emaid : must match \"^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9,28}[-]?(\\w{1})?$\""
-                      ],
-                      "traceId": "a079010e-4766-4f4a-9f4c-ccd0f0ddae1e"
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
                     }
-                  }
                 }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                    "$ref": "../../components/schemas/error.v1.json"
-                },
-                "examples": {
-                  "EMAID not found": {
-                    "value": {
-                      "errorMessages": [
-                        "The contract for the given EMAID not found."
-                      ],
-                      "traceId": "bc81a20d-e517-4b5d-b6d7-e6d1888a9662"
+            },
+            "400": {
+                "description": "Bad Request",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
                     }
-                  }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../components/schemas/error.v1.json"
+                        },
+                        "examples": {
+                            "Invalid EMAID": {
+                                "value": {
+                                    "errorMessages": [
+                                        "emaid : must match \"^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9,28}[-]?(\\w{1})?$\""
+                                    ]
+                                }
+                            }
+                        }
+                    }
                 }
-              }
+            },
+            "401": {
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
+            },
+            "403": {
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
+            },
+            "404": {
+                "$ref": "../../components/responses/errorResponses/NotFound.json"
+            },
+            "500": {
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
+            },
+            "502": {
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
+            },
+            "503": {
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "502": {
-            "description": "Bad Gateway"
-          },
-          "503": {
-            "description": "Service Unavailable"
-          }
         },
         "security": [
-          {
-            "eMSP": []
-          }
+            {
+                "eMSP": []
+            }
         ]
     }
 }
