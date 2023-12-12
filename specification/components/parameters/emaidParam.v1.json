@@ -2,7 +2,7 @@
     "title": "emaidParamV1",
     "type": "string",
     "description": "E-Mobility Authentication Identifier (Note: separators will be normalized by the system due to ISO restrictions)",
-    "pattern": "^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9}[-]?(\\w{1})?$",
+    "pattern": "[ -~]{14,36}",
     "minLength": 14,
-    "maxLength": 18
+    "maxLength": 36
 }   
