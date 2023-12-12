@@ -3,14 +3,8 @@
     "description": "",
     "type": "object",
     "properties": {
-        "contractCertificateData": {
-            "$ref": "../schemas/contractCertificateData.v1.json"
-        },
-        "pcid": {
-            "$ref": "../parameters/pcidParam.v1.json"
-        },
-        "emaid": {
-            "$ref": "../parameters/emaidParam.v1.json"
+        "contractCertificateBundle": {
+            "$ref": "../schemas/contractCertificateBundle.v1.json"
         },
         "xsdMsgDefNamespace": {
             "$ref": "../parameters/xsdMsgDefNamespaceParam.v1.json"
@@ -20,7 +14,7 @@
         }
     },
     "required": [
-        "contractCertificteData",
+        "contractCertificateBundle",
         "xsdMsgDefNamespace"
     ]
 }
