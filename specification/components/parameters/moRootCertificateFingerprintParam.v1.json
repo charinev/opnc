@@ -2,6 +2,6 @@
   "title": "moRootCertificateFingerprintParamV1",
   "description": "The SHA256 Fingerprint of the desired MO root CA from which the CC will derive. It is optional. If not given, the PKI service operator will decide from which MO Root CA the issued CC will derive\n",
   "type": "string",
-  "pattern": "^[0-9a-fA-F]{8}\\-([0-9a-fA-F]{4}\\-){3}[0-9a-fA-F]{12}$",
-  "example": "896b6655-180e-4304-b642-606bb00df8f0"
+  "pattern": "^[0-9a-fA-F]{64}$",
+  "example": "311f28ff13da6d75f836ac10644b34273da99564c600a191fb3737d50562a4f1"
 }
