@@ -9,5 +9,5 @@ The Certificate Provisioning Service can receive and sign contract data through 
 
 ![CPS interfaces](../../assets/images/interfaces_cps.png)
 
-All CPS API documenatation can be found at [cps.v1.json](./../../reference/cps.v1.json).
+All CPS API documenatation can be found at [cps.v1.json](./../../specification/apis/cps/cps.api.v1.json).
 
