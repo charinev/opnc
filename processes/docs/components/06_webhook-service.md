@@ -15,12 +15,12 @@ A webhook enables our ecosystem to push real-time notifications to your backend 
 ### Available Events
 
 The available event notifications are listed in the interface API itself:
-[Event Actions](../../reference/webhooks.v1.json)
+[Event Actions](../../specifications/apis/event/event.api.v1.endpoints.json)
 
 ## API
 
 The webhooks service requires the partner to provide a simple payload-service with public endpoint to receive events as `POST` request.
-The required API documentation can be found at [webhooks.v1.json](../../reference/webhooks.v1.json).
+The required API documentation can be found at [webhooks.v1.json](../../specifications/apis/event/event.api.v1.endpoints.json).
 
 
 ## Error handling
