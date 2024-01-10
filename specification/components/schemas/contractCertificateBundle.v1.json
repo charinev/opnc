@@ -2,17 +2,6 @@
     "title": "contractCertificateBundleV1",
     "description": "Contract certificate bundle consisting of the contract certificate and its chain not including the MO Root CA itself. Furthermore the encrypted contract private key and the DH Public Key as descirbed in the ISO 15118 is included ",
     "type": "object",
-    "x-examples": {
-        "example-1": {
-            "contractCertificateChain": {
-                "certificate": "",
-                "subCa2Certificate": "",
-                "subCa1Certificate": "",
-                "contractSignatureEncryptedPrivateKey": "PD5/v8Z005yianHegxvs2vE/uRPOjBaP4byhAVwyj6APg6BFOZexCpCacHTxgELr",
-                "dHpublickey": "BC//bjmXFWisWCxnJeoA2kMBZmEHfx9h/ZKlTMhbJUvm6cdc/WBuKwPlC5qVHnxguI5RouU59fc9P3y2qU0Qu0c="
-                }
-            }
-    },
     "properties": {
         "pcid": {
             "$ref": "../parameters/pcidParam.v1.json"
@@ -35,6 +24,8 @@
         }
     },
     "required": [
+        "pcid",
+        "emaid",
         "contractCertificateChain",
         "contractSignatureEncryptedPrivateKey",
         "dHpublickey"
