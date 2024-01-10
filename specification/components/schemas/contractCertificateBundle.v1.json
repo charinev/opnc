@@ -5,9 +5,9 @@
     "x-examples": {
         "example-1": {
             "contractCertificateChain": {
-                "certificate": "",
-                "subCa2Certificate": "",
-                "subCa1Certificate": "",
+                "certificate": "MIICQDCCAeWgAwIBAgICBNMwCgYIKoZIzj0EAwIwRDELMAkGA1UEBhMCREUxDTALB",
+                "subCa2Certificate": "MIICQDCCAeWgAwIBAgICBNMwCgYIKoZIzj0EAwIwRDELMAkGA1UEBhMCREUxDTALB",
+                "subCa1Certificate": "MIICQDCCAeWgAwIBAgICBNMwCgYIKoZIzj0EAwIwRDELMAkGA1UEBhMCREUxDTALB",
                 "contractSignatureEncryptedPrivateKey": "PD5/v8Z005yianHegxvs2vE/uRPOjBaP4byhAVwyj6APg6BFOZexCpCacHTxgELr",
                 "dHpublickey": "BC//bjmXFWisWCxnJeoA2kMBZmEHfx9h/ZKlTMhbJUvm6cdc/WBuKwPlC5qVHnxguI5RouU59fc9P3y2qU0Qu0c="
                 }
@@ -35,6 +35,8 @@
         }
     },
     "required": [
+        "pcid",
+        "emaid",
         "contractCertificateChain",
         "contractSignatureEncryptedPrivateKey",
         "dHpublickey"
