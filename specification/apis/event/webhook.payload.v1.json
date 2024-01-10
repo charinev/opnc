@@ -10,7 +10,7 @@
       "url": "http://selfdefined.url.for.recieving.webhooks"
     }
   ],
-  "paths": {
+"paths": {
     "/customer.defined.root.event.webhook.path": {
       "parameters": [],
       "post": {
@@ -65,6 +65,12 @@
                   }
                 },
                 "properties": {
+                  "timestamp": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2021-05-11T00:00:00Z",
+                    "description": "Timestamp when the event was created"
+                  },
                   "eventId": {
                     "type": "string",
                     "description": "UUID of the event",
@@ -77,6 +83,14 @@
                       "root.cert.added",
                       "root.cert.expired",
                       "root.cert.revoked"
+                    ]
+                  },
+                  "xsdMsgDefNamespace": {
+                    "description": "Which ISO Version\n",
+                    "example": "urn:iso:15118:2:2013:MsgDef",
+                    "enum": [
+                      "urn:iso:15118:2:2013:MsgDef",
+                      "urn:iso:15118:20:2022:MsgDef"
                     ]
                   },
                   "payload": {
@@ -124,23 +138,11 @@
                   }
                 },
                 "required": [
+                  "timestamp",
                   "eventId",
                   "eventType",
                   "payload"
                 ]
-              },
-              "examples": {
-                "Root Payload Example": {
-                  "value": {
-                    "eventId": "xxxxx",
-                    "eventType": "root.cert.added",
-                    "payload": {
-                      "rootCertificateId": "xxxxx",
-                      "distinguishedName": "xxxxx",
-                      "commonName": "xxxxx"
-                    }
-                  }
-                }
               }
             }
           },
@@ -192,6 +194,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "timestamp": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2021-05-11T00:00:00Z",
+                    "description": "Timestamp when the event was created"
+                  },
                   "eventId": {
                     "type": "string",
                     "description": "UUID of the event",
@@ -243,16 +251,16 @@
                       },
                       "contractCert": {
                         "type": "string",
-                        "description": "Contract Certificate in base64 encoded PEM form"
+                        "description": "Contract Certificate in base64 encoded PEM form",
                         "pattern": "Contract Certificate in base64 encoded DER form"
                       },
-                      "cpsV2GRootCertificateFingerprint": {
-                        "type": "string"
+                      "cpsSignerRootFingerprint": {
+                        "type": "string",
                         "description": "The SHA256 Fingerprint of the desired V2G root CA which shall was used to sign these data with the regarding CPS signing certificate. Its optional. If not given, the CPS will decide which CPS signing V2G PKI will be renurned",
                         "example": "896b6655-180e-4304-b642-606bb00df8f0",
                         "pattern": "^[0-9a-fA-F]{8}\\-([0-9a-fA-F]{4}\\-){3}[0-9a-fA-F]{12}$"
                       },
-                      "cpsV2GRootCommonName": {
+                      "cpsSignerRootCommonName": {
                         "type": "string",
                         "example": "V2G Root CA G2",
                         "description": "Common Name of used CPS V2G Root CA"
@@ -261,6 +269,7 @@
                   }
                 },
                 "required": [
+                  "timestamp",
                   "eventId",
                   "eventType",
                   "xsdMsgDefNamespace",
