@@ -13,8 +13,8 @@
             "$ref": "../parameters/xsdMsgDefNamespaceParam.v1.json"
         },
         "contractCertificate": {
-            "type": "string",
-            "description": "Contract Certificate in base64 encoded DER form",
+            "type": "MIICQDCCAeWgAwIBAgICBNMwCgYIKoZIzj0EAwIwRDELMAkGA1UEBhMCREUxDTALB",
+            "description": "Contract Certificate in base64 encoded PEM form",
             "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
             "maxLength": 800
         },
@@ -39,10 +39,10 @@
             "example": "2019-08-24T14:15:22Z",
             "description": "Valid to Date and Time of contract certificate"
         },
-        "cpsRootCertificateDN": {
+        "cpsV2GRootDistinguishedName": {
             "type": "string",
-            "example": "896b6655-180e-4304-b642-606bb00df8f0",
-            "pattern": "^[0-9a-fA-F]{8}\\-([0-9a-fA-F]{4}\\-){3}[0-9a-fA-F]{12}$",
+            "example": "CN=V2G Root CA G2, DC=V2G, O=Hubject GmbH, C=DE",
+            "pattern": "^(CN=[a-zA-Z0-9\\s\\-\\.]+,\\s)?(DC=[a-zA-Z0-9\\s\\-\\.]+,\\s)?(O=[a-zA-Z0-9\\s\\-\\.]+,\\s)?(OU=[a-zA-Z0-9\\s\\-\\.]+,\\s)?(C=[A-Z]{2})?$",
             "description": "The DN of the desired V2G root CA"
         },
         "cpsV2GRootCertificateFingerprint": {
