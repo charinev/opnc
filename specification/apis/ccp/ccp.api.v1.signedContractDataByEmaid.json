@@ -7,6 +7,12 @@
             "DeleteSignedContractDataByEmaid"
         ],
         "parameters": [
+           {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
           {
             "schema": {
               "type": "boolean",
@@ -32,9 +38,25 @@
         ],
         "responses": {
           "200": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "OK"
           },
           "400": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Bad Request",
             "content": {
               "application/json": {
@@ -46,8 +68,7 @@
                     "value": {
                       "errorMessages": [
                         "emaid : must match \"^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9}[-]?(\\w{1})?$\""
-                      ],
-                      "traceId": "a079010e-4766-4f4a-9f4c-ccd0f0ddae1e"
+                      ]
                     }
                   }
                 }
@@ -55,12 +76,36 @@
             }
           },
           "401": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Unauthorized"
           },
           "403": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Forbidden"
           },
           "404": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Not Found",
             "content": {
               "application/json": {
@@ -72,8 +117,7 @@
                     "value": {
                       "errorMessages": [
                         "The contract for the given EMAID not found."
-                      ],
-                      "traceId": "bc81a20d-e517-4b5d-b6d7-e6d1888a9662"
+                      ]
                     }
                   }
                 }
@@ -81,6 +125,14 @@
             }
           },
           "500": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Internal Server Error"
           },
           "502": {

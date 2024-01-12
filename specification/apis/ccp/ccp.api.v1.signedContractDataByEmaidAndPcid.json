@@ -7,6 +7,12 @@
             "GetSignedContractDataByEmaidAndPcid"
         ],
         "parameters": [
+           {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
             {
                 "schema": {
                   "$ref": "../../components/parameters/emaidParam.v1.json"
@@ -56,6 +62,14 @@
         ],
         "responses": {
           "200": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "OK",
             "content": {
               "application/json": {
@@ -66,6 +80,14 @@
             }
           },
           "400": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Bad Request",
             "content": {
               "application/json": {
@@ -77,24 +99,21 @@
                     "value": {
                       "errorMessages": [
                         "pcid : must match \"^[a-zA-Z0-9]{17,18}$\""
-                      ],
-                      "traceId": "1c8c56cb-b71f-46a5-8788-5ddcedc88e2a"
+                      ]
                     }
                   },
                   "Invalid EMAID": {
                     "value": {
                       "errorMessages": [
                         "emaid : must match \"^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9}[-]?(\\w{1})?$\""
-                      ],
-                      "traceId": "02be5c05-298b-4503-a685-8126951e0233"
+                      ]
                     }
                   },
                   "Invalid SessionID": {
                     "value": {
                       "errorMessages": [
                         "Invalid SessionID format, make sure the length is maximum 8 characters and it is represented in HEX binary"
-                      ],
-                      "traceId": "5712b40b-5003-4553-8539-2d1edaf56b6a"
+                      ]
                     }
                   }
                 }
@@ -102,12 +121,36 @@
             }
           },
           "401": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Unauthorized"
           },
           "403": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Forbidden"
           },
           "404": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Not Found",
             "content": {
               "application/json": {
@@ -119,8 +162,7 @@
                     "value": {
                       "errorMessages": [
                         "The contract for the given EMAID not found."
-                      ],
-                      "traceId": "ddb3e897-30c3-4901-b5fe-383c5edeadcb"
+                      ]
                     }
                   }
                 }
@@ -128,6 +170,14 @@
             }
           },
           "500": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
             "description": "Internal Server Error"
           },
           "502": {

@@ -1,0 +1,9 @@
+{
+    "name": "OPNC-Request-ID",
+    "schema": {
+        "type": "string"
+    },
+    "in": "header",
+    "description": "Every request SHALL contain a unique request ID, the response to this request SHALL contain the same ID.",
+    "required": false
+}

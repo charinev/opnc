@@ -8,16 +8,30 @@
         ],
         "parameters": [
             {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
+            {
                 "in": "query",
                 "name": "pkiType",
                 "description": "Optional parameter to filter for root certificates from V2G, MO or OEM PKI.",
                 "schema": {
-                "$ref": "../../components/parameters/pkiTypeParam.v1.json"
+                    "$ref": "../../components/parameters/pkiTypeParam.v1.json"
                 }
             }
         ],
         "responses": {
             "200": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "OK",
                 "content": {
                     "application/json": {
@@ -28,6 +42,14 @@
                 }
             },
             "400": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Bad Request",
                 "content": {
                     "application/json": {
@@ -38,32 +60,63 @@
                 }
             },
             "401": {
-                "description": "Unauthorized"
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
                 },
+                "description": "Unauthorized"
+            },
             "403": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Forbidden"
             },
             "404": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Not Found",
                 "content": {
                     "application/json": {
-                    "schema": {
-                        "$ref": "../../components/schemas/error.v1.json"
-                    },
-                    "examples": {
-                        "ROOT NOT FOUND": {
-                        "value": {
-                            "errorMessages": [
-                            "Root certificate with the given ID is not found"
-                            ],
-                            "traceId": "c52fe6ad-1e39-4f6e-a0d0-e2d51aacf09f"
+                        "schema": {
+                            "$ref": "../../components/schemas/error.v1.json"
+                        },
+                        "examples": {
+                            "ROOT NOT FOUND": {
+                                "value": {
+                                    "errorMessages": [
+                                        "Root certificate with the given ID is not found"
+                                    ]
+                                }
+                            }
                         }
-                        }
-                    }
                     }
                 }
             },
             "500": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "description": "Internal Server Error"
             },
             "502": {
@@ -81,13 +134,29 @@
         "tags": [
             "PutRootCertificate"
         ],
+        "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            }
+        ],
         "requestBody": {
             "$ref": "../../components/requestBodies/putRootCertificateReq.v1.json"
         },
         "responses": {
-          "200": {
-            "description": "OK"
-          }
+            "200": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
+                "description": "OK"
+            }
         }
     }
 }
