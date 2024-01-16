@@ -5,7 +5,7 @@
     "tags": [
       "SimpleEnrollCert"
     ],
-    "description": "The EST interface receives CSRs from CPOs, MOs, OEMs, and CPSs, signs them, and delivers an ISO 15118 leaf certificate. The PKI Gateway/Certificate Manager creates the leaf certificates from the Sub 2 CA of the respective role. This interface can create leaf certificates for CPOs (SECC Certificate), MOs (Contract Certificate), OEMs (Provisioning Certificate), and CPSs (Provisioning Signing Certificates). An EST interface is a standard implementation described in RFC7030.",
+    "description": "The EST interface receives CSRs from CPOs, EMSPs, OEMs, and CPSs, signs them, and delivers an ISO 15118 leaf certificate. The PKI Gateway/Certificate Manager creates the leaf certificates from the Sub 2 CA of the respective role. This interface can create leaf certificates for CPOs (SECC Certificate), EMSPs (Contract Certificate), OEMs (Provisioning Certificate), and CPSs (Provisioning Signing Certificates). An EST interface is a standard implementation described in RFC7030.",
     "parameters": [
       {
         "name": "caDomain",

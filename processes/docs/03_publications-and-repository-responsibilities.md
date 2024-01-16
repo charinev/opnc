@@ -4,7 +4,7 @@
 In accordance with VDE-AR, the following repositories (except for OSCP and CRL) must be maintained to provide online access via a standard interface to certificates and related data for the participants of the ecosystem.
 
 ### The Root Certificate Pool RCP:
-The Root Certificate Pool securely stores V2G-, OEM- and MO Root CA certificates participating in the PKI. The RCP operator verifies the authenticity of the root certificate owner before stroring them into the Root Certificate Root.
+The Root Certificate Pool securely stores V2G-, OEM- and eMSP Root CA certificates participating in the PKI. The RCP operator verifies the authenticity of the root certificate owner before stroring them into the Root Certificate Root.
 
 #### Fingerprint:
 The fingerprint must have been authentically obtained via second channel from the corresponding root CA and must correspond to the fingerprint of the certificate.

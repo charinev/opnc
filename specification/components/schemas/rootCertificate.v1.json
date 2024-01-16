@@ -30,9 +30,9 @@
         },
         "rootTypeList": {
             "type": "array",
-            "description" : "Present the types linked to the Root CA, e.g. a unique Root certificate could be used as an OEM Root and a MO Root",
+            "description" : "Present the types linked to the Root CA, e.g. a unique Root certificate could be used as an OEM Root and a eMSP Root",
             "enum": [
-                "MO",
+                "eMSP",
                 "V2G",
                 "OEM",
                 "PE"

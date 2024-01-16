@@ -6,16 +6,16 @@ A Plug&Charge PKI Service includes all necessary components of a PKI infrastruct
  * HSMs
  * OCSP responder (if applicable)
  * CRL distribution points (if applicable)
- * MO CA
+ * eMSP CA
 
 These services provide interfaces to CPOs, MOs, CPSs and OEMs for issuing/signing certificates and also request certificate statuses.
 
 ![Plug&Charge V2G PKI Services Interfaces](../../assets/images/process_V2G_PKI_services.png)
 
 
-## MO Plug&Charge Contract Service
+## eMSP Plug&Charge Contract Service
 
-MO Plug&Charge Contract Service can be part of Plug&Charge CPS Services and provides interfaces for MOs to issue and sign their contract certificates/bundles without the need for any own MO-PKI. This service creates certificates and performs all needed cryptographic operations to created ISO15118 compliant signed contract data.
+eMSP Plug&Charge Contract Service can be part of Plug&Charge CPS Services and provides interfaces for MOs to issue and sign their contract certificates/bundles without the need for any own eMSP-PKI. This service creates certificates and performs all needed cryptographic operations to created ISO15118 compliant signed contract data.
 
 ![Mobility Operator CA Interfaces](../../assets/images/interfaces_mo-ca_service.png)
 
@@ -51,9 +51,9 @@ The EVSE leaf certificate contains its EVSE ID as common name, the structure of 
 ### Contract leaf certificates
 The contract certificate is used in the case of the Plug & Charge authentication and authorisation modes at a charge point, in contrast to external identification means (EIM). It shall be assigned to a valid contractual relationship between the vehicle user (or owner) and mobility operator and shall be saved in the vehicle together with the private key that is associated with this contract certificate.
 
-The electric vehicle accesses this digital certificate in order to prove the existence of a valid charging contract to the charge point. Contract certificates are derived – via intermediate sub-CAs – from MO root CAs or V2G root CAs.
+The electric vehicle accesses this digital certificate in order to prove the existence of a valid charging contract to the charge point. Contract certificates are derived – via intermediate sub-CAs – from eMSP root CAs or V2G root CAs.
 
-The MO contract certificate contains a EMAID as common name, the structure of which is defined in the [identifier description chapter](../05_handling-of-ids.md)
+The eMSP contract certificate contains a EMAID as common name, the structure of which is defined in the [identifier description chapter](../05_handling-of-ids.md)
 
 ### OEM provisioning certificates
 An OEM provisioning certificate is issued individually for and saved in each electric vehicle. It shall be possible to renew the provisioning certificate in the vehicle if it is revoked. The process of renewing the certificate is specific to each OEM and can be carried out by a workshop or by means of an online process using the OEM backend and telematics link of the EV. It is used to verify the identity of the electric when provisioning a contract certificate. It is derived from the OEM root CA or a V2G root CA via a chain of OEM sub-CAs.

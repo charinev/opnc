@@ -44,7 +44,7 @@
         },
         "providerIds": {
             "type": "array",
-            "description": "The list of Provider ID's of MO user, provided when user role is MO",
+            "description": "The list of Provider ID's of eMSP user, provided when user role is eMSP",
             "items": {
             "type": "string"
             }
@@ -58,7 +58,7 @@
         },
         "userRole": {
             "type": "string",
-            "description": "User role e.g OEM, MO"
+            "description": "User role e.g OEM, eMSP"
         },
         "userName": {
             "type": "string",
@@ -95,7 +95,7 @@
                 "YYY",
                 "ZZZ"
             ],
-            "userRole": "MO",
+            "userRole": "eMSP",
             "userName": "Test User"
             }
         }

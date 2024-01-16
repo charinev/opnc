@@ -1,6 +1,6 @@
 # Provisioning Certificate Pool
 
-The Provisioning Certificate Pool provides interfaces to exchange Provisioning Certificates between OEMs and MOs,under the following workflow: MO sends the PCID of a Provisioning Certificate issued by the OEM, and receives its Provisioning Certificate with the corresponding certificate chain.
+The Provisioning Certificate Pool provides interfaces to exchange Provisioning Certificates between OEMs and EMSPs,under the following workflow: eMSP sends the PCID of a Provisioning Certificate issued by the OEM, and receives its Provisioning Certificate with the corresponding certificate chain.
 
 OEMs publish their Provisioning Certificates on the pool after their generation, e.g. after the car get manufactured. MOs request foreign Provisioning Certificates from the pool by PCID.
 
@@ -16,7 +16,7 @@ The PCP communicates with the following actors and services:
 
 It is ensured that the safety precautions of ISO 15118 are complied with, and only trustworthy MOs have granted access. In addition, no confidential OEM data, such as the number of available electric vehicles, can be displayed when querying the available OEM Provisioning Certificates.
 
-Every authorized MO access is granted to all available Provisioning Certificates in the pool.
+Every authorized eMSP access is granted to all available Provisioning Certificates in the pool.
 
 The Provisioning Certificates of each OEM are separated by access rules. The defined access rules prevent access to other OEM containers. Each OEM can only manage (create/update/delete) Provisioning Certificates of their company. To achieve this, the client credentials of each OEM get white-listed for a list of World manufacturer identifier (WMI) codes (see ISO 3780).
 
@@ -41,7 +41,7 @@ With the production of a vehicle, the OEM must create a Provisioning Certificate
 
 The PCID is the identifier for a vehicle and must match the ISO pattern [PCID Format](../05_handling-of-ids.md). The Provisioning Certificate Pool authorizes the OEM client based on this code. [see Data Access](#data-access)
 
-With the publication of a Provisioning Certificate to the pool, no information is given to the MO. Trusted MOs can only retrieve individual Provisioning Certificates if they request them through the PCID.
+With the publication of a Provisioning Certificate to the pool, no information is given to the eMSP. Trusted MOs can only retrieve individual Provisioning Certificates if they request them through the PCID.
 
 Therefore the OEM's costumers shall also receive the PCID of their vehicles to give it to the MOs during the conclusion of a charging contract.
 
@@ -79,11 +79,11 @@ In case the Provisioning Certificate under one PCID shall be removed from the ec
 
 ### 4. Request a Provisioning Certificate
 
-Before creating the Contract Data package, the MO has to request the current Provisioning Certificate by the Provisioning Certificate ID from the pool.
+Before creating the Contract Data package, the eMSP has to request the current Provisioning Certificate by the Provisioning Certificate ID from the pool.
 
 ### 5. Lookup a Vehicle
 
-This method can be used by the MO to determine for a given PCID if a Provisioning Certificate is available in the PCP.
+This method can be used by the eMSP to determine for a given PCID if a Provisioning Certificate is available in the PCP.
 
 ## Data Cleansing
 

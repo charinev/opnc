@@ -2,7 +2,7 @@
   "put": {
     "summary": "SignContractData",
     "operationId": "signContractDataV1",
-    "description": "This interface signs contract data in the CPS and sends it back to the MO. By using the Parameter _PCID_ the Signed Contract Data are getting stored in the Contract Certificate Pool.",
+    "description": "This interface signs contract data in the CPS and sends it back to the eMSP. By using the Parameter _PCID_ the Signed Contract Data are getting stored in the Contract Certificate Pool.",
     "tags": [
         "SignContractData"
     ],
