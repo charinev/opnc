@@ -1,0 +1,21 @@
+{
+  "title": "RevokeCertificateDataReqV1",
+  "type": "object",
+  "description": "",
+  "properties": {
+    "certificate": {
+      "type": "string",
+      "description": "Certificate in base64 encoded PEM form",
+      "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+    },
+    "revocationReason": {
+      "type": "string",
+      "enum": ["privilegeWithdrawn", "affiliationChanged", "superseded", "unspecified", "keyCompromise", "aACompromise", "cessationOfOperation"],
+      "description" : "Description of revocation reasons :\n\n* `privilegeWithdrawn` - indicates that the privileges granted to the subject of the certificate have been withdrawn \n\n* `affiliationChanged` - indicates that the subject's name or other information has changed.\n\n* `superseded` - indicates that the certificate has been superseded.\n\n* `unspecified` - indicates that it is unspecified as to why the certificate has been revoked.\n\n* `keyCompromise` - indicates that it is known or suspected that the certificate subject's private key has been compromised.\n\n* `aACompromise` - indicates that it is known or suspected that the certificate subject's private key has been compromised. It applies to authority attribute (AA) certificates only.\n\n* `cessationOfOperation` - indicates that the certificate is no longer needed."
+    }
+  },
+  "required": [
+    "certificate",
+    "revocationReason"
+  ]
+}
