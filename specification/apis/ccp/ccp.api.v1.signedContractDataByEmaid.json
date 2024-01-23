@@ -2,7 +2,7 @@
     "delete": {
         "summary": "DeleteSignedContractDataByEmaid",
         "operationId": "deleteSignedContractDataByEmaidV1",
-        "description": "The deletion of signed contract data from the CCP can be used to de-publish it by the MO.",
+        "description": "The deletion of signed contract data from the CCP can be used to de-publish it by the eMSP.",
         "tags": [
             "DeleteSignedContractDataByEmaid"
         ],
@@ -92,7 +92,7 @@
         },
         "security": [
           {
-            "MO": []
+            "eMSP": []
           }
         ]
     }

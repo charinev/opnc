@@ -35,15 +35,15 @@
         },
         "subscriptionUrl": {
             "type": "string",
-            "example": "https://testmo.com/subscriptions/v2g",
+            "example": "https://testemsp.com/subscriptions/v2g",
             "pattern": "^(https?|http)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]",
-            "description": "URL which could be given by MO to allow extended information exchange for a given contract"
+            "description": "URL which could be given by eMSP to allow extended information exchange for a given contract"
         },
         "cpsV2GRootCertificateFingerprint": {
             "$ref": "../parameters/cpsV2GRootCertificateFingerprintParam.v1.json"
         },
         "moRootCertificateFingerprint": {
-            "$ref": "../parameters/moRootCertificateFingerprintParam.v1.json"
+            "$ref": "../parameters/emspRootCertificateFingerprintParam.v1.json"
         },
         "metaData": {
             "type": "string",

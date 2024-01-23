@@ -1,6 +1,6 @@
 # Root Certificate Pool
 
-The Root Certificate Pool is used for communication between the Root Certificate Pool and the various Certificate Authorities of ISO 15118 participants (V2G, OEM, MO, CPS).
+The Root Certificate Pool is used for communication between the Root Certificate Pool and the various Certificate Authorities of ISO 15118 participants (V2G, OEM, eMSP, CPS).
 The Root Certificate Pool provides root certificates for ISO 15118 participants. The stored root certificates are checked regularly with automated processes and expired, or revoked certificates deleted. The storage of root certificates is executed manually by RCP Authority administrators.
 
 Other systems of a PnC Ecosystem use this pool as the mutual trust store.
@@ -20,7 +20,7 @@ The root certificate pool is involved in multiple processes across the ecosystem
 
 ### 1. Deliver Root Certificates
 
-The delivery of root certificates of the OEM, V2G, MO, and possibly PE-CAs to the Root Certificate Pool is an organizational process, which can be proceeded by different methods, like signed email, SFTP, OFTP2 or similar methodologies. After approval the new root certificates are added to the root certificate pool by the RCP Operator. Therefore the PUT and DELETE interfaces of the pool are restricted for authorized administrative use only.
+The delivery of root certificates of the OEM, V2G, eMSP, and possibly PE-CAs to the Root Certificate Pool is an organizational process, which can be proceeded by different methods, like signed email, SFTP, OFTP2 or similar methodologies. After approval the new root certificates are added to the root certificate pool by the RCP Operator. Therefore the PUT and DELETE interfaces of the pool are restricted for authorized administrative use only.
 
 
 ### 2. Request Root Certificates

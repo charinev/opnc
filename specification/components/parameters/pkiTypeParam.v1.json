@@ -3,7 +3,7 @@
   "description": "",
   "type": "string",
   "enum": [
-    "mo",
+    "emsp",
     "v2g",
     "oem",
     "pe"

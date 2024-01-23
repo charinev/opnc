@@ -1,6 +1,6 @@
 {
     "title": "contractCertificateBundleV1",
-    "description": "Contract certificate bundle consisting of the contract certificate and its chain not including the MO Root CA itself. Furthermore the encrypted contract private key and the DH Public Key as descirbed in the ISO 15118 is included ",
+    "description": "Contract certificate bundle consisting of the contract certificate and its chain not including the eMSP Root CA itself. Furthermore the encrypted contract private key and the DH Public Key as descirbed in the ISO 15118 is included ",
     "type": "object",
     "x-examples": {
         "example-1": {
