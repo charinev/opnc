@@ -45,7 +45,7 @@
                   "Invalid EMAID": {
                     "value": {
                       "errorMessages": [
-                        "emaid : must match \"^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9}[-]?(\\w{1})?$\""
+                        "emaid : must match \"^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9,28}[-]?(\\w{1})?$\""
                       ],
                       "traceId": "a079010e-4766-4f4a-9f4c-ccd0f0ddae1e"
                     }
