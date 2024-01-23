@@ -1,0 +1,9 @@
+{
+    "name": "OPNC-from-party-id",
+    "schema": {
+        "type": "string"
+    },
+    "in": "header",
+    "description": "Specifies the ID of the party that originated this request. The ID format depends on the type of the party (WMI for OEM, ProviderID for EMSP, OperatorID for CPO, SHA-256 fingerprint of Root CA for PKI or CPS)",
+    "required": false
+}

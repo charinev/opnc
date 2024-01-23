@@ -4,12 +4,24 @@
         "description": "Set an existing signed contract data as default.",
         "summary": "SetSignedContractDataAsDefault",
         "tags": [
-          "SetSignedContractDataAsDefault"
+            "SetSignedContractDataAsDefault"
         ],
         "parameters": [
             {
+                "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
+            },
+            {
                 "schema": {
-                  "$ref": "../../components/parameters/emaidParam.v1.json"
+                    "$ref": "../../components/parameters/emaidParam.v1.json"
                 },
                 "name": "emaid",
                 "in": "path",
@@ -22,32 +34,32 @@
                 "required": true,
                 "description": "The related provisioning certificate ID.",
                 "schema": {
-                  "$ref": "../../components/parameters/pcidParam.v1.json"
+                    "$ref": "../../components/parameters/pcidParam.v1.json"
                 }
             }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "502": {
-            "description": "Bad Gateway"
-          },
-          "503": {
-            "description": "Service Unavailable"
-          }
+            "200": {
+                "description": "OK"
+            },
+            "400": {
+                "description": "Bad Request"
+            },
+            "401": {
+                "description": "Unauthorized"
+            },
+            "403": {
+                "description": "Forbidden"
+            },
+            "500": {
+                "description": "Internal Server Error"
+            },
+            "502": {
+                "description": "Bad Gateway"
+            },
+            "503": {
+                "description": "Service Unavailable"
+            }
         }
-      }
+    }
 }
