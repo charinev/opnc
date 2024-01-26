@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "PKI API",
-    "version": "1.0",
-    "description": "PKI services API.",
+    "title": "PKI Interface",
+    "version": "1.0.0",
+    "description": "## Establishing Secure Contracts for EV Charging\n\nThe realm of Electric Vehicle (EV) charging relies heavily on structured agreements to outline the responsibilities between mobility service providers and charging platforms. Our PKI Interface API plays a pivotal role in ensuring every charging contract's authenticity, confidentiality, and validity during each charging event.\n\n### Key Principles: Building on Trust\n\nDrawing inspiration from PKI standards and adopting EST methodologies, our API is meticulously designed to cater to the distinctive needs of EV charging contracts. Its core function is to systematically oversee and confirm the integrity of the digital certificates tied to these contracts.\n\n### Key Features: The Heart of EV Charging Trust\n\n- **Charging Contract Certificates**: With every charging contract comes a distinct digital certificate to affirm its credibility. Our PKI Interface is entrusted with the task of issuing, renewing, and, if necessary, revoking these certificates to maintain the integrity of every contract.\n- **Key Management**: As an EV connects to charge, it's crucial to have a secure channel for data transfer between the mobility service provider and the charging point. Our API excels at cryptographic key operations, ensuring the details of the contract remain untouched and private.\n- **Operator Trust Assessment**: A core feature is its ability to gauge the reliability of mobility operators. This ensures that charging platforms only engage with accredited operators bearing legitimate contracts.\n\n### Why It Matters\n\nIncorporating the PKI Interface API into the EV charging protocol offers:\n\n1. **Seamless Charging Experience**: An EV, upon connection, triggers the system to instantly recognize and verify the associated charging contract.\n2. **Upholding Security**: Protecting the nuances of the contract and any related financial transactions is of the utmost importance, promoting a secure environment for EV users and mobility service providers alike.\n3. **Universal Compatibility**: Designed with versatility in mind, our API is adaptable to a wide range of operator models and contract frameworks, endorsing widespread use.\n\nIn essence, our PKI Interface API is a cornerstone in the domain of EV charging, shaping a dependable and efficient framework for interactions grounded in trusted contracts between mobility service providers and charging systems.\n",
     "contact": {
       "name": "CharIN e.V.",
       "url": "https://charin.global",
@@ -14,18 +14,194 @@
       "url": "https://creativecommons.org/licenses/by-sa/4.0/"
     }
   },
-  "servers": [
+  "paths": {
+    "/cacerts": {
+      "get": {
+        "summary": "Retrieve the current CA certificates.",
+        "responses": {
+          "200": {
+            "description": "CA certificates successfully retrieved.",
+            "content": {
+              "application/pkcs7-mime": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "A PKCS#7 (CMS) signed-data structure that contains one or more CA certificates."
+                }
+              }
+            }
+          }
+        },
+        "operationId": "ca_certs",
+        "description": "## `/cacerts` Endpoint\n\nThe `/cacerts` endpoint provides clients with the current root and intermediary CA certificates essential for trust establishment. By obtaining and trusting these certificates, clients can authenticate and validate certificates issued by the CA, ensuring secure communication within the charging ecosystem.\n\nWhen a client requests the `/cacerts` endpoint, the response is a representation of the current CA certificates that the client needs to trust. Specifically:\n\n- **Content Type**: The response typically has a content type of `application/pkcs7-mime`.\n\n- **Response Body**: The body of the response contains the CA certificates, formatted as a PKCS#7 (CMS) signed-data structure. The structure will include one or more CA certificates but won't contain any private keys (for obvious security reasons). It's essential for the client to fetch and trust these certificates, ensuring that subsequent certificates issued by the CA are also trusted.\n\nIt's worth noting that the client should already have a mechanism to trust the initial root CA certificate (often called a \"trust anchor\") before validating and trusting the additional CA certificates received from the `/cacerts` endpoint. This initial trust is necessary to protect against man-in-the-middle attacks.\n"
+      }
+    },
+    "/simpleenroll": {
+      "post": {
+        "summary": "Request a certificate from the CA.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/pkcs10": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          },
+          "description": "A PKCS#10 certification request."
+        },
+        "responses": {
+          "200": {
+            "description": "Certificate successfully issued.",
+            "content": {
+              "application/pkcs7-mime": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "A PKCS#7 (CMS) signed-data structure containing the issued certificate."
+                }
+              }
+            }
+          }
+        },
+        "description": "## `/simpleenroll` Endpoint\n\nThe `/simpleenroll` endpoint facilitates the secure request and issuance of digital certificates within the Plug & Charge ecosystem for EVs. Clients, such as EVs or charging stations, initiate a Certificate Signing Request (CSR) containing their public key and relevant metadata. Upon successful validation, the Certificate Authority (CA) issues the requested certificate, enabling secure and trusted communication for charging processes.\n\n\nWhen a client sends a request to the `/simpleenroll` endpoint, it's essentially sending aCertificate Signing Request (CSR) to the CA.\n\nIn response to this request:\n\n- The CA evaluates the CSR. If it's valid and meets the CA's policy, the CA generates a new certificate for the client.\n- The CA sends the new certificate back to the client.\n\nThe response from the `/simpleenroll` endpoint typically consists of the following:\n\n- **Content Type**: The response has a content type of `application/pkcs7-mime`.\n- **Response Body**: The body of the response is the newly issued certificate. It's formatted as a PKCS#7 (CMS) signed-data structure. This structure doesn't include the client's private key (as that should never leave the client's possession). If the client's CSR included a request for the full chain (i.e., not just the end-entity certificate), then the signed-data structure will also contain the intermediate and/or root certificates.\n",
+        "operationId": "simple_enroll"
+      }
+    },
+    "/simplereenroll": {
+      "post": {
+        "summary": "Request certificate re-enrollment.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/pkcs10": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          },
+          "description": "A PKCS#10 certification request."
+        },
+        "responses": {
+          "200": {
+            "description": "Certificate successfully re-issued.",
+            "content": {
+              "application/pkcs7-mime": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "A PKCS#7 (CMS) signed-data structure containing the re-issued certificate."
+                }
+              }
+            }
+          }
+        },
+        "operationId": "simple_reenroll",
+        "description": "## `/simplereenroll` Endpoint\n\nThe `/simplereenroll` endpoint enables clients to renew their existing digital certificates. Clients submit their Certificate Signing Request (CSR) for renewal, and upon validation, the Certificate Authority (CA) issues an updated certificate, ensuring continuous secure communication in the charging environment.\n\nWhen a client sends a request to the `/simplereenroll` endpoint, it's essentially sending a Certificate Signing Request (CSR) to the CA.\n\nIn response to this request:\n\n- The CA evaluates the CSR. If it's valid and meets the CA's policy, the CA generates a new certificate for the client.\n- The CA sends the new certificate back to the client.\n\nThe response from the `/simplereenroll` endpoint typically consists of the following:\n\n- **Content Type**: The response has a content type of `application/pkcs7-mime`.\n- **Response Body**: The body of the response is the newly issued certificate. It's formatted as a PKCS#7 (CMS) signed-data structure. This structure doesn't include the client's private key (as that should never leave the client's possession). If the client's CSR included a request for the full chain (i.e., not just the end-entity certificate), then the signed-data structure will also contain the intermediate and/or root certificates.\n\n"
+      }
+    },
+    "/serverkeygen": {
+      "post": {
+        "summary": "Request the server to generate a key and issue a certificate.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/pkcs10": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          },
+          "description": "A PKCS#10 certification request."
+        },
+        "responses": {
+          "200": {
+            "description": "Certificate and encrypted private key successfully issued.",
+            "content": {
+              "application/pkcs7-mime": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "A PKCS#7 (CMS) signed-data structure containing both the issued certificate and the encrypted private key intended for the client."
+                }
+              }
+            }
+          }
+        },
+        "operationId": "server_keygen",
+        "description": "### /serverkeygen Endpoint\n\nWithin the Enrollment over Secure Transport (EST), the `/serverkeygen` endpoint allows clients to request the Certificate Authority (CA) to generate a key pair on their behalf.\n\n- Clients send a Certificate Signing Request (CSR) to the CA.\n- The CA generates the key pair.\n- A certificate for the new public key is issued by the CA.\n- The CA returns a PKCS#7 (CMS) structure, which includes:\n  - The client's newly issued certificate\n  - The private key\n  - The CA chain (if applicable)\n\nThe response is in PKCS#7 (CMS) format containing the private key and certificate. The content type for this response is `application/pkcs7-mime`.\n\n**Note**: Using `/serverkeygen` has security implications. Transmitting private keys over networks, even secure ones, carries risks.\n\n"
+      }
+    },
+    "/csrattrs": {
+      "get": {
+        "summary": "Retrieve the CSR attributes required by the CA.",
+        "responses": {
+          "200": {
+            "description": "CSR attributes successfully retrieved.",
+            "content": {
+              "application/csrattrs": {
+                "schema": {
+                  "$ref": "#/components/schemas/CSRAttributes"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No CSR attributes required by the CA."
+          }
+        },
+        "operationId": "csr_attrs",
+        "description": "## `/csrattrs` Endpoint\n\nThe `/csrattrs` endpoint provides clients with a set of attributes and requirements that the Certificate Authority (CA) expects to be present in a Certificate Signing Request (CSR). By adhering to these guidelines, clients ensure their CSRs are compliant and optimized for successful certificate issuance in the charging ecosystem.\n"
+      }
+    }
+  },
+  "tags": [
     {
-      "url": "https://api.server.test/opnc/v1/pki"
+      "name": "PKI",
+      "description": "The PKI interface is an API module used in the OPNC."
     }
   ],
-  "tags": [],
-  "paths": {
-      "/est/simpleenroll": {
-        "$ref": "./pki.api.v1.simpleEnroll.json"      
-    },
-    "/est/cacerts": {
-      "$ref": "./pki.api.v1.caCerts.json"
+  "components": {
+    "schemas": {
+      "CSRAttributes": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "description": "The version of the CSR attributes format being used."
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Attribute"
+            },
+            "description": "List of attributes or requirements expected in the CSR."
+          }
+        },
+        "required": [
+          "version",
+          "attributes"
+        ]
+      },
+      "Attribute": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name or identifier of the expected attribute."
+          },
+          "value": {
+            "type": "string",
+            "description": "The expected value or format for the attribute."
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
     }
   }
 }
