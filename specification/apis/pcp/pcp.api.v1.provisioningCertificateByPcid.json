@@ -103,7 +103,7 @@
         "tags": [
           "DeleteProvisioningCertificate"
         ],
-        "description": "This method is used by the OEM to depublish Provisioning Certificates.\n\n<!-- theme: warning -->\n\n> A successful deletes triggers a call to the DELETE method of the Contract Certificate Pool for all EMAIDs related to this PCID! In case of contract certificates issued by one of the Operator owned MO CAs, this also involves revocation of the same.",
+        "description": "This method is used by the OEM to depublish Provisioning Certificates.\n\n<!-- theme: warning -->\n\n> A successful deletes triggers a call to the DELETE method of the Contract Certificate Pool for all EMAIDs related to this PCID! In case of contract certificates issued by one of the Operator owned eMSP CAs, this also involves revocation of the same.",
         "responses": {
           "200": {
             "description": "OK"

@@ -2,7 +2,7 @@
     "put": {
         "summary": "GenerateAndSignContractData",
         "operationId": "generateAndSignContractDataV1",
-        "description": "This service creates and signs contractData for provided contract information. The contract certificate will be signed by the MO SUB CA2 which is derived from the V2G Root CA\n\nThe created and signed contractData is stored in the contract certificate pool for provisioning to the OEM- and CPO-backend. \n\nTo update a contractData, the interface must be called again with the same PCID and EMAID. The system will replace the old contractData with the new one.",
+        "description": "This service creates and signs contractData for provided contract information. The contract certificate will be signed by the eMSP SUB CA2 which is derived from the V2G Root CA\n\nThe created and signed contractData is stored in the contract certificate pool for provisioning to the OEM- and CPO-backend. \n\nTo update a contractData, the interface must be called again with the same PCID and EMAID. The system will replace the old contractData with the new one.",
         "tags": [
             "GenerateAndSignContractData"
         ],
@@ -29,7 +29,7 @@
                   "Invalid EMAID": {
                     "value": {
                       "errorMessages": [
-                        "emaid : must match \"^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9}[-]?(\\w{1})?$\""
+                        "emaid : must match \"^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9,28}[-]?(\\w{1})?$\""
                       ],
                       "traceId": "57a24dd5-08e2-4d78-8a77-b49b9db411f2"
                     }

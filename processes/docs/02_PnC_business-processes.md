@@ -12,7 +12,7 @@ During contract provisioning, several sub-processes are also required, which can
    - The OEM generates a Provisioning Certificate for each electric vehicle during production.
    - The OEM installs a trust store containing all relevant Root Certificates from the Root Certificate Pool.
  2. **Contract conclusion and vehicle assignment**
-   - The MO concludes a charging contract for a specific customer's electric vehicle, using the vehicles Provisioning Certificate from the Provisioning Certificate Pool.
+   - The eMSP concludes a charging contract for a specific customer's electric vehicle, using the vehicles Provisioning Certificate from the Provisioning Certificate Pool.
    - Providing contract data to the Certificate Provisioning Service or
    - Providing contract information to V2G Mobility Operator CA
   3. **(Periodic) provisioning of contract data**
@@ -43,22 +43,22 @@ The CCP finds the contracts of this EV, verifies the validity of each certificat
 ![Providing signed contract data to CPO backend on request](../assets/images/process_providing_signed_contract_data_to_cpo_backend_on_request.png)
 
 
-## Business Processes relevant for the MO
+## Business Processes relevant for the eMSP
 
 ### Contract Conclusion and Vehicle Assignment
 
-This process describes, the conclusion of contract between customer and MO and delivery of OEM provisioning certificate of vehicle to the MO.
-The MO must receive the contract information from a customer including the PCID of the vehicle. The MO can retrieve the Provisioning Certificate from the PCP with the supplied PCID. This Provisioning Certificate must've been sent by the OEM to the PCP beforehand. The PCP delivers the OEM provisioning certificate, including the corresponding Sub CA chain (See Figure 5).
+This process describes, the conclusion of contract between customer and eMSP and delivery of OEM provisioning certificate of vehicle to the eMSP.
+The eMSP must receive the contract information from a customer including the PCID of the vehicle. The eMSP can retrieve the Provisioning Certificate from the PCP with the supplied PCID. This Provisioning Certificate must've been sent by the OEM to the PCP beforehand. The PCP delivers the OEM provisioning certificate, including the corresponding Sub CA chain (See Figure 5).
 
-After verifying the authenticity of the trust chain with the OEM root certificate (which has been received from the Root Certificate Pool), the MO can generate a unique e-mobility account identifier for this contract. To create a contract for the customer, MOs have two possibilities:
+After verifying the authenticity of the trust chain with the OEM root certificate (which has been received from the Root Certificate Pool), the eMSP can generate a unique e-mobility account identifier for this contract. To create a contract for the customer, MOs have two possibilities:
 
  - Create and send the contract data to the CPS using the MOs own CA, which is described in the “Providing Contract Data to Certificate Provisioning Service” process
- - Or use V2G-PKI MO CA services to create, sign and store the contract data
+ - Or use V2G-PKI eMSP CA services to create, sign and store the contract data
 
 
 ### Providing Contract Data to Certificate Provisioning Service
 
-If the MO uses its own CA, it must create a contract data with the following parts:
+If the eMSP uses its own CA, it must create a contract data with the following parts:
  - contractSignatureCertChain,
  - dhPublicKey,
  - contractSignatureEncryptedPrivateKey,
@@ -74,14 +74,14 @@ Moving forward, MOs have two possibilities:
 ### Provisioning of Contract Data
 
 Signing Contract Data and Storing in CCP:
-The CPS signs the delivered contract data with the V2G Root CA derived Provisioning Certificate private key. Then the CPS either stores it in the CCP for provisioning for the CPO and OEM backends or sends it back to the MO.
-In this latter method, the MO would have to use addSignedContractData to store contract data into a CCP. 
+The CPS signs the delivered contract data with the V2G Root CA derived Provisioning Certificate private key. Then the CPS either stores it in the CCP for provisioning for the CPO and OEM backends or sends it back to the eMSP.
+In this latter method, the eMSP would have to use addSignedContractData to store contract data into a CCP. 
 ![Signing contract data and storing in CCP](../assets/images/process_signing_contract_data_and_storing_in_ccp.png)
 
 
 ### Generating Contract Data with CPS Mobility Operator Service and Storing in CCP
 
-If the MO does not create and sign the contract data (using createSignedContractData method), the V2G MO CA Operator and CPS Operator can generate a contract data with the received contract information from the MO. The CPS Operator would then send the contract data to the CPS for signing and then store the signed contract data in the CCP.
+If the eMSP does not create and sign the contract data (using createSignedContractData method), the V2G eMSP CA Operator and CPS Operator can generate a contract data with the received contract information from the eMSP. The CPS Operator would then send the contract data to the CPS for signing and then store the signed contract data in the CCP.
 
 ## Business Processes relevant for the OEM
 

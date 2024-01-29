@@ -2,10 +2,10 @@
   "title": "caDomainParamV1",
   "description": "",
   "type": "string",
-  "example": "mo",
-  "pattern": "^(\\w+-)?(mo|cpo|oem|cps|veh)$",
+  "example": "emsp",
+  "pattern": "^(\\w+-)?(emsp|cpo|oem|cps|veh)$",
   "enum": [
-    "mo",
+    "emsp",
     "cpo",
     "oem",
     "cps",
