@@ -6,6 +6,20 @@
         "tags": [
             "GenerateAndSignContractData"
         ],
+        "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
+            }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -79,18 +93,18 @@
           }
         },
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "../../components/requestBodies/generateAndSignContractDataReq.v1.json"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "../../components/requestBodies/generateAndSignContractDataReq.v1.json"
-              }
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../components/requestBodies/generateAndSignContractDataReq.v1.json"
+                    }
+                },
+                "application/xml": {
+                    "schema": {
+                        "$ref": "../../components/requestBodies/generateAndSignContractDataReq.v1.json"
+                    }
+                }
             }
-          }
         }
-      }
+    }
 }

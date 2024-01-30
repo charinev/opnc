@@ -8,6 +8,18 @@
         ],
         "parameters": [
             {
+                "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
+            },
+            {
                 "in": "query",
                 "name": "pkiType",
                 "description": "Optional parameter to filter for root certificates from V2G, eMSP or OEM PKI.",
