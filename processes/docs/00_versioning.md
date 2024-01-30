@@ -15,13 +15,10 @@ The individual API definition files have separate version numbers. This allows t
 
 The unified URI structure is as follows:
 ```
-https://{region}.{stage}.{domain}/{version}/{service}/{object}
+https://{domain}/opnc/{version}/{service}/{object}
 ```
-
- * `region`: The global regeion ID, e.g. _us_ or _eu_.
- * `stage`: The system stage e.g. _plugncharge-test_ (for the test stage), _plugncharge-qa_ (for the quality assurance stage) or _plugncharge_ (for productive stage).
- * `domain`: In general always _hubject.com_.
- * `version`: Version tag of the API, e.g. _v1_ or _v2_.
+ * `domain`: Domain name of the plug&Charge actor with a server exposing OPNC services. May be organized into subdomains according to the region (us, eu,etc..) and the nature (staging, production, etc..) of the actor's platform  
+ * `version`: Version tag of the API, e.g. _1.1.0_ or _1.2.3_.
  * `service`: ID of the ecosystems microservice to adress, e.g. _root_ for the RCP. See API definition.
  * `object`: Name of the object to modify, e.g. _rootCerts_. See API definition.
 
