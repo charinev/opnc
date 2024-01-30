@@ -43,7 +43,7 @@
               "minLength": 64
             },
             "in": "header",
-            "name": "payload-signature",
+            "name": "X-Operator-Signature",
             "description": "Ssignatures using a hash-based message authentication code HMAC with SHA-256.",
             "required": true
           }
