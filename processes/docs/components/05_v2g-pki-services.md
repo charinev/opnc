@@ -22,7 +22,7 @@ eMSP Plug&Charge Contract Service can be part of Plug&Charge CPS Services and pr
 
 ## EST interface
 
-EST interface receives CSRs from CPOs, CPSs, eMSPs or OEMs, signs them and delivers an ISO 15118 leaf certificate. The Hubject Certificate Manager creates the leaf certificates from the regarding Sub 2 CA of the respective part of the V2G Root CA.
+EST interface receives CSRs from CPOs, CPSs, eMSPs or OEMs, signs them and delivers an ISO 15118 leaf certificate. The PKI service provider Certificate Manager creates the leaf certificates from the regarding Sub 2 CA of the respective part of the V2G Root CA.
 
 This interface can create certificates for CPOs (EVSE leaf certificate), eMSPs (contract leaf certificate), CPSs (certificate provisioning certificates) and OEMs (OEM provisioning certificates)
 
@@ -38,7 +38,7 @@ Operation| Operation path  | Details in RFC
  Enrollment of Clients | /simpleenroll  | [RFC Section 4.2](https://tools.ietf.org/html/rfc7030#section-4.2)
 
 
-The EST interface of the Hubject Plug&Charge PKI Services is fully compliant with RFC7030.
+The EST interface of the OPNC Plug&Charge PKI Services is fully compliant with RFC7030.
 
 > For the implementation of an EST client, you can use the open source library [libest from CISCO](https://github.com/cisco/libest/tree/master/example/client-simple) or the EST package from [BouncyCastle](https://www.bouncycastle.org/docs/pkixdocs1.5on/org/bouncycastle/est/package-summary.html)
 
@@ -73,7 +73,7 @@ A certificate authority will use a CSR to create your digital certificate, but i
 Name|Explanantion|Example
 ----|--------|-----
 Common Name|The unique [ISO15118 description](../05_handling-of-ids.md) for the certificate. This must match exactly to the ISO15118 and VDE Application Guide standard or you will receive a name mismatch error in the PnC Ecosystem|PCID: e.g. WP012345678901234
-Organization|	The legal name of your organization. This should not be abbreviated and should include suffixes such as Inc, Corp, or LLC.|Hubject GmbH
+Organization|	The legal name of your organization. This should not be abbreviated and should include suffixes such as Inc, Corp, or LLC.|CharIN GmbH
 
 #### CSR Example
 ```

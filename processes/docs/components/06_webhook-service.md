@@ -20,7 +20,7 @@ The available event notifications are listed in the interface API itself:
 ## API
 
 The webhooks service requires the partner to provide a simple payload-service with public endpoint to receive events as `POST` request.
-The required API documentation can be found at [webhooks.v1.json](../../specifications/apis/event/event.api.v1.endpoints.json).
+The required API documentation can be found at [webhooks.v1.json](../../../specifications/apis/event/event.api.v1.endpoints.json).
 
 
 ## Error handling
@@ -34,7 +34,7 @@ Host: your-payload-url.com
 Headers:
 
 Content-Type: application/json
-X-Hubject-Signature: sha256=7808b566f4057216e64c6298bfd5a184d4d715ffec6599311e5266f48865XXXX
+X-Operator-Signature: sha256=7808b566f4057216e64c6298bfd5a184d4d715ffec6599311e5266f48865XXXX
 
 Body:
 {

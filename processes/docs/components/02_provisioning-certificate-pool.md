@@ -79,7 +79,7 @@ In case the Provisioning Certificate under one PCID shall be removed from the ec
 
 ### 4. Request a Provisioning Certificate
 
-Before creating the Contract Data package, the eMSP has to request the current Provisioning Certificate by the Provisioning Certificate ID from the pool.
+Before creating the Contract Certificate Bundle, the eMSP has to request the current Provisioning Certificate by the Provisioning Certificate ID from the pool.
 
 ### 5. Lookup a Vehicle
 
