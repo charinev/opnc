@@ -34,7 +34,7 @@ The Certificate pools and Certificate Provisioning Service are for publishing ce
 This section describes the components of the Hubject Plug&Charge Ecosystem and their purpose of use.
 
 * [Root Certificate Pool (RCP)](./components/01_root-certificate-pool.md) – stores and distributes root certificates of all participating PKIs.
-* [Provisioning Certificate Pool (PCP)](./components/02_provisioning-certificate-pool.md) – stores OEM provisiong certificates and makes them available to the MOs.
+* [Provisioning Certificate Pool (PCP)](./components/02_provisioning-certificate-pool.md) – stores OEM provisiong certificates and makes them available to the eMSPs.
 * [Certificate Provisioning Service (CPS)](./components/03_certificate-provisioning-service.md) – provisions contract certificates to prepare them to get installed in the EV.
 * [Contract Certificate Pool (CCP)](./components/04_contract-certificate-pool.md) – stores provisioned contract certificates waiting to get installed.
 * [Plug&Charge PKI Services](./components/05_v2g-pki-services.md)

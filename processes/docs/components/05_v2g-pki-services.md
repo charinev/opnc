@@ -8,23 +8,23 @@ A Plug&Charge PKI Service includes all necessary components of a PKI infrastruct
  * CRL distribution points (if applicable)
  * eMSP CA
 
-These services provide interfaces to CPOs, MOs, CPSs and OEMs for issuing/signing certificates and also request certificate statuses.
+These services provide interfaces to CPOs, eMSPs, CPSs and OEMs for issuing/signing certificates and also request certificate statuses.
 
 ![Plug&Charge V2G PKI Services Interfaces](../../assets/images/process_V2G_PKI_services.png)
 
 
 ## eMSP Plug&Charge Contract Service
 
-eMSP Plug&Charge Contract Service can be part of Plug&Charge CPS Services and provides interfaces for MOs to issue and sign their contract certificates/bundles without the need for any own eMSP-PKI. This service creates certificates and performs all needed cryptographic operations to created ISO15118 compliant signed contract data.
+eMSP Plug&Charge Contract Service can be part of Plug&Charge CPS Services and provides interfaces for eMSPs to issue and sign their contract certificates/bundles without the need for any own eMSP-PKI. This service creates certificates and performs all needed cryptographic operations to created ISO15118 compliant signed contract data.
 
 ![Mobility Operator CA Interfaces](../../assets/images/interfaces_mo-ca_service.png)
 
 
 ## EST interface
 
-EST interface receives CSRs from CPOs, CPSs, MOs or OEMs, signs them and delivers an ISO 15118 leaf certificate. The Hubject Certificate Manager creates the leaf certificates from the regarding Sub 2 CA of the respective part of the V2G Root CA.
+EST interface receives CSRs from CPOs, CPSs, eMSPs or OEMs, signs them and delivers an ISO 15118 leaf certificate. The Hubject Certificate Manager creates the leaf certificates from the regarding Sub 2 CA of the respective part of the V2G Root CA.
 
-This interface can create certificates for CPOs (EVSE leaf certificate), MOs (contract leaf certificate), CPSs (certificate provisioning certificates) and OEMs (OEM provisioning certificates)
+This interface can create certificates for CPOs (EVSE leaf certificate), eMSPs (contract leaf certificate), CPSs (certificate provisioning certificates) and OEMs (OEM provisioning certificates)
 
 A valid authentication to the EST services is necessary to use this interface.
 

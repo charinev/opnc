@@ -13,7 +13,7 @@
  * __EMAID__: e-mobility account identifier
  * __EVSE__: Electric vehicle supply equipment
  * __HSM__: Hardware secure module
- * __MO__: Mobility operator
+ * __eMSP__: Mobility operator
  * __OCSP__: Online certificate status protocol
  * __OEM__: Original equipment manufacturer
  * __PCP__: Provisioning certificate pool
