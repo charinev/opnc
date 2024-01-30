@@ -53,9 +53,9 @@ Depending on the EVSEID (first 5 characters - CountryCode + OperatorID), the CPO
 |EST    |eMSP                                                       |caCerts - eMSP                      |Read         |No Access|No Access|No Access      |Access        |No Access |
 |EST    |CPS                                                      |simpleEnroll - CPS                |Read & Write |No Access|No Access|No Access      |Access        |Access |
 |EST    |CPS                                                      |caCerts - CPS                     |Read         |No Access|No Access|No Access      |Access        |Access |
-|WEBHOOK    |OEM, CPO, MO, CPS                                    |getWebhooks                       |Read         |Access|Access|Access      |Access        |Access |
-|WEBHOOK    |OEM, CPO, MO, CPS                                    |getWebhook                        |Read         |Access|Access|Access      |Access        |Access |
-|WEBHOOK    |OEM, CPO, MO, CPS                                    |addWebhook                        |Write         |Access|Access|Access      |Access        |Access |
-|WEBHOOK    |OEM, CPO, MO, CPS                                    |updateWebhook                     |Write         |Access|Access|Access      |Access        |Access |
-|WEBHOOK    |OEM, CPO, MO, CPS                                    |deleteWebhook                     |Write         |Access|Access|Access      |Access        |Access |
+|WEBHOOK    |OEM, CPO, eMSP, CPS                                    |getWebhooks                       |Read         |Access|Access|Access      |Access        |Access |
+|WEBHOOK    |OEM, CPO, eMSP, CPS                                    |getWebhook                        |Read         |Access|Access|Access      |Access        |Access |
+|WEBHOOK    |OEM, CPO, eMSP, CPS                                    |addWebhook                        |Write         |Access|Access|Access      |Access        |Access |
+|WEBHOOK    |OEM, CPO, eMSP, CPS                                    |updateWebhook                     |Write         |Access|Access|Access      |Access        |Access |
+|WEBHOOK    |OEM, CPO, eMSP, CPS                                    |deleteWebhook                     |Write         |Access|Access|Access      |Access        |Access |
 
