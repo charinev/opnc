@@ -17,6 +17,20 @@
         "tags": [
             "LookUpVehicle"
         ],
+        "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
+            },
+            {
+              "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+            },
+            {
+              "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
+            }
+        ],
         "responses": {
         "200": {
             "description": "OK"

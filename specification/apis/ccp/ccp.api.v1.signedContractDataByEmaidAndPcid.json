@@ -8,8 +8,20 @@
         ],
         "parameters": [
             {
+                "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
+            },
+            {
                 "schema": {
-                  "$ref": "../../components/parameters/emaidParam.v1.json"
+                    "$ref": "../../components/parameters/emaidParam.v1.json"
                 },
                 "name": "emaid",
                 "in": "path",
@@ -22,13 +34,13 @@
                 "required": true,
                 "description": "The related provisioning certificate ID.",
                 "schema": {
-                  "$ref": "../../components/parameters/pcidParam.v1.json"
+                    "$ref": "../../components/parameters/pcidParam.v1.json"
                 }
             },
             {
                 "schema": {
-                "type": "string",
-                "example": "00"
+                    "type": "string",
+                    "example": "00"
                 },
                 "in": "query",
                 "name": "sessionID",
@@ -37,9 +49,9 @@
             },
             {
                 "schema": {
-                "type": "string",
-                "default": "urn:iso:15118:2:2013:MsgDef",
-                "example": "urn:iso:15118:2:2013:MsgDef"
+                    "type": "string",
+                    "default": "urn:iso:15118:2:2013:MsgDef",
+                    "example": "urn:iso:15118:2:2013:MsgDef"
                 },
                 "in": "query",
                 "name": "xsdMsgDefNamespace",
@@ -47,7 +59,7 @@
             },
             {
                 "schema": {
-                  "$ref": "../../components/parameters/cpsV2GRootCertificateFingerprintParam.v1.json"
+                    "$ref": "../../components/parameters/cpsV2GRootCertificateFingerprintParam.v1.json"
                 },
                 "in": "query",
                 "name": "cpsV2GRootCertificateFingerprint",
@@ -138,9 +150,9 @@
           }
         },
         "security": [
-          {
-            "OEM": []
-          }
+            {
+                "OEM": []
+            }
         ]
     }
 }

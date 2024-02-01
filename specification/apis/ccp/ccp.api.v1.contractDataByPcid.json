@@ -4,9 +4,21 @@
         "operationId": "getContractDataByPcidV1",
         "description": "Get contract data from CCP by PCID.",
         "tags": [
-          "GetContractDataByPcid"
+            "GetContractDataByPcid"
         ],
         "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
+            },
             {
                 "schema": {
                     "$ref": "../../components/parameters/pcidParam.v1.json"
@@ -17,53 +29,53 @@
                 "description": "PCID of vehicle certificate."
             },
             {
-              "schema": {
-                "$ref": "../../components/parameters/xsdMsgDefNamespaceParam.v1.json"
-              },
-              "in": "query",
-              "name": "xsdMsgDefNamespace",
-              "description": "to receive contract data for a specific ISO version"
+                "schema": {
+                    "$ref": "../../components/parameters/xsdMsgDefNamespaceParam.v1.json"
+                },
+                "in": "query",
+                "name": "xsdMsgDefNamespace",
+                "description": "to receive contract data for a specific ISO version"
             }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "../../components/responses/getContractDataRes.v1.json"
+            "200": {
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../components/responses/getContractDataRes.v1.json"
+                        }
+                    }
                 }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "../../components/schemas/error.v1.json"
+            },
+            "400": {
+                "description": "Bad Request",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../components/schemas/error.v1.json"
+                        }
+                    }
                 }
-              }
+            },
+            "401": {
+                "description": "Unauthorized"
+            },
+            "403": {
+                "description": "Forbidden"
+            },
+            "404": {
+                "description": "Not Found"
+            },
+            "500": {
+                "description": "Internal Server Error"
+            },
+            "502": {
+                "description": "Bad Gateway"
+            },
+            "503": {
+                "description": "Service Unavailable"
             }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "502": {
-            "description": "Bad Gateway"
-          },
-          "503": {
-            "description": "Service Unavailable"
-          }
         }
     }
 }

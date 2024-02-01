@@ -1,0 +1,18 @@
+{
+    "name": "OPNC-from-party-type",
+    "schema": {
+        "type": "string",
+        "enum": [
+            "emsp",
+            "cpo",
+            "oem",
+            "pki",
+            "cps",
+            "pcp",
+            "ccp"
+        ]
+    },
+    "in": "header",
+    "description": "Specifies the type of party that originated this request",
+    "required": false
+}

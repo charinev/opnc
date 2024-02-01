@@ -4,9 +4,21 @@
         "operationId": "getContractDataByEmaidV1",
         "description": "Get contract data from CCP by EMAID.",
         "tags": [
-          "GetContractDataByEmaid"
+            "GetContractDataByEmaid"
         ],
         "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
+            },
             {
                 "schema": {
                     "$ref": "../../components/parameters/emaidParam.v1.json"
@@ -17,20 +29,20 @@
                 "description": "Contract identifier of contract certificate"
             },
             {
-              "schema": {
-                "$ref": "../../components/parameters/xsdMsgDefNamespaceParam.v1.json"
-              },
-              "in": "query",
-              "name": "xsdMsgDefNamespace",
-              "description": "to receive contract data for a specific ISO version"
+                "schema": {
+                    "$ref": "../../components/parameters/xsdMsgDefNamespaceParam.v1.json"
+                },
+                "in": "query",
+                "name": "xsdMsgDefNamespace",
+                "description": "to receive contract data for a specific ISO version"
             },
             {
-              "schema": {
-                "$ref": "../../components/parameters/cpsV2GRootCertificateFingerprintParam.v1.json"
-              },
-              "in": "query",
-              "description": "The SHA256 Fingerprint of the desired V2G root CA which shall was used to sign these data with the regarding CPS signing certificate. Its optional. If not given, the CPS will decide which CPS signing V2G PKI will be renurned",
-              "name": "cpsV2GRootCertificateFingerprint"
+                "schema": {
+                    "$ref": "../../components/parameters/cpsV2GRootCertificateFingerprintParam.v1.json"
+                },
+                "in": "query",
+                "description": "The SHA256 Fingerprint of the desired V2G root CA which shall was used to sign these data with the regarding CPS signing certificate. Its optional. If not given, the CPS will decide which CPS signing V2G PKI will be renurned",
+                "name": "cpsV2GRootCertificateFingerprint"
             }
         ],
         "responses": {

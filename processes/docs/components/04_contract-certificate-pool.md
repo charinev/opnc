@@ -13,7 +13,7 @@ The Ecosystem Administration creates a node for each eMSP after the provider ID 
 
 The Contract Certificate Pool offers a REST API supporting registered contract certificate requests.
 
-All CCP API's documentation are available at [ccp.v1.json](../../specification/apis/ccp/ccp.api.v1.json).
+All CCP API's documentation are available at [ccp.v1.json](../../../specification/apis/ccp/ccp.api.v1.json).
 
 ## Processes
 

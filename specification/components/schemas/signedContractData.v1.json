@@ -25,8 +25,9 @@
         },
         "cpsRootDistinguishedName": {
             "type": "string",
-            "pattern": "^((CN|OU|O|C|DC|ST)=[^,]+,? ?)+$",
-            "description": "Reflects the v2g root distinguished name field. (informative)"
+            "example": "CN=V2G Root CA G2, DC=V2G, O=Hubject GmbH, C=DE",
+            "pattern": "^(CN=[a-zA-Z0-9\\s\\-\\.]+,\\s)?(DC=[a-zA-Z0-9\\s\\-\\.]+,\\s)?(O=[a-zA-Z0-9\\s\\-\\.]+,\\s)?(OU=[a-zA-Z0-9\\s\\-\\.]+,\\s)?(C=[A-Z]{2})?$",
+            "description": "Reflects the V2G root distinguished name field. (informative)"
         }
     },
     "required": [

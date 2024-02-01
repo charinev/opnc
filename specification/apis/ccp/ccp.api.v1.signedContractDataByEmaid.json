@@ -7,28 +7,40 @@
             "DeleteSignedContractDataByEmaid"
         ],
         "parameters": [
-          {
-            "schema": {
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ],
-              "default": false
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
-            "in": "header",
-            "name": "X-Skip-Revocation",
-            "description": "Do not revoke the contract certificate."
-          },
-          {
-            "name": "emaid",
-            "in": "path",
-            "description":"E-Mobility Account Identifier",
-            "required": true,
-            "schema": {
-                "$ref": "../../components/parameters/emaidParam.v1.json"
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
+            },
+            {
+                "schema": {
+                    "type": "boolean",
+                    "enum": [
+                        true,
+                        false
+                    ],
+                    "default": false
+                },
+                "in": "header",
+                "name": "X-Skip-Revocation",
+                "description": "Do not revoke the contract certificate."
+            },
+            {
+                "name": "emaid",
+                "in": "path",
+                "description": "E-Mobility Account Identifier",
+                "required": true,
+                "schema": {
+                    "$ref": "../../components/parameters/emaidParam.v1.json"
+                }
             }
-          }
         ],
         "responses": {
           "200": {

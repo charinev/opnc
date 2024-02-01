@@ -17,6 +17,20 @@
         "tags": [
             "GetRootCertificate"
         ],
+        "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
+            }
+        ],
         "responses": {
             "200": {
                 "description": "OK",
@@ -40,7 +54,7 @@
             },
             "401": {
                 "description": "Unauthorized"
-                },
+            },
             "403": {
                 "description": "Forbidden"
             },
@@ -48,19 +62,19 @@
                 "description": "Not Found",
                 "content": {
                     "application/json": {
-                    "schema": {
-                        "$ref": "../../components/schemas/error.v1.json"
-                    },
-                    "examples": {
-                        "ROOT NOT FOUND": {
-                        "value": {
-                            "errorMessages": [
-                            "Root certificate with the given ID is not found"
-                            ],
-                            "traceId": "c52fe6ad-1e39-4f6e-a0d0-e2d51aacf09f"
+                        "schema": {
+                            "$ref": "../../components/schemas/error.v1.json"
+                        },
+                        "examples": {
+                            "ROOT NOT FOUND": {
+                                "value": {
+                                    "errorMessages": [
+                                        "Root certificate with the given ID is not found"
+                                    ],
+                                    "traceId": "c52fe6ad-1e39-4f6e-a0d0-e2d51aacf09f"
+                                }
+                            }
                         }
-                        }
-                    }
                     }
                 }
             },
@@ -83,24 +97,24 @@
             "DeleteRootCertificate"
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+            "200": {
+                "description": "OK"
+            },
+            "400": {
+                "description": "Bad Request"
+            },
+            "401": {
+                "description": "Unauthorized"
+            },
+            "403": {
+                "description": "Forbidden"
+            },
+            "404": {
+                "description": "Not Found"
+            },
+            "500": {
+                "description": "Internal Server Error"
+            }
         }
-      }
+    }
 }

@@ -26,6 +26,9 @@
     },
     "/est/cacerts": {
       "$ref": "./pki.api.v1.caCerts.json"
+    },
+    "/pki/revokeCertificate" : {
+      "$ref": "./pki.api.v1.revokeCert.json"
     }
   }
 }
