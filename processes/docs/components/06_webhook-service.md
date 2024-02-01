@@ -14,8 +14,27 @@ A webhook enables our ecosystem to push real-time notifications to your backend 
 
 ### Available Events
 
-The available event notifications are listed in the interface API itself:
+| Relevant for Role | Event Name           | Description                                                                                                    | Message (Logging examples for customer)                                        |
+|-------------------|----------------------|----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| ALL               | root.cert.added      | A new root got added to the root pool (RCP), important for CPOs to check if a new V2G or eMSP Root CA needs to be pushed to the EVSEs for authentication. | "New root in RCP available"          |
+| ALL               | root.cert.expired    | A root expired and it will be removed from the RCP. No emergency action is needed as it is a natural phase-out. | "Root Expired"                                                                   |
+| ALL               | root.cert.revoked    | A root got revoked and it was removed from the RCP. This requires the action of multiple parties depending which root is affected. More manual communication will follow by the PKI provider. | "Root revoked"                                                                   |
+| eMSP                | mo.prov.cert.deleted | The OEM Prov. The certificate got deleted from PCP. Hubject deleted all Contract Data for that PCID on CCP. | "PnC is currently disabled because the OEM Provisioning certificate was Deleted/Revoked." |
+| eMSP                | mo.prov.cert.factory.reset | The OEM triggered the deletion of all Contracts for a PCID/OEM Prov. Certificate. The eMSP shall not create new Contracts for the EMAID. (e.g. Factory Reset, Car is sold). | "Factory Reset was performed. All contracts for PCID were removed." |
+| eMSP                | mo.prov.cert.updated | The OEM Prov. The certificate got updated (different private and public key). Hubject deleted all existing Contract Data for that PCID on CCP as they are not valid anymore. The eMSP shall communicate with the Customer if the contract is recreated for the known PCID. (WERKSTATTFALL) | "Contract deleted, because of a new OEM Prov. A certificate was created. Sync with customer for next steps." |
+| eMSP                | mo.contract.created.sent.to.oem | The contract information (oem.contract.created) has been sent to the OEM Backend. | "Contract information (oem.contract.created) has been sent to the OEM Backend." |
+| eMSP                | mo.contract.updated.sent.to.oem | The contract information (oem.contract.updated) has been sent to the OEM Backend. | "Contract information (oem.contract.updated) has been sent to the OEM Backend." |
+| eMSP                | mo.contract.deleted.sent.to.oem | The contract information (oem.contract.deleted) has been sent to the OEM Backend. | "Contract information (oem.contract.deleted) has been sent to the OEM Backend." |
+| eMSP                | mo.contract.delivered.to.oem | "Successfully delivery of the Contract Data. The Contract Data with the given EMAID got either:<br>- Pulled from the OEM Backend<br>- Installed over EVSE (certificateInstallationRequest)" | "Signed Contract Certificate Bundle successfully delivered to OEM or CPO-Backend" |
+| eMSP                | mo.contract.rejected.by.oem | The contract information Event got rejected by the OEM Backend. A negative response of the OEM Backend about new, updated or deleted contract data was received. Action stopped in case OEM send HTTP400 or HTTP409. Otherwise, retry started to OEM. | "Info about contract Creation/Updated/Deletion (oem.contract.*) could not be delivered to OEM." |
+| eMSP                | mo.contract.queued.to.oem | Retry to OEM started for (oem.contract.*). OEM Backend is not answering properly. | "Retry started in direction of the OEM Backend from Hubject for (oem.contract.*) started." |
+| OEM               | oem.contract.created | Info to OEM Backend about a new Contract Data available in CCP. | "New contract available for PCID … with EMAID…." |
+| OEM               | oem.contract.updated | Info to OEM Backend about the update of the Contract Data in CCP. | "Updated contract data available for PCID… with EMAID…" |
+| OEM               | oem.contract.deleted | Info to OEM Backend about the deletion of Contract Data in CCP. | "Deleted contract for PCID…. With EMAID…" |
+
+The events can assigned to your webhook service in the API:
 [Event Actions](../../specifications/apis/event/event.api.v1.endpoints.json)
+
 
 ## API
 
@@ -52,7 +71,7 @@ Body:
 
 Operator can optionally sign the webhook events it sends to your endpoints by including a signature in each event’s `X-Operator-Signature` header. This allows you to verify that the events were sent by the Operator, not by a third party.
 
-In order to validate signature you will need `secret` of your endpoint, you can find it when you create new endpoint for the webhook or retrieving endpoint from the `webhooks` backend.
+In order to validate signature you will need `secret` of your endpoint, you can find it when you create new endpoint for the webhook or retrieve the endpoint from the `webhooks` backend.
 
 Operator generates signatures using a hash-based message authentication code [HMAC](https://en.wikipedia.org/wiki/HMAC) with [SHA-256](https://en.wikipedia.org/wiki/SHA-2). To prevent [downgrade attacks](https://en.wikipedia.org/wiki/Downgrade_attack)
 
