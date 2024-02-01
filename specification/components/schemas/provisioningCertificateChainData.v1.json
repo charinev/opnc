@@ -5,9 +5,9 @@
     "x-examples": {
       "example": {
         "provisioningCertificateChain": {
-          "subCA1Certificate": "",
-          "subCA2Certificate": "",
-          "certificate": ""
+          "subCA1Certificate": "MIICQDCCAeWgAwIBAgICBNMwCgYIKoZIzj0EAwIwRDELMAkGA1UEBhMCREUxDTALB",
+          "subCA2Certificate": "MIICQDCCAeWgAwIBAgICBNMwCgYIKoZIzj0EAwIwRDELMAkGA1UEBhMCREUxDTALB",
+          "certificate": "MIICQDCCAeWgAwIBAgICBNMwCgYIKoZIzj0EAwIwRDELMAkGA1UEBhMCREUxDTALB"
         }
       }
     },
