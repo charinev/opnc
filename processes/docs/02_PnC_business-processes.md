@@ -50,9 +50,9 @@ The CCP finds the contracts of this EV, verifies the validity of each certificat
 This process describes, the conclusion of contract between customer and eMSP and delivery of OEM provisioning certificate of vehicle to the eMSP.
 The eMSP must receive the contract information from a customer including the PCID of the vehicle. The eMSP can retrieve the Provisioning Certificate from the PCP with the supplied PCID. This Provisioning Certificate must've been sent by the OEM to the PCP beforehand. The PCP delivers the OEM provisioning certificate, including the corresponding Sub CA chain (See Figure 5).
 
-After verifying the authenticity of the trust chain with the OEM root certificate (which has been received from the Root Certificate Pool), the eMSP can generate a unique e-mobility account identifier for this contract. To create a contract for the customer, MOs have two possibilities:
+After verifying the authenticity of the trust chain with the OEM root certificate (which has been received from the Root Certificate Pool), the eMSP can generate a unique e-mobility account identifier for this contract. To create a contract for the customer, eMSPs have two possibilities:
 
- - Create and send the contract data to the CPS using the MOs own CA, which is described in the “Providing Contract Data to Certificate Provisioning Service” process
+ - Create and send the contract data to the CPS using the eMSPs own CA, which is described in the “Providing Contract Data to Certificate Provisioning Service” process
  - Or use V2G-PKI eMSP CA services to create, sign and store the contract data
 
 
@@ -66,7 +66,7 @@ If the eMSP uses its own CA, it must create a contract data with the following p
 
 The created contract data must be signed by the CPS.
 
-Moving forward, MOs have two possibilities:
+Moving forward, eMSPs have two possibilities:
  - signing and storing of signed contract data in the CCP
  - signing the contract data and receive the signed contract data without storing them in the CCP
 
@@ -88,7 +88,7 @@ If the eMSP does not create and sign the contract data (using createSignedContra
 ### Production of Vehicles and Storing Provisioning Certificate
 
 With the production of the vehicle, the OEM must create a provisioning certificate for each vehicle with a unique provisioning certificate identifier – PCID. The OEM sends this unique OEM provisioning certificate corresponding subordinate CA (Sub CA) certificates securely to the Provisioning Certificate Pool.
-The customers shall also receive the PCID of their vehicles to give it to the MOs, during the conclusion of a charging contract.
+The customers shall also receive the PCID of their vehicles to give it to the eMSPs, during the conclusion of a charging contract.
 The required V2G root certificates shall also be installed and stored in the vehicle for the trusted communication with charging devices and to verify contract data.
 
 ![Production of vehicles and storing provisioning certificate](../assets/images/process_production_of_vehicles_and_storing_provisioning_certificate.png)

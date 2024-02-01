@@ -74,7 +74,7 @@
         "organizationName": {
             "type": "string",
             "description": "Reflects the subjects organization name value. (informative)",
-            "example": "Hubject GmbH"
+            "example": "CharIN GmbH"
         },
         "certificateRevocationList": {
             "type": "string",
