@@ -1,6 +1,6 @@
 # Business Processes
 
-This section summarizes all processes of Plug and Charge as described as _Certificate Provisioning_ in ISO 15118 Section 7.9.2.5 and explained in more detail in Appendix E.3.
+This section summarizes all processes of Plug and Charge as described as _Certificate Provisioning_ in ISO 15118-2:2014 Section 7.9.2.5 and explained in more detail in Appendix E.3.
 
 The VDE Application Rule focusses on these processes and details each process flow for further understanding. The following figure shows the overall process with components and flows, which are based on the VDE Application Rule.
 
