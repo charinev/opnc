@@ -26,9 +26,11 @@ The Certificate pools and the Certificate Provisioning Service are for publishin
 
 ## Further reading
 
- * [Business Processes](./02_PnC_business-processes.md)
- * [Handling of IDs](./05_handling-of-ids.md)
  * [Abbreviations](./01_abbreviations.md)
+ * [Business Processes](./02_PnC_business-processes.md)
+ * [Publications and Repository_Responsibilities](./03_publications-and-repository-responsibilities.md)
+ * [Authentication](./04_authentication.md)
+ * [Handling of IDs](./05_handling-of-ids.md)
 
 ## System-Components
 
