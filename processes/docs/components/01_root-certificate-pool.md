@@ -1,7 +1,7 @@
 # Root Certificate Pool
 
-The Root Certificate Pool is used for communication between the Root Certificate Pool and the various Certificate Authorities of ISO 15118 participants (V2G, OEM, eMSP, CPS).
-The Root Certificate Pool provides root certificates for ISO 15118 participants. The stored root certificates are checked regularly with automated processes and expired, or revoked certificates deleted. The storage of root certificates is executed manually by RCP Authority administrators.
+The Root Certificate Pool is used as a trusted source of root certificates from various ecosystem certificate authorities (V2G, OEM, eMSP) by the participants (OEM, CPO, eMSP, CPS). 
+The stored root certificates are checked before addition to the pool, and regularly with automated processes. Expired or revoked certificates will be invalidated. The storage of root certificates is executed manually by RCP Authority administrators.
 
 Other systems of a PnC Ecosystem use this pool as the mutual trust store.
 
@@ -34,6 +34,6 @@ The Root Certificate Pool watches all contained root certificates on regular bas
 
 ## Additional notes
 
-If the Root CA revokes a root certificate, the Plug&Charge Ecosystem operator should not delete all its certificates, and their contract data. This can cause deletion of all OEM provisioning certificates and contracts of an OEM. For this case, an organizational process _must_ be defined between the Operator and the respective customers.
+If a Root CA revokes a root certificate, the Plug&Charge Ecosystem operator should not immediately revoke all related certificates, including the contract certificates. This can cause deletion of all related certificates and the charging service to stop working. For this case, an organizational process _must_ be defined between the Operator and the respective customers to ensure a customer friendly transition to another Root CA.
 
-Until the delivery of a new OEM root certificate, it will not be possible to send any new OEM provisioning certificate. Because the validation of the trust chain of OEM provisioning certificate cannot be proceeded. For more information about the validation process in `addOEMProvCert` interface, please see chapter interface description.
+Until the delivery of a new root certificate, it will not be possible to send any new leaf certificate. Because the validation of the trust chain of the certificate cannot be proceeded. For more information about the validation process please see chapter interface description.
