@@ -51,7 +51,7 @@ In case the Contract Certificate under one EMAID needs be removed from the ecosy
 
 ### 4. Retrieving a Contract Certificate
 
-In case a CPO or an OEM is requesting to get a Contract Certificate the CCP sends the contract data to the request endpoint.
+In case a CPO or an OEM is requesting to get a Contract Certificate the CCP sends the contract data to the requesting endpoint.
 
 
 ## Data Cleansing
