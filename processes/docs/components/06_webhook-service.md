@@ -10,7 +10,7 @@ The following figure provides a high level overview on the interface concept of 
 
 ## What are webhooks 
 
-A webhook enables our ecosystem to push real-time notifications to your backend systems. Webhooks Service uses HTTPS to send these notifications to your backend endpoint as a JSON payload. You can then use these notifications to execute actions in your backend systems.
+A webhook enables an ecosystem to push real-time notifications to partner's backend systems. Webhooks Service uses HTTPS to send these notifications to the backend endpoint as a JSON payload. Partners can then use these notifications to execute actions in their backend systems.
 
 ### Available Events
 
@@ -69,13 +69,11 @@ Body:
 
 ## Validating payloads
 
-Operator can optionally sign the webhook events it sends to your endpoints by including a signature in each event’s `X-Operator-Signature` header. This allows you to verify that the events were sent by the Operator, not by a third party.
+Operator can optionally sign the webhook events it sends to the partner's endpoints by including a signature in each event’s `X-Operator-Signature` header. This allows you to verify that the events were sent by the Operator, not by a third party.
 
-In order to validate signature you will need `secret` of your endpoint, you can find it when you create new endpoint for the webhook or retrieve the endpoint from the `webhooks` backend.
+In order to validate signature a `secret` of the endpoint is needed, it will be created when a new endpoint for the webhook is created or by retrieving the endpoint from the `webhooks` backend.
 
-Operator generates signatures using a hash-based message authentication code [HMAC](https://en.wikipedia.org/wiki/HMAC) with [SHA-256](https://en.wikipedia.org/wiki/SHA-2). To prevent [downgrade attacks](https://en.wikipedia.org/wiki/Downgrade_attack)
-
-You can create a custom solution by following these steps.
+Operator generates signatures using a hash-based message authentication code [HMAC](https://en.wikipedia.org/wiki/HMAC) with [SHA-256](https://en.wikipedia.org/wiki/SHA-2). To prevent [downgrade attacks](https://en.wikipedia.org/wiki/Downgrade_attack) a custom solution is described below.
 
 Step 1: Prepare the `message` string 
 - Get the actual JSON payload (i.e., the request body)
