@@ -7,6 +7,7 @@ A Plug&Charge PKI Service includes all necessary components of a PKI infrastruct
  * OCSP responder (if applicable)
  * CRL distribution points (if applicable)
  * eMSP CA
+ * OEM CA
 
 These services provide interfaces to CPOs, eMSPs, CPSs and OEMs for issuing/signing certificates and also request certificate statuses.
 
@@ -15,7 +16,7 @@ These services provide interfaces to CPOs, eMSPs, CPSs and OEMs for issuing/sign
 
 ## eMSP Plug&Charge Contract Service
 
-eMSP Plug&Charge Contract Service can be part of Plug&Charge CPS Services and provides interfaces for eMSPs to issue and sign their contract certificates/bundles without the need for any own eMSP-PKI. This service creates certificates and performs all needed cryptographic operations to created ISO15118 compliant signed contract data.
+eMSP Plug&Charge Contract Service can be part of Plug&Charge CPS Services and provides interfaces for eMSPs to issue and sign their contract certificates/bundles without the need for any own eMSP-PKI. This service creates certificates and performs all needed cryptographic operations to create ISO15118 compliant signed contract data.
 
 ![Mobility Operator CA Interfaces](../../assets/images/interfaces_mo-ca_service.png)
 
@@ -51,22 +52,22 @@ The EVSE leaf certificate contains its EVSE ID as common name, the structure of 
 ### Contract leaf certificates
 The contract certificate is used in the case of the Plug & Charge authentication and authorisation modes at a charge point, in contrast to external identification means (EIM). It shall be assigned to a valid contractual relationship between the vehicle user (or owner) and mobility operator and shall be saved in the vehicle together with the private key that is associated with this contract certificate.
 
-The electric vehicle accesses this digital certificate in order to prove the existence of a valid charging contract to the charge point. Contract certificates are derived – via intermediate sub-CAs – from eMSP root CAs or V2G root CAs.
+The electric vehicle accesses this digital certificate in order to prove the existence of a valid charging contract to the charge point. Contract certificates are derived – via intermediate sub-CAs – from eMSP Root CAs or V2G Root CAs.
 
-The eMSP contract certificate contains a EMAID as common name, the structure of which is defined in the [identifier description chapter](../05_handling-of-ids.md)
+The eMSP contract certificate contains an EMAID as common name, the structure of which is defined in the [identifier description chapter](../05_handling-of-ids.md)
 
 ### OEM provisioning certificates
-An OEM provisioning certificate is issued individually for and saved in each electric vehicle. It shall be possible to renew the provisioning certificate in the vehicle if it is revoked. The process of renewing the certificate is specific to each OEM and can be carried out by a workshop or by means of an online process using the OEM backend and telematics link of the EV. It is used to verify the identity of the electric when provisioning a contract certificate. It is derived from the OEM root CA or a V2G root CA via a chain of OEM sub-CAs.
+An OEM provisioning certificate is issued individually for and saved in each electric vehicle. It shall be possible to renew the provisioning certificate in the vehicle if it is revoked. The process of renewing the certificate is specific to each OEM and can be carried out by a workshop or by means of an online process using the OEM backend and telematics link of the EV. It is used to verify the identity of the electric vehicle when provisioning a contract certificate. It is derived from the OEM Root CA or a V2G Root CA via a chain of OEM sub-CAs.
 
 The OEM provisioning certificate contains a PCID as common name, the structure of which is defined in the [identifier description chapter](../05_handling-of-ids.md).
 
-### CPS Provisioning signing certificates
-An CPS Provisioning signing certificate is issued regularly by a CPS Operator by a V2G PKI Authority. It shall be possible to renew the provisioning signing certificate. It is used to sign contract data and install them securly into an EV. It is derived from the V2G root CA via a chain of CPS Sub-CAs.
+### CPS provisioning signing certificates
+A CPS provisioning signing certificate is issued regularly for a CPS Operator by a V2G PKI Authority. It shall be possible to renew the provisioning signing certificate. It is used to sign contract data for secure installation into an EV. It is derived from the V2G root CA via a chain of CPS Sub-CAs.
 
 ### Certificate Signing Request
-CSR or Certificate Signing request, is a block of encoded text that is given to a Certificate Authority when applying for an digital Certificate. It is usually generated on the server/end-device, where the certificate will be installed, and contains information that will be included in the certificate, such as the organization name, common name (domain name), locality, and country. It also contains the public key that will be included in the certificate. A private key is usually created at the same time that you create the CSR, making a key pair. A CSR is generally encoded using ASN.1 according to the PKCS #10 specification.
+A CSR or Certificate Signing request contains a block of encoded text that is given to a Certificate Authority when applying for a digital Certificate. It is usually generated on the server/end-device, where the certificate will be installed, and contains information that will be included in the certificate, such as the organization name, common name (domain name), locality, and country. It also contains the public key that will be included in the certificate. A private key is usually created at the same time that you create the CSR, making a key pair, on the end-device. A CSR is generally encoded using ASN.1 according to the PKCS #10 specification.
 
-A certificate authority will use a CSR to create your digital certificate, but it does not need your private key. You need to keep your private key secret. The certificate created with a particular CSR will only work with the private key that was generated with it. In the case of losing the private key, the certificate will no longer work.
+A certificate authority will use a CSR to create your digital signed certificate, but it does not need your private key. You need to keep your private key secret. The certificate created with a particular CSR will only work with the private key that was generated with it. In the case of losing the private key, the certificate will no longer work.
 
 #### Required CSR Datafields
 

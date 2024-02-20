@@ -1,8 +1,9 @@
 # Provisioning Certificate Pool
 
-The Provisioning Certificate Pool provides interfaces to exchange Provisioning Certificates between OEMs and EMSPs,under the following workflow: eMSP sends the PCID of a Provisioning Certificate issued by the OEM, and receives its Provisioning Certificate with the corresponding certificate chain.
+The Provisioning Certificate Pool provides interfaces to exchange OEM Provisioning Certificates between OEMs and eMSPs,under the following workflows: 
 
-OEMs publish their Provisioning Certificates on the pool after their generation, e.g. after the car get manufactured. eMSPs request foreign Provisioning Certificates from the pool by PCID.
+1. OEMs publish their OEM Provisioning Certificates on the pool after their generation, e.g. after the car get manufactured. eMSPs request foreign Provisioning Certificates from the pool by PCID.
+2. eMSP sends the PCID of a Provisioning Certificate issued by the OEM, and receives the OEM Provisioning Certificate with the corresponding certificate chain.
 
 The PCP communicates with the following actors and services:
  * OEM
@@ -41,7 +42,7 @@ With the production of a vehicle, the OEM must create a Provisioning Certificate
 
 The PCID is the identifier for a vehicle and must match the ISO pattern [PCID Format](../05_handling-of-ids.md). The Provisioning Certificate Pool authorizes the OEM client based on this code. [see Data Access](#data-access)
 
-With the publication of a Provisioning Certificate to the pool, no information is given to the eMSP. Trusted eMSPs can only retrieve individual Provisioning Certificates if they request them through the PCID.
+With the publication of a Provisioning Certificate to the pool, no information is given automatically to an eMSP. Trusted eMSPs can only retrieve individual Provisioning Certificates if they request them through the PCID.
 
 Therefore the OEM's costumers shall also receive the PCID of their vehicles to give it to the eMSPs during the conclusion of a charging contract.
 

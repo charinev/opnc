@@ -1,10 +1,10 @@
 # Contract Certificate Pool
 
-The CCP stores the signed contract data from the EMSPs, and provides it for the CPOs and OEMs backend. The CPO's backend can request a signed contract using the certificateInstallationRequest, as defined on ISO 15118-2:2014.
+The CCP stores the signed contract data from the eMSPs, and provides it to the CPOs and OEMs. The CPO's backend can request a signed contract using the certificateInstallationRequest, as defined on ISO 15118-2:2014.
 
-The CPS' signed contract data will be stored in the CCP, and assigned to their respective PCID. The CCP also enables Multiple contracts storing for each PCID. 
+The CPS' signed contract data will be stored in the CCP, and assigned to their respective PCID. The CCP also enables multiple contracts storing for each PCID. 
 
-The CCP keeps contracts of each eMSP separated. The defined access rules prevent unauthorized requests to others EMSPs contracts it means that each eMSP only can manage (create/update/delete) contracts of their own company.
+The CCP keeps contracts of each eMSP separated. The defined access rules prevent unauthorized requests to others eMSP contracts. That means each eMSP can only manage (create/update/delete) contracts of their own company.
 
 The Ecosystem Administration creates a node for each eMSP after the provider ID confirmation from the issuing authority.
 
@@ -47,6 +47,12 @@ In case the Contract Certificate under one EMAID needs be removed from the ecosy
 <!-- theme: info -->
 
 > A deletion of a contract certificate in the pool can trigger an instant push notification to the OEM enrolled in the WMI corresponding to the contract's PCID. See [Webhooks Service](./06_webhook-service.md)
+
+
+### 4. Retrieving a Contract Certificate
+
+In case a CPO or an OEM is requesting to get a Contract Certificate the CCP sends the contract data to the requesting endpoint.
+
 
 ## Data Cleansing
          

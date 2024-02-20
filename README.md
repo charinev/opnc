@@ -4,6 +4,7 @@ CharIN Open Plug&amp;Charge Protocol (OPNC)
 Here you can find all documents and information about the open-source "Open Plug&amp;Charge Protocol (OPNC)" (OPNC).
 
 As it is important to achieve the best possible interoperability in the eMobility market it is crucial to use the same protocols in the Plug&Charge use case.
+The OPNC Project is an open-source project. The goal of the project is to specify an open-source protocol for enabling trusted and secure communication, including Plug and Charge authentication, in the electric vehicle charging ecosystem, covering the related ISO 15118 functions.
 
 ## OPNC enables and reflects following use cases:
   - independent Service Operation
@@ -22,6 +23,11 @@ As it is important to achieve the best possible interoperability in the eMobilit
 
 ![CharIN-Logo_Office_RGB](https://github.com/charinev/opnc/assets/83767351/1688cfe1-97de-46c7-9b97-65bcec242193)
 
+## Disclaimer
+This protocol description does not yet cover extended use cases nor defines every OSI-layer. This protocol is to be seen as addition to available industry standards and best practices.
+The protocol is developed by the community and everyone is free and invited to contribute.
+
+
 ## Governance / EU PKI EcoSystem
 
 The protocol OPNC will be used in the EU PKI EcoSystem to enable communication among market parties and various components, including the CA-Roots, the Pools, and PKI Services.
@@ -39,7 +45,6 @@ The EU PKI EcoSystem was developed by the subgroup **Governance & Standards** of
 These two documents serve as the foundation for the delegated and implementation act for the **AFIR (Alternative Fuels Infrastructure Regulation)** and provide valuable input for the newly established **STF Subgroup “EU PKI Management.”**
 
 Furthermore, the EU PKI EcoSystem will also be utilized by the **SAE EVPKI Consortium** for the establishment of the PKI EcoSystem in North America.
-
 
 
 ## License

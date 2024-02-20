@@ -1,10 +1,12 @@
 # Business Processes
 
-This section summarizes all processes of Plug and Charge as described as _Certificate Provisioning_ in ISO 15118 Section 7.9.2.5 and explained in more detail in Appendix E.3.
+This section summarizes the processes of Plug and Charge as described as _Certificate Provisioning_ in ISO 15118-2:2014 Section 7.9.2.5 and explained in more detail in Appendix E.3.
 
 The VDE Application Rule focusses on these processes and details each process flow for further understanding. The following figure shows the overall process with components and flows, which are based on the VDE Application Rule.
 
 ![Overview on the overall process](../assets/images/plug&charge_process_overview.png)
+
+Note: It does not cover all processes (use-cases) to enable Plug and Charge, e.g. charging staton certificate management. Further details are descibed in the "Interoperability Guide – Public Key Infrastructure (PKI) use cases". 
 
 During contract provisioning, several sub-processes are also required, which can be divided into four main parts:
 
