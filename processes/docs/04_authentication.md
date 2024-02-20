@@ -18,7 +18,7 @@ Depending on the role and the company the access rights are distinct.
 Depending on the WMI in the PCID (first 3 characters), the OEM has read/write access to its data. Please always inform the ecosystem operator of the needed WMIs actively. If the correct data are not configured, the Plug&Charge Ecosystem will deny the access to perform the action.
 
 ### eMSP
-Depending on the EMAID (first 5 characters - CountryCode + ProviderID), the MO has read/write access to its data. Please always inform the ecosystem operator of the needed Country Codes and ProviderIDs activity. If the correct data are not configured, the Plug&Charge Ecosystem will deny the access to perform the action.
+Depending on the EMAID (first 5 characters - CountryCode + ProviderID), the eMSP has read/write access to its data. Please always inform the ecosystem operator of the needed Country Codes and ProviderIDs activity. If the correct data are not configured, the Plug&Charge Ecosystem will deny the access to perform the action.
 
 ### CPO
 Depending on the EVSEID (first 5 characters - CountryCode + OperatorID), the CPO has read/write access to its data. Please always inform the ecosystem operator of the needed Country Codes and OperatorID activity. If the correct data are not configured, the Plug&Charge Ecosystem will deny the access to perform the action.
