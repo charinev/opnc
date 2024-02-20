@@ -6,7 +6,7 @@ The VDE Application Rule focusses on these processes and details each process fl
 
 ![Overview on the overall process](../assets/images/plug&charge_process_overview.png)
 
-Note: It does not cover all processes (use-cases) to enable Plug and Charge, e.g. charging staton certificate management. Further details are descibed in the "Interoperability Guide – Public Key Infrastructure (PKI) use cases". 
+Note: It does not cover all processes (use-cases) to enable Plug and Charge, e.g. charging station certificate management. Further details are descibed in the "Interoperability Guide – Public Key Infrastructure (PKI) use cases". 
 
 During contract provisioning, several sub-processes are also required, which can be divided into four main parts:
 
