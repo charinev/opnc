@@ -100,4 +100,17 @@ The required V2G root certificates shall also be installed and stored in the veh
  * Cleanup of RCP, PCP and CCP by:
    * Revoked certificate shall be removed on regular basis from pools.
    * Expired certificates shall be removed on regular basis from pools.
+  
+ ## Pool Interoperability between Plug&Charge Ecosystems
+The OPNC is designed and prepared for pool interoperability. The outcome is based on the research project between multiple stakeholders in 2022
+[PKI-for-ISO-15118-2022-pdf](https://elaad.nl/wp-content/uploads/downloads/PKI-for-ISO-15118-2022-pdf.pdf).
+The Project incl. a live Demo showed the technical feasibility. The concept is based on broadcasting of requests between ecosystems if the native ecosystem can not process the request from the directly connected CPO, MSP or OEM. For that in the PCP, CPS and CCP a so-called broadcast flag is defined. Setting that flag will prevent ecosystems to go into infinity broadcastings. As one example:
+
+1. EMSP A -> \<get provisioning certificate fpr PCID XYZ \> PCP 1
+2. PCP1 -> does not have the provisioning certificate for that EV OEM
+3. PCP1 ->  \<get provisioning certificate fpr PCID XYZ - BROADCAST\> PCP2|PCP3 etc
+4. PCP2 -> \<HTTP 404 - Not found\> PCP1
+5. PCP3 -> \<HTTP 200 - Body with Provisioning Certificate for PCID XYZ\> PCP1 
+6. PCP1 -> \<HTTP 200 - Body with Provisioning Certificate for PCID XYZ\> EMSP A
+
  
