@@ -15,7 +15,7 @@
         },
         "distinguishedName": {
             "type": "string",
-            "example": "DC=V2G, CN=V2G_ROOT_CA_001, O=V2G",
+            "example": "DC=V2G, CN=V2G Root CA QA G1, O=V2G",
             "pattern": "^((CN|OU|O|C|DC|ST)=[^,]+,? ?)+$",
             "description": "Reflects the subjects distinguished name field. (informative)"
         },
@@ -40,7 +40,7 @@
         },
         "caCertificate": {
             "type": "string",
-            "example": "MIICWTCCA",
+            "example": "MIICUzCCAfmgAwIBAgIQaasA0lm730LOgFKa0wzl7TAKBggqhkjOPQQDAjBVMQswCQYDVQQGEwJERTEVMBMGA1UEChMMSHViamVjdCBHbWJIMRMwEQYKCZImiZPyLGQBGRYDVjJHMRowGAYDVQQDExFWMkcgUm9vdCBDQSBRQSBHMTAgFw0xOTA0MjYwODM3MTVaGA8yMDU5MDQyNjA4MzcxNVowVTELMAkGA1UEBhMCREUxFTATBgNVBAoTDEh1YmplY3QgR21iSDETMBEGCgmSJomT8ixkARkWA1YyRzEaMBgGA1UEAxMRVjJHIFJvb3QgQ0EgUUEgRzEwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAShT8kSNcC+74TND82On2Y2TOf8mYfxw73lKZ7t9cmEXHpMdAgsWBQ4LI+pOMhe6NOHzJbzP38kQTg4zLfw3kU0o4GoMIGlMBMGA1UdJQQMMAoGCCsGAQUFBwMJMA8GA1UdEwEB/wQFMAMBAf8wEQYDVR0OBAoECEtF/4Il/BCWMEUGA1UdIAQ+MDwwOgYMKwYBBAGCxDUBAgEAMCowKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3Lmh1YmplY3QuY29tL3BraS8wEwYDVR0jBAwwCoAIS0X/giX8EJYwDgYDVR0PAQH/BAQDAgEGMAoGCCqGSM49BAMCA0gAMEUCIQCq3Qx2BLYVFb7Lt5XXpSlUViYv4cIUOQE1Ce9o2Jyy1QIgZRmVzMVjHZA+toiM000PCUrLppqbLpcRN4MP8kE0OhU=",
             "pattern": "^[-A-Za-z0-9+/]+={0,3}$",
             "description": "The root certificate in DER format encoded in Base64.",
             "maxLength": 800
@@ -48,16 +48,17 @@
         "commonName": {
             "type": "string",
             "description": "Reflects the subjects common name value. (informative)",
-            "example": ""
+            "example": "V2G Root CA QA G1"
         },
         "rootAuthorityKeyIdentifier": {
             "type": "string",
-            "description": "SHA-1 hash of the certificates public key (informative)"
+            "description": "SHA-1 hash of the certificates public key (informative)",
+            "example": "S0X/giX8EJY="
         },
         "rootIssuerSerialNumber": {
             "type": "string",
             "description": "serial number in hex format of the certificate (informative)",
-            "example": ""
+            "example": "69ab00d259bbdf42ce80529ad30ce5ed"
         },
         "validFrom": {
             "type": "string",
@@ -89,7 +90,8 @@
         },
         "fingerprint": {
             "type": "string",
-            "description": "SHA256 certificate fingerprint (informative)"
+            "description": "SHA256 certificate fingerprint (informative)",
+            "example": "4e05b8922d43923cdf20b202cdd0d849770b50038c39f104f506d7f1030ff809"
         }
     },
     "required": [
