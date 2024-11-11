@@ -37,6 +37,20 @@
                     "$ref": "../../components/parameters/iso15118VersionParam.json"
                 }
             }
+            {
+                  "name": "algorithm",
+                  "in": "path",
+                  "description": "Defines the algorithm for the PKI which shall be used."
+                  "schema": {
+                        "type": "string",
+                        "enum": [
+                              "secp256r1",
+                              "secp521r1",
+                              "ed448"
+                    ],
+                    "default": "secp256r1",
+                    "example": "secp521r1"
+              },
         ],
         "requestBody": {
             "content": {
