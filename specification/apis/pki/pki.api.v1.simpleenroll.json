@@ -36,7 +36,7 @@
                 "schema": {
                     "$ref": "../../components/parameters/iso15118VersionParam.json"
                 }
-            }
+            },
             {
                   "name": "algorithm",
                   "in": "path",
@@ -50,7 +50,7 @@
                     ],
                     "default": "secp256r1",
                     "example": "secp521r1"
-              },
+              }
         ],
         "requestBody": {
             "content": {
