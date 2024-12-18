@@ -24,7 +24,28 @@
                 "name": "pkiType",
                 "description": "Optional parameter to filter for root certificates from V2G, eMSP or OEM PKI.",
                 "schema": {
-                "$ref": "../../components/parameters/pkiTypeParam.v1.json"
+                    "$ref": "../../components/parameters/pkiTypeParam.v1.json"
+                }
+            },
+            {
+                "in": "query",
+                "name": "page",
+                "description": "The page number to retrieve (1-based).",
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 1
+                }
+            },
+            {
+                "in": "query",
+                "name": "pageSize",
+                "description": "The number of items per page.",
+                "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "default": 10
                 }
             }
         ],
