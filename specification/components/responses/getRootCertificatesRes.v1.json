@@ -8,7 +8,33 @@
             "items": {
                 "$ref": "../schemas/rootCertificate.v1.json"
             }
+        },
+        ,
+        "pagination": {
+            "type": "object",
+            "description": "Pagination details for the response.",
+            "properties": {
+                "page": {
+                    "type": "integer",
+                    "description": "The current page number."
+                },
+                "pageSize": {
+                    "type": "integer",
+                    "description": "The number of items per page."
+                },
+                "totalPages": {
+                    "type": "integer",
+                    "description": "The total number of pages."
+                },
+                "totalItems": {
+                    "type": "integer",
+                    "description": "The total number of items."
+                }
+            },
+            "required": ["page", "pageSize", "totalPages", "totalItems"]
         }
+    },
+    "required": ["rootCertificateCollection", "pagination"]
     }
     
 }
