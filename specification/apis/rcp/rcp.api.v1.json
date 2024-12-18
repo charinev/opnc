@@ -24,6 +24,9 @@
       "/rootcertificates/{rootCertificateId}": {
         "$ref": "./rcp.api.v1.rootCertificateById.json"  
       },
+      "/rootcertificates/{rootCertificateFingerprint}": {
+        "$ref": "./rcp.api.v1.rootCertificateByFingerprint.json"  
+      },
       "/rootcertificates": {
         "$ref": "./rcp.api.v1.rootCertificates.json"
       }
