@@ -39,7 +39,7 @@ jobs:
           for api in "${!specs[@]}"; do
             spec_path="${specs[$api]}"
             mkdir -p "docs/$api"
-            npx redocly bundle "$spec_path" -o "docs/$api/$api.api.v1.json"
+            npx redocly bundle --force "$spec_path" -o "docs/$api/$api.api.v1.json"
             npx redocly build-docs "docs/$api/$api.api.v1.json" -o "docs/$api/index.html"
           done
 
