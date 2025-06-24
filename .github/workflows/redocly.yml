@@ -35,13 +35,29 @@ jobs:
           specs["pcp"]="specification/apis/pcp/pcp.api.v1.json"
           specs["pki"]="specification/apis/pki/pki.api.v1.json"
           specs["rcp"]="specification/apis/rcp/rcp.api.v1.json"
-
+          
+          mkdir -p failed_logs
+          
           for api in "${!specs[@]}"; do
             spec_path="${specs[$api]}"
             mkdir -p "docs/$api"
-            npx redocly bundle --force "$spec_path" -o "docs/$api/$api.api.v1.json"
-            npx redocly build-docs "docs/$api/$api.api.v1.json" -o "docs/$api/index.html"
+          
+            echo "🔧 Bundling $api..."
+            if npx redocly bundle "$spec_path" -o "docs/$api/$api.api.v1.json" 2> "failed_logs/${api}_bundle.log"; then
+              echo "✅ Bundled $api"
+            else
+              echo "⚠️ Failed to bundle $api — skipping docs"
+              continue
+            fi
+          
+            echo "📘 Building docs for $api..."
+            if npx redocly build-docs "docs/$api/$api.api.v1.json" -o "docs/$api/index.html" 2>> "failed_logs/${api}_build.log"; then
+              echo "✅ Docs generated for $api"
+            else
+              echo "⚠️ Failed to generate docs for $api"
+            fi
           done
+
 
       - name: Generate homepage index
         run: |
