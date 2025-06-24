@@ -1,0 +1,28 @@
+name: ReDocly bundle OPNC APIs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  bundle-and-preview:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install ReDocly CLI
+        run: npm install --save-dev @redocly/cli
+
+      - name: Bundle OpenAPI spec
+        run: npx redocly bundle specification/apis/rcp/rcp.api.v1.json -o ./rcp.api.v1.json
+
+      - name: Generate HTML docs
+        run: npx redocly build-docs rcp.api.v1.json -o rcp.api.v1.html
+
