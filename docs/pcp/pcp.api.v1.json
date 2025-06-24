@@ -1,0 +1,576 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "PCP API",
+    "version": "1.0",
+    "description": "PCP services API.",
+    "contact": {
+      "name": "CharIN e.V.",
+      "url": "https://charin.global",
+      "email": "coordination@charin.global"
+    },
+    "license": {
+      "name": "Attribution-ShareAlike 4.0 International",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.server.test/opnc/v1/pcp"
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/provisioningcertificates/{pcid}": {
+      "parameters": [
+        {
+          "name": "pcid",
+          "in": "path",
+          "required": true,
+          "description": "",
+          "schema": {
+            "$ref": "#/components/schemas/pcidParam.v1"
+          }
+        }
+      ],
+      "get": {
+        "summary": "GetProvisioningCertificateByPCID",
+        "operationId": "getProvisioningCertificateV1",
+        "description": "Get a provisioning certificate by pcid from PCP.",
+        "tags": [
+          "GetProvisioningCertificate"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "example": true
+            },
+            "in": "header",
+            "description": "if set to true - this call is not getting forwarded to other Ecosystems ",
+            "name": "broadcast"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getProvisioningCertificateRes.v1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.v1"
+                },
+                "examples": {
+                  "INVALID PCID": {
+                    "value": {
+                      "errorMessages": [
+                        "pcid : must match \"^[a-zA-Z0-9]{17,18}$\""
+                      ],
+                      "traceId": "1c8c56cb-b71f-46a5-8788-5ddcedc88e2a"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.v1"
+                },
+                "examples": {
+                  "NOT FOUND": {
+                    "value": {
+                      "errorMessages": [
+                        "The OEM provisioning certificate with given PCID is not found."
+                      ],
+                      "traceId": "807838e3-b058-447c-b6f8-233638cefc18"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "delete": {
+        "summary": "DeleteProvisioningCertificateByPCID",
+        "operationId": "deleteProvisioningCertificateV1",
+        "tags": [
+          "DeleteProvisioningCertificate"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          }
+        ],
+        "description": "This method is used by the OEM to depublish Provisioning Certificates.\n\n<!-- theme: warning -->\n\n> A successful deletes triggers a call to the DELETE method of the Contract Certificate Pool for all EMAIDs related to this PCID! In case of contract certificates issued by one of the Operator owned eMSP CAs, this also involves revocation of the same.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.v1"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.v1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provisioningcertificates": {
+      "put": {
+        "summary": "AddProvisioningCertificate",
+        "operationId": "addProvisioningCertificateV1",
+        "description": "Add a provisioning certificate to the PCP.",
+        "tags": [
+          "AddProvisioningCertificate"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/putProvisioningCertificateReq.v1"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.v1"
+                },
+                "examples": {
+                  "INVALID PCID": {
+                    "value": {
+                      "errorMessages": [
+                        "pcid : must match \"^[a-zA-Z0-9]{17,18}$\""
+                      ],
+                      "traceId": "1c8c56cb-b71f-46a5-8788-5ddcedc88e2a"
+                    }
+                  },
+                  "INVALID POVISIONING CERTIFICATE": {
+                    "value": {
+                      "errorMessages": [
+                        "Invalid certificate format on vehicleCertificate"
+                      ],
+                      "traceId": "9d84ead1-544b-42b4-908c-1b0113767e05"
+                    }
+                  },
+                  "INVALID SUB CA 2 CERTIFICATE": {
+                    "value": {
+                      "errorMessages": [
+                        "Invalid certificate format on subCa2Certificate"
+                      ],
+                      "traceId": "26af28c1-06a5-4c20-9d20-fbf8b851b1a6"
+                    }
+                  },
+                  "INVALID SUB CA 1 CERTIFICATE": {
+                    "value": {
+                      "errorMessages": [
+                        "Invalid certificate format on subCa1Certificate"
+                      ],
+                      "traceId": "26af28c1-06a5-4c20-9d20-fbf8b851b1a6"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/lookupvehicle/{pcid}": {
+      "parameters": [
+        {
+          "name": "pcid",
+          "in": "path",
+          "required": true,
+          "description": "",
+          "schema": {
+            "$ref": "#/components/schemas/pcidParam.v1"
+          }
+        }
+      ],
+      "get": {
+        "summary": "LookUpVehicleByPCID",
+        "operationId": "lookupVehicleV1",
+        "description": "Check if there is a provisioning certificate for a vehicle stored in the PCP based on PCID.",
+        "tags": [
+          "LookUpVehicle"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.v1"
+                },
+                "examples": {
+                  "INVALID PCID": {
+                    "value": {
+                      "errorMessages": [
+                        "pcid : must match \"^[a-zA-Z0-9]{17,18}$\""
+                      ],
+                      "traceId": "1c8c56cb-b71f-46a5-8788-5ddcedc88e2a"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.v1"
+                },
+                "examples": {
+                  "NOT FOUND": {
+                    "value": {
+                      "errorMessages": [
+                        "The OEM provisioning certificate with given PCID is not found."
+                      ],
+                      "traceId": "807838e3-b058-447c-b6f8-233638cefc18"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "pcidParam.v1": {
+        "title": "pcidParamV1",
+        "description": "",
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9]{17,18}$",
+        "minLength": 17,
+        "maxLength": 18
+      },
+      "certificateChain.v1": {
+        "title": "CertificateChainV1",
+        "description": "General certificate chain type.",
+        "type": "object",
+        "properties": {
+          "certificate": {
+            "type": "string",
+            "description": "Certificate in base64 encoded DER form",
+            "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
+            "maxLength": 800
+          },
+          "subCa1Certificate": {
+            "type": "string",
+            "description": "SubCaCertificate in base64 encoded DER form",
+            "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
+            "maxLength": 800
+          },
+          "subCa2Certificate": {
+            "type": "string",
+            "required": false,
+            "description": "SubCaCertificate in base64 encoded DER form",
+            "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
+            "maxLength": 800
+          }
+        }
+      },
+      "xsdMsgDefNamespaceParam.v1": {
+        "title": "xsdMsgDefNamespaceParamV1",
+        "description": "ISO15118 Version",
+        "type": "string",
+        "default": "urn:iso:15118:2:2013:MsgDef",
+        "enum": [
+          "urn:iso:15118:2:2013:MsgDef",
+          "urn:iso:15118:20:2020:MsgDef"
+        ]
+      },
+      "provisioningCertificateChainData.v1": {
+        "type": "object",
+        "title": "ProvisioningCertificateDataV1",
+        "description": "Object containing a provisioning certificate chain handled by the Provisioning Certificate Pool.",
+        "x-examples": {
+          "example": {
+            "provisioningCertificateChain": {
+              "subCA1Certificate": "MIICIjCCAcigAwIBAgIQdRa6SsQZadYQ8UfAtd+z7jAKBggqhkjOPQQDAjBVMQswCQYDVQQGEwJERTEVMBMGA1UEChMMSHViamVjdCBHbWJIMRMwEQYKCZImiZPyLGQBGRYDVjJHMRowGAYDVQQDExFWMkcgUm9vdCBDQSBRQSBHMTAeFw0yMjA0MDcxNDEzNDRaFw00MjA0MDcxNDEzNDRaMEIxCzAJBgNVBAYTAkRFMRUwEwYDVQQKEwxIdWJqZWN0IEdtYkgxHDAaBgNVBAMTE09FTSBTdWIxIENBIFFBIEcxLjIwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAQCKjff7VHV2JzeggsReO5ALlAIsK1anPfoMou7u6SO5y0yKVniFSO6vUQ8nU/jSs43iI31bO7j89RPLWwYCnlto4GMMIGJMBIGA1UdEwEB/wQIMAYBAf8CAQEwEQYDVR0OBAoECElxGvV3Dy7WMBMGA1UdIwQMMAqACEtF/4Il/BCWMDsGCCsGAQUFBwEBBC8wLTArBggrBgEFBQcwAYYfaHR0cDovL29jc3AtcWEuaHViamVjdC5jb206ODA4MDAOBgNVHQ8BAf8EBAMCAQYwCgYIKoZIzj0EAwIDSAAwRQIhAL4o5q85rZ+cxuzQH7zmJvnhyVaIgxckYekUBUZvXl6OAiAeEiVnquW/SZIpp5ntEXUlb9kFPvO8zcvybKukhkyG+A==",
+              "subCA2Certificate": "MIICETCCAbegAwIBAgIQXKB9lwwD/oubGBTrTZ/SiDAKBggqhkjOPQQDAjBCMQswCQYDVQQGEwJERTEVMBMGA1UEChMMSHViamVjdCBHbWJIMRwwGgYDVQQDExNPRU0gU3ViMSBDQSBRQSBHMS4yMB4XDTIyMDQxMDIxNTk1OVoXDTMyMDQxMDIxNTk1OVowRDELMAkGA1UEBhMCREUxFTATBgNVBAoTDEh1YmplY3QgR21iSDEeMBwGA1UEAxMVT0VNIFN1YjIgQ0EgUUEgRzEuMi4xMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqe3k9v8fecwJcfI46D+uipaHRJU0J3XLi/1IDWPPftn8j+bX+OfwoBEN5+MuPiv3QhFhFpOXPjH6ZUyrerbSwaOBjDCBiTASBgNVHRMBAf8ECDAGAQH/AgEAMBEGA1UdDgQKBAhC6GRousbSITATBgNVHSMEDDAKgAhJcRr1dw8u1jA7BggrBgEFBQcBAQQvMC0wKwYIKwYBBQUHMAGGH2h0dHA6Ly9vY3NwLXFhLmh1YmplY3QuY29tOjgwODAwDgYDVR0PAQH/BAQDAgEGMAoGCCqGSM49BAMCA0gAMEUCIQCaBGJig9Tc/EmaST/lx/2mWIl5O6a6+Q167bgqQwfXngIgSRPOnkTbJO+fl8kebK8Q+U8Hkvhu/Exaq2ucVDh/tig=",
+              "certificate": "MIICKTCCAdCgAwIBAgIQfDOK4xlf4AyAJD48utOS6DAKBggqhkjOPQQDAjBEMQswCQYDVQQGEwJERTEVMBMGA1UEChMMSHViamVjdCBHbWJIMR4wHAYDVQQDExVPRU0gU3ViMiBDQSBRQSBHMS4yLjEwHhcNMjQwNzA0MTU0NjU2WhcNMjgwNzA0MTU0NjU2WjBDMRAwDgYDVQQKEwdIdWJqZWN0MRowGAYDVQQDExFERUhVQkNPUE5DUFJPVkNFUjETMBEGCgmSJomT8ixkARkWA09FTTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABCEORUZ7lqUEZEu4U0btygKMbWST/xfW7nvdQoTCllaJXOWE2cVzCrcth+Vc0TjNsWSeB1ysEIOsF3BtDVFJgymjgaQwgaEwDAYDVR0TAQH/BAIwADARBgNVHQ4ECgQIQXUqAvZP3zEwHAYDVR0RBBUwE4IRREVIVUJDT1BOQ1BST1ZDRVIwEwYDVR0jBAwwCoAIQuhkaLrG0iEwOwYIKwYBBQUHAQEELzAtMCsGCCsGAQUFBzABhh9odHRwOi8vb2NzcC1xYS5odWJqZWN0LmNvbTo4MDgwMA4GA1UdDwEB/wQEAwIDiDAKBggqhkjOPQQDAgNHADBEAiBr73WA+KeceIjTqMMqZkVBdSSIbkuuK4DwqhEXXBdeTgIgDK2P3UlhCmm1GPzjutvbazb9cPM1VUtUIDvRy4IBk9Y="
+            }
+          }
+        },
+        "minProperties": 3,
+        "properties": {
+          "provisioningCertificateChain": {
+            "$ref": "#/components/schemas/certificateChain.v1"
+          },
+          "xsdMsgDefNamespace": {
+            "$ref": "#/components/schemas/xsdMsgDefNamespaceParam.v1"
+          },
+          "rootIssuerSerialNumber": {
+            "type": "string",
+            "description": "Serial number of the root certificate which is the trust anchor of the given certificate chain. A serial number is a large integer. The interface expects and returns serial numbers in its hexadecimal representation in lower case _without_ separators. Deprecated in future versions. The root certificate will be determined from the Sub-CA 1 certificate automatically.",
+            "example": "69ab00d259bbdf42ce80529ad30ce5ed"
+          },
+          "v2gRootAuthorityKeyIdentifiers": {
+            "type": "array",
+            "description": "List of root authority key identifiers in a hex formated string (with \":\"as separator) which are installed in the EV.",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "rootAuthorityKeyIdentifier": {
+            "type": "string",
+            "description": "authority key identifier in a hex formated string (with \":\"as separator)",
+            "example": "4b:45:ff:82:25:fc:10:96"
+          },
+          "fingerprint": {
+            "type": "string",
+            "description": "SHA256 certificate fingerprint (informative)"
+          },
+          "previousPcid": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9]{17,18}$",
+            "minLength": 17,
+            "maxLength": 18,
+            "description": "if the PCID of a vehicle changed, the OEM can use this field to store the previous identifier"
+          }
+        },
+        "required": [
+          "provisioningCertificateChain"
+        ]
+      },
+      "getProvisioningCertificateRes.v1": {
+        "title": "GetProvisioningCertificateResV1",
+        "type": "object",
+        "properties": {
+          "provisioningCertificate": {
+            "$ref": "#/components/schemas/provisioningCertificateChainData.v1"
+          }
+        }
+      },
+      "error.v1": {
+        "title": "ErrorV1",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "errorMessages": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "traceId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "opncFromPartyType.v1": {
+        "name": "OPNC-from-party-type",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "emsp",
+            "cpo",
+            "oem",
+            "pki",
+            "cps",
+            "pcp",
+            "ccp"
+          ]
+        },
+        "in": "header",
+        "description": "Specifies the type of party that originated this request",
+        "required": false
+      },
+      "opncFromPartyId.v1": {
+        "name": "OPNC-from-party-id",
+        "schema": {
+          "type": "string"
+        },
+        "in": "header",
+        "description": "Specifies the ID of the party that originated this request. The ID format depends on the type of the party (WMI for OEM, ProviderID for EMSP, OperatorID for CPO, SHA-256 fingerprint of Root CA for PKI or CPS)",
+        "required": false
+      },
+      "opncToPartyType.v1": {
+        "name": "OPNC-to-party-type",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "emsp",
+            "cpo",
+            "oem",
+            "pki",
+            "cps",
+            "pcp",
+            "ccp"
+          ]
+        },
+        "in": "header",
+        "description": "Specifies the type of party to which this request should be addressed.",
+        "required": false
+      },
+      "opncToPartyId.v1": {
+        "name": "OPNC-to-party-id",
+        "schema": {
+          "type": "string"
+        },
+        "in": "header",
+        "description": "Specifies the party ID to which this request should be addressed. The ID format depends on the type of the party (WMI for OEM, ProviderID for EMSP, OperatorID for CPO, SHA-256 fingerprint of Root CA for PKI or CPS..)",
+        "required": false
+      }
+    },
+    "requestBodies": {
+      "putProvisioningCertificateReq.v1": {
+        "description": "Expects a Provisioning Certificate.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/provisioningCertificateChainData.v1"
+            }
+          }
+        }
+      }
+    }
+  }
+}
