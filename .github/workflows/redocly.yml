@@ -1,18 +1,21 @@
-name: ReDocly bundle OPNC APIs
+name: Generate and Preview API Docs
 
 on:
   push:
     branches: [main]
   pull_request:
+    branches: [main]
 
 jobs:
-  bundle-and-preview:
+  generate-docs:
     runs-on: ubuntu-latest
+    name: Generate and/or Preview API Docs
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
@@ -20,9 +23,69 @@ jobs:
       - name: Install ReDocly CLI
         run: npm install --save-dev @redocly/cli
 
-      - name: Bundle OpenAPI spec
-        run: npx redocly bundle specification/apis/pcp/pcp.api.v1.json -o ./pcp.api.v1.json
+      - name: Prepare output directories
+        run: mkdir -p docs
 
-      - name: Generate HTML docs
-        run: npx redocly build-docs pcp.api.v1.json -o pcp.api.v1.html
+      - name: Generate docs for all APIs
+        run: |
+          declare -A specs
+          specs["ccp"]="specification/apis/ccp/ccp.api.v1.json"
+          specs["cps"]="specification/apis/cps/cps.api.v1.json"
+          specs["event"]="specification/apis/event/event.api.v1.json"
+          specs["pcp"]="specification/apis/pcp/pcp.api.v1.json"
+          specs["pki"]="specification/apis/pki/pki.api.v1.json"
+          specs["rcp"]="specification/apis/rcp/rcp.api.v1.json"
 
+          for api in "${!specs[@]}"; do
+            spec_path="${specs[$api]}"
+            mkdir -p "docs/$api"
+            npx redocly bundle "$spec_path" -o "docs/$api/$api.api.v1.json"
+            npx redocly build-docs "docs/$api/$api.api.v1.json" -o "docs/$api/index.html"
+          done
+
+      - name: Generate homepage index
+        run: |
+          cat > docs/index.html <<EOF
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <title>API Documentation Index</title>
+            <style>
+              body { font-family: Arial, sans-serif; padding: 2rem; background: #f9f9f9; }
+              h1 { color: #333; }
+              ul { list-style: none; padding: 0; }
+              li { margin-bottom: 0.5rem; }
+              a { color: #1a73e8; text-decoration: none; font-weight: bold; }
+              a:hover { text-decoration: underline; }
+            </style>
+          </head>
+          <body>
+            <h1>Available API Documentation</h1>
+            <ul>
+              <li><a href="ccp/">CCP API</a></li>
+              <li><a href="cps/">CPS API</a></li>
+              <li><a href="event/">Event API</a></li>
+              <li><a href="pcp/">PCP API</a></li>
+              <li><a href="pki/">PKI API</a></li>
+              <li><a href="rcp/">RCP API</a></li>
+            </ul>
+          </body>
+          </html>
+          EOF
+
+      - name: Commit and push docs (on push only)
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git commit -m "chore(docs): update generated API docs" || echo "No changes to commit"
+          git push
+
+      - name: Upload docs as PR artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v3
+        with:
+          name: redocly-docs-preview
+          path: docs/
