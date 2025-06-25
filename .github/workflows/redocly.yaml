@@ -1,0 +1,193 @@
+name: Generate and Preview API Docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    name: Generate and/or Preview API Docs
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install ReDocly CLI
+        run: npm install --save-dev @redocly/cli
+
+      - name: Prepare output directories
+        run: mkdir -p docs
+
+      - name: Generate docs for all APIs
+        run: |
+          set +e  # Disable immediate exit on error
+          
+          declare -A specs
+          specs["ccp"]="specification/apis/ccp/ccp.api.v1.json"
+          specs["cps"]="specification/apis/cps/cps.api.v1.json"
+          specs["event"]="specification/apis/event/event.api.v1.json"
+          specs["pcp"]="specification/apis/pcp/pcp.api.v1.json"
+          specs["pki"]="specification/apis/pki/pki.api.v1.json"
+          specs["rcp"]="specification/apis/rcp/rcp.api.v1.json"
+          
+          for api in "${!specs[@]}"; do
+            spec_path="${specs[$api]}"
+            mkdir -p "docs/$api"
+            echo "🔧 Bundling $api..."
+            # Capture stderr from bundling
+            BUNDLE_ERR=$(npx redocly bundle "$spec_path" -o "docs/$api/$api.api.consolidated.v1.json" 2>&1)
+            if [ $? -ne 0 ]; then
+            echo "::warning::❌ Failed to bundle $api:\n$BUNDLE_ERR"
+            continue
+            else
+            echo "✅ Bundled $api"
+            fi
+          
+            echo "📘 Building docs for $api..."
+          
+            # Capture stderr from doc generation
+            DOCS_ERR=$(npx redocly build-docs "docs/$api/$api.api.consolidated.v1.json" -o "docs/$api/index.html" 2>&1)
+            if [ $? -ne 0 ]; then
+            echo "::warning::⚠️ Failed to generate docs for $api:\n$DOCS_ERR"
+            else
+            echo "✅ Docs generated for $api"
+            fi
+          done
+
+
+      - name: Generate homepage index
+        run: |
+          BASE_DIR=docs
+          INDEX_FILE="$BASE_DIR/index.html"
+          NOW=$(date -u +"%Y-%m-%d %H:%M UTC")
+          
+          mkdir -p "$BASE_DIR"
+          
+          echo '<!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>OPNC API Docs Index</title>
+            <style>
+              body {
+                font-family: "Helvetica Neue", Arial, sans-serif;
+                background-color: #f4f6f8;
+                margin: 0;
+                padding: 2rem;
+                color: #333;
+              }
+              h1 {
+                font-size: 2.2rem;
+                margin-bottom: 0.2rem;
+              }
+              .timestamp {
+                font-size: 0.9rem;
+                color: #888;
+                margin-bottom: 2rem;
+              }
+              .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 1.5rem;
+              }
+              .card {
+                background: #fff;
+                border-radius: 0.75rem;
+                padding: 1rem 1.2rem;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+                border-left: 6px solid #0078d7;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+              }
+              .card h2 {
+                margin: 0;
+                font-size: 1.2rem;
+                color: #0078d7;
+              }
+              .card p {
+                margin: 0.5rem 0 1rem;
+                font-size: 0.95rem;
+                color: #555;
+              }
+              .card .status {
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+              }
+              .card a {
+                text-decoration: none;
+                color: white;
+                background-color: #0078d7;
+                padding: 0.4rem 0.7rem;
+                border-radius: 5px;
+                text-align: center;
+                font-size: 0.9rem;
+              }
+              .card .failed {
+                background-color: #f87171;
+              }
+            </style>
+          </head>
+          <body>
+            <h1>📘 API Documentation Index</h1>
+            <div class="timestamp">Last updated: '"$NOW"'</div>
+            <div class="grid">' > "$INDEX_FILE"
+          
+          declare -A apis=(
+            [ccp]="specification/apis/ccp/ccp.api.v1.json"
+            [cps]="specification/apis/cps/cps.api.v1.json"
+            [event]="specification/apis/event/event.api.v1.json"
+            [pcp]="specification/apis/pcp/pcp.api.v1.json"
+            [pki]="specification/apis/pki/pki.api.v1.json"
+            [rcp]="specification/apis/rcp/rcp.api.v1.json"
+          )
+          
+          for api in "${!apis[@]}"; do
+            api_dir="$BASE_DIR/$api"
+            html_doc="$api_dir/index.html"
+          
+            if [ -f "$html_doc" ]; then
+              echo "<div class='card'>
+                <h2>${api^^} API</h2>
+                <p class='status'>✅ Successfully Generated</p>
+                <a href='$api/index.html'>View Docs</a>
+              </div>" >> "$INDEX_FILE"
+            else
+              echo "<div class='card'>
+                <h2>${api^^} API</h2>
+                <p class='status'>❌ Failed to Generate</p>
+                <a class='failed' href='#'>No Docs</a>
+              </div>" >> "$INDEX_FILE"
+            fi
+          done
+          
+          echo '</div>
+          </body>
+          </html>' >> "$INDEX_FILE"
+
+
+
+
+      - name: Deploy to gh-pages branch
+        if: github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+
+      - name: Upload docs as action artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: redocly-docs-preview
+          path: docs/
+
