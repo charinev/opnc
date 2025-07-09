@@ -1,0 +1,9 @@
+{
+    "name": "OPNC-Correlation-ID",
+    "schema": {
+        "type": "string"
+    },
+    "in": "header",
+    "description": "Every request/response SHALL contain a unique correlation ID, every response to this request SHALL contain the same ID.",
+    "required": false
+}

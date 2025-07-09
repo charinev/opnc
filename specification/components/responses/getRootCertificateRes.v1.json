@@ -2,7 +2,7 @@
     "title": "GetRootCertificateResponseV1",
     "type": "object",
     "properties": {
-        "roootCertificate": {
+        "rootCertificate": {
             "$ref": "../schemas/rootCertificate.v1.json"
         }
     }

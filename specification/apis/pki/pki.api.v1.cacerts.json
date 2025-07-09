@@ -8,6 +8,12 @@
         "description": "Get the chain of CA certificates incl. Root CA.",
         "parameters": [
             {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
+            {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
             {
@@ -38,24 +44,31 @@
                 }
             },
             {
-                  "name": "algorithm",
-                  "in": "path",
-                  "description": "Defines the algorithm for the PKI which shall be used."
-                  "schema": {
-                        "type": "string",
-                        "enum": [
-                              "secp256r1",
-                              "secp521r1",
-                              "ed448"
+                "name": "algorithm",
+                "in": "path",
+                "description": "Defines the algorithm for the PKI which shall be used.",
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "secp256r1",
+                        "secp521r1",
+                        "ed448"
                     ],
                     "default": "secp256r1",
                     "example": "secp521r1"
-              }
+                }
+            }
         ],
         "responses": {
             "200": {
                 "description": "OK",
                 "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    },
                     "content-transfer-encoding": {
                         "schema": {
                             "type": "string"
@@ -78,14 +91,23 @@
                     }
                 }
             },
+            "400": {
+                "$ref": "../../components/responses/errorResponses/BadRequest.json"
+            },
             "401": {
-                "description": "Unauthorized"
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
             },
             "403": {
-                "description": "Forbidden"
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
             },
-            "5XX": {
-                "description": "Internal Server Error"
+            "500": {
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
+            },
+            "502": {
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
+            },
+            "503": {
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
         }
     }

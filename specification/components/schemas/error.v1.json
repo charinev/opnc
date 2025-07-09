@@ -10,10 +10,6 @@
         "items": {
           "type": "string"
         }
-      },
-      "traceId": {
-        "type": "string",
-        "format": "uuid"
       }
     }
   }

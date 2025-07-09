@@ -8,68 +8,70 @@
         ],
         "parameters": [
             {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
+            {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
             {
                 "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
             },
             {
-              "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+                "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
             },
             {
-              "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
+                "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
             }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "../../components/responses/GetCpsCertificatesRes.v1.json"
+            "200": {
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../components/responses/GetCpsCertificatesRes.v1.json"
+                        }
+                    },
+                    "multipart/form-data": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {}
+                        }
+                    }
                 }
-              },
-              "multipart/form-data": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
+            },
+            "400": {
+                "$ref": "../../components/responses/errorResponses/BadRequest.json"
+            },
+            "401": {
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
+            },
+            "403": {
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
+            },
+            "404": {
+                "$ref": "../../components/responses/errorResponses/NotFound.json"
+            },
+            "500": {
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
+            },
+            "502": {
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
+            },
+            "503": {
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "../../components/schemas/error.v1.json"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                    "$ref": "../../components/schemas/error.v1.json"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                    "$ref": "../../components/schemas/error.v1.json"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
         }
-      }
     }
+}

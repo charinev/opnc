@@ -8,6 +8,12 @@
         ],
         "parameters": [
             {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
+            {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
             {
@@ -24,13 +30,21 @@
                 "name": "pkiType",
                 "description": "Optional parameter to filter for root certificates from V2G, eMSP or OEM PKI.",
                 "schema": {
-                "$ref": "../../components/parameters/pkiTypeParam.v1.json"
+                    "$ref": "../../components/parameters/pkiTypeParam.v1.json"
                 }
             }
         ],
         "responses": {
             "200": {
                 "description": "OK",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "content": {
                     "application/json": {
                         "schema": {
@@ -39,50 +53,51 @@
                     }
                 }
             },
-            "400": {
-                "description": "Bad Request",
+            "404": {
+                "description": "Not Found",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                },
                 "content": {
                     "application/json": {
                         "schema": {
                             "$ref": "../../components/schemas/error.v1.json"
+                        },
+                        "examples": {
+                            "ROOT NOT FOUND": {
+                                "value": {
+                                    "errorMessages": [
+                                        "Root certificate with the given ID is not found"
+                                    ],
+                                    "traceId": "c52fe6ad-1e39-4f6e-a0d0-e2d51aacf09f"
+                                }
+                            }
                         }
                     }
                 }
+            },
+            "400": {
+                "$ref": "../../components/responses/errorResponses/BadRequest.json"
             },
             "401": {
-                "description": "Unauthorized"
-                },
-            "403": {
-                "description": "Forbidden"
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
             },
-            "404": {
-                "description": "Not Found",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "$ref": "../../components/schemas/error.v1.json"
-                    },
-                    "examples": {
-                        "ROOT NOT FOUND": {
-                        "value": {
-                            "errorMessages": [
-                            "Root certificate with the given ID is not found"
-                            ],
-                            "traceId": "c52fe6ad-1e39-4f6e-a0d0-e2d51aacf09f"
-                        }
-                        }
-                    }
-                    }
-                }
+            "403": {
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
             },
             "500": {
-                "description": "Internal Server Error"
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
             },
             "502": {
-                "description": "Bad Gateway"
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
             },
             "503": {
-                "description": "Service Unavailable"
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
         }
     },
@@ -93,13 +108,59 @@
         "tags": [
             "PutRootCertificate"
         ],
+        "parameters": [
+            {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncFromPartyId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyType.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncToPartyId.v1.json"
+            }
+        ],
         "requestBody": {
             "$ref": "../../components/requestBodies/putRootCertificateReq.v1.json"
         },
         "responses": {
-          "200": {
-            "description": "OK"
-          }
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
+                }
+            },
+            "400": {
+                "$ref": "../../components/responses/errorResponses/BadRequest.json"
+            },
+            "401": {
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
+            },
+            "403": {
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
+            },
+            "500": {
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
+            },
+            "502": {
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
+            },
+            "503": {
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
+            }
         }
     }
 }

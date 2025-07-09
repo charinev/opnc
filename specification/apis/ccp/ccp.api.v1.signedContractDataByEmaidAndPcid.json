@@ -8,6 +8,12 @@
         ],
         "parameters": [
             {
+                "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+            },
+            {
+                "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+            },
+            {
                 "$ref": "../../components/parameters/headers/opncFromPartyType.v1.json"
             },
             {
@@ -67,87 +73,86 @@
             }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                    "$ref": "../../components/responses/getSignedContractDataRes.v1.json"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "../../components/schemas/error.v1.json"
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
                 },
-                "examples": {
-                  "Invalid PCID": {
-                    "value": {
-                      "errorMessages": [
-                        "pcid : must match \"^[a-zA-Z0-9]{17,18}$\""
-                      ],
-                      "traceId": "1c8c56cb-b71f-46a5-8788-5ddcedc88e2a"
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../components/responses/getSignedContractDataRes.v1.json"
+                        }
                     }
-                  },
-                  "Invalid EMAID": {
-                    "value": {
-                      "errorMessages": [
-                        "emaid : must match \"^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9,28}[-]?(\\w{1})?$\""
-                      ],
-                      "traceId": "02be5c05-298b-4503-a685-8126951e0233"
-                    }
-                  },
-                  "Invalid SessionID": {
-                    "value": {
-                      "errorMessages": [
-                        "Invalid SessionID format, make sure the length is maximum 8 characters and it is represented in HEX binary"
-                      ],
-                      "traceId": "5712b40b-5003-4553-8539-2d1edaf56b6a"
-                    }
-                  }
                 }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "../../components/schemas/error.v1.json"
+            },
+            "400": {
+                "description": "Bad Request",
+                "headers": {
+                    "OPNC-Correlation-ID": {
+                        "$ref": "../../components/parameters/headers/opncCorrelationId.v1.json"
+                    },
+                    "OPNC-Request-ID": {
+                        "$ref": "../../components/parameters/headers/opncRequestId.v1.json"
+                    }
                 },
-                "examples": {
-                  "Not Found": {
-                    "value": {
-                      "errorMessages": [
-                        "The contract for the given EMAID not found."
-                      ],
-                      "traceId": "ddb3e897-30c3-4901-b5fe-383c5edeadcb"
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../components/schemas/error.v1.json"
+                        },
+                        "examples": {
+                            "Invalid PCID": {
+                                "value": {
+                                    "errorMessages": [
+                                        "pcid : must match \"^[a-zA-Z0-9]{17,18}$\""
+                                    ],
+                                    "traceId": "1c8c56cb-b71f-46a5-8788-5ddcedc88e2a"
+                                }
+                            },
+                            "Invalid EMAID": {
+                                "value": {
+                                    "errorMessages": [
+                                        "emaid : must match \"^[A-Za-z]{2}[-]?\\w{3}[-]?\\w{9,28}[-]?(\\w{1})?$\""
+                                    ],
+                                    "traceId": "02be5c05-298b-4503-a685-8126951e0233"
+                                }
+                            },
+                            "Invalid SessionID": {
+                                "value": {
+                                    "errorMessages": [
+                                        "Invalid SessionID format, make sure the length is maximum 8 characters and it is represented in HEX binary"
+                                    ],
+                                    "traceId": "5712b40b-5003-4553-8539-2d1edaf56b6a"
+                                }
+                            }
+                        }
                     }
-                  }
                 }
-              }
+            },
+            "401": {
+                "$ref": "../../components/responses/errorResponses/Unauthorized.json"
+            },
+            "403": {
+                "$ref": "../../components/responses/errorResponses/Forbidden.json"
+            },
+            "404": {
+                "$ref": "../../components/responses/errorResponses/NotFound.json"
+            },
+            "500": {
+                "$ref": "../../components/responses/errorResponses/InternalServerError.json"
+            },
+            "502": {
+                "$ref": "../../components/responses/errorResponses/BadGataway.json"
+            },
+            "503": {
+                "$ref": "../../components/responses/errorResponses/ServiceUnavailable.json"
             }
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "502": {
-            "description": "Bad Gateway"
-          },
-          "503": {
-            "description": "Service Unavailable"
-          }
         },
         "security": [
             {

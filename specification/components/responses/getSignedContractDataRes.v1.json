@@ -4,7 +4,7 @@
     "properties": {        
         "signedContractDataCollection": {
             "type": "array",
-            "description": "Collection of signed contract data objects incl. `certificateInstallationRes`.\n> #### Default Contract\n> The CCP will provide in the ISO15118-2 just one item back - the Contract which is set to Default! The defined array is a preparation for the ISO15118-20"
+            "description": "Collection of signed contract data objects incl. `certificateInstallationRes`.\n> #### Default Contract\n> The CCP will provide in the ISO15118-2 just one item back - the Contract which is set to Default! The defined array is a preparation for the ISO15118-20",
             "items": {
                 "$ref": "../schemas/signedContractData.v1.json"
             }
