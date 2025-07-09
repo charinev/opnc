@@ -1,0 +1,677 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Event API",
+    "version": "1.0",
+    "description": "Event Notification services API.",
+    "contact": {
+      "name": "CharIN e.V.",
+      "url": "https://charin.global",
+      "email": "coordination@charin.global"
+    },
+    "license": {
+      "name": "Attribution-ShareAlike 4.0 International",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.server.test/opnc/v1/event"
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/opnc/v1/event/endpoints": {
+      "post": {
+        "description": "A webhook endpoint must have a url and a list of enabled_events,  then webhook endpoint notifies the specified url about events.\n",
+        "summary": "PostEndpoint",
+        "operationId": "postEndpointV1",
+        "tags": [
+          "PostEndpoint"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/postEndpointReq.v1"
+              },
+              "examples": {
+                "create-webhook-example": {
+                  "value": {
+                    "description": "This my webhook",
+                    "enabledEvents": [
+                      "oem.contract.created",
+                      "oem.contract.updated",
+                      "oem.contract.deleted"
+                    ],
+                    "wmi": [
+                      "WPO",
+                      "WVW",
+                      "WAU"
+                    ],
+                    "status": "enabled",
+                    "url": "https://mywebhooks.com/payload"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Request body for creating webhook endpoint"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/endpointRes.v1"
+                },
+                "examples": {
+                  "endpoint-created": {
+                    "value": {
+                      "id": "xyzedjds",
+                      "apiVersion": "v1",
+                      "created": 1623760573,
+                      "description": "Test webhook",
+                      "enabledEvents": [
+                        "oem.contract.created",
+                        "oem.contract.deleted"
+                      ],
+                      "wmi": [
+                        "WPO",
+                        "WVW",
+                        "WAU"
+                      ],
+                      "metadata": {},
+                      "status": "enabled",
+                      "url": "https://mywebhooks.com/payload",
+                      "secret": "secret keyword"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all endpoints",
+        "operationId": "get-webhook-endpoints",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/endpointRes.v1"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "Returns users all webhook endpoints"
+      }
+    },
+    "/opnc/v1/event/endpoints/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Endpoint ID"
+        }
+      ],
+      "get": {
+        "operationId": "getEndpointByIdV1",
+        "description": "Returns webhook endpoint for a given ID",
+        "summary": "GetEndpointById",
+        "tags": [
+          "GetEndpointById"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/endpointRes.v1"
+                },
+                "examples": {
+                  "get-endpoint": {
+                    "value": {
+                      "id": "xyzedjds",
+                      "apiVersion": "v1",
+                      "created": 1623760573,
+                      "description": "Test webhook",
+                      "enabledEvents": [
+                        "oem.contract.created",
+                        "oem.contract.deleted"
+                      ],
+                      "metadata": {},
+                      "status": "enabled",
+                      "url": "https://mywebhooks.com/payload",
+                      "secret": "secret keyword",
+                      "providerIds": [
+                        "ABCDF",
+                        "DEQUF"
+                      ],
+                      "wmis": [
+                        "XXX",
+                        "YYY",
+                        "ZZZ"
+                      ],
+                      "userRole": "eMSP",
+                      "userName": "Test User"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "summary": "UpdateEndpointById",
+        "operationId": "updateEndpointByIdV1",
+        "description": "Updates the webhook endpoint. You may edit the url, the list of enabled_events, and the status of your endpoint.",
+        "tags": [
+          "UpdateEndpointById"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/putEndpointUpdateReq.v1"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/endpointRes.v1"
+                },
+                "examples": {
+                  "endpoint-updated": {
+                    "value": {
+                      "id": "xyzedjds",
+                      "apiVersion": "v1",
+                      "created": 1623760573,
+                      "description": "Test webhook",
+                      "enabledEvents": [
+                        "oem.contract.created",
+                        "oem.contract.deleted"
+                      ],
+                      "wmi": [
+                        "WPO",
+                        "WVW",
+                        "WAU"
+                      ],
+                      "metadata": {},
+                      "status": "enabled",
+                      "url": "https://mywebhooks.com/payload"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "DeleteEndpointById",
+        "operationId": "deleteEndpointByIdV1",
+        "description": "Delete an endpoint by ID",
+        "tags": [
+          "DeleteEndpointById"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "opncFromPartyType.v1": {
+        "name": "OPNC-from-party-type",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "emsp",
+            "cpo",
+            "oem",
+            "pki",
+            "cps",
+            "pcp",
+            "ccp"
+          ]
+        },
+        "in": "header",
+        "description": "Specifies the type of party that originated this request",
+        "required": false
+      },
+      "opncFromPartyId.v1": {
+        "name": "OPNC-from-party-id",
+        "schema": {
+          "type": "string"
+        },
+        "in": "header",
+        "description": "Specifies the ID of the party that originated this request. The ID format depends on the type of the party (WMI for OEM, ProviderID for EMSP, OperatorID for CPO, SHA-256 fingerprint of Root CA for PKI or CPS)",
+        "required": false
+      },
+      "opncToPartyType.v1": {
+        "name": "OPNC-to-party-type",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "emsp",
+            "cpo",
+            "oem",
+            "pki",
+            "cps",
+            "pcp",
+            "ccp"
+          ]
+        },
+        "in": "header",
+        "description": "Specifies the type of party to which this request should be addressed.",
+        "required": false
+      },
+      "opncToPartyId.v1": {
+        "name": "OPNC-to-party-id",
+        "schema": {
+          "type": "string"
+        },
+        "in": "header",
+        "description": "Specifies the party ID to which this request should be addressed. The ID format depends on the type of the party (WMI for OEM, ProviderID for EMSP, OperatorID for CPO, SHA-256 fingerprint of Root CA for PKI or CPS..)",
+        "required": false
+      }
+    },
+    "schemas": {
+      "endpointRes.v1": {
+        "title": "EndpointResV1",
+        "type": "object",
+        "description": "",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the object."
+          },
+          "apiVersion": {
+            "type": "string",
+            "description": "The API version events are rendered as for this webhook endpoint."
+          },
+          "created": {
+            "type": "integer",
+            "description": "Created DateTime of endpoint"
+          },
+          "description": {
+            "type": "string",
+            "description": "An optional description of what the webhook is used for."
+          },
+          "enabledEvents": {
+            "type": "array",
+            "description": "The list of events to enable for this endpoint.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the webhook. It can be enabled or disabled."
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL of the webhook endpoint."
+          },
+          "secret": {
+            "type": "string",
+            "description": "The Secret of the webhook endpoint, it will be used authorization"
+          },
+          "providerIds": {
+            "type": "array",
+            "description": "The list of Provider ID's of eMSP user, provided when user role is eMSP",
+            "items": {
+              "type": "string"
+            }
+          },
+          "wmis": {
+            "type": "array",
+            "description": "The list of WMIs of OEM user, provided when user role is OEM",
+            "items": {
+              "type": "string"
+            }
+          },
+          "userRole": {
+            "type": "string",
+            "description": "User role e.g OEM, eMSP"
+          },
+          "userName": {
+            "type": "string",
+            "description": "UserName of the owner of the Webhook"
+          }
+        },
+        "required": [
+          "id",
+          "created",
+          "enabledEvents",
+          "url"
+        ],
+        "x-examples": {
+          "example": {
+            "value": {
+              "id": "xyzedjds",
+              "apiVersion": "v1",
+              "created": 1623760573,
+              "description": "Test webhook",
+              "enabledEvents": [
+                "oem.contract.created",
+                "oem.contract.deleted"
+              ],
+              "metadata": {},
+              "status": "enabled",
+              "url": "https://mywebhooks.com/payload",
+              "secret": "secret keyword",
+              "providerIds": [
+                "ABCDF",
+                "DEQUF"
+              ],
+              "wmis": [
+                "XXX",
+                "YYY",
+                "ZZZ"
+              ],
+              "userRole": "eMSP",
+              "userName": "Test User"
+            }
+          }
+        }
+      },
+      "postEndpointReq.v1": {
+        "title": "PostEndpointReqV1",
+        "type": "object",
+        "description": "",
+        "properties": {
+          "apiVersion": {
+            "type": "string",
+            "description": "Optional: Events sent to this endpoint will be generated with this version."
+          },
+          "description": {
+            "type": "string",
+            "description": "An optional description of what the webhook is used for."
+          },
+          "enabledEvents": {
+            "type": "array",
+            "description": "We need to add WMI opjects"
+          },
+          "wmi": {
+            "type": "array",
+            "description": "We need to add WMI opjects"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the webhook. It can be enabled or disabled."
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL of the webhook endpoint."
+          }
+        },
+        "required": [
+          "enabledEvents",
+          "url"
+        ],
+        "x-examples": {
+          "EndpointRequest example": {
+            "value": {
+              "description": "Description",
+              "enabledEvents": [
+                "oem.contract.created",
+                "contract.deleted"
+              ],
+              "metadata": {},
+              "status": "enabled",
+              "url": "https://mywebhooks.com/payload"
+            }
+          }
+        }
+      },
+      "eventEnum.v1": {
+        "title": "EventEnumV1",
+        "description": "",
+        "type": "string",
+        "enum": [
+          "root.cert.added",
+          "root.cert.expired",
+          "emsp.prov.cert.updated",
+          "emsp.prov.cert.deleted",
+          "emsp.prov.cert.updated.factory.reset",
+          "emsp.contract.delivered.to.oem",
+          "emsp.contract.created.sent.to.oem",
+          "emsp.contract.updated.sent.to.oem",
+          "emsp.contract.deleted.sent.to.oem",
+          "emsp.contract.rejected.by.oem",
+          "emsp.contract.queued.to.oem",
+          "oem.contract.created",
+          "oem.contract.updated",
+          "oem.contract.deleted"
+        ]
+      },
+      "putEndpointUpdateReq.v1": {
+        "title": "PutEndpointUpdateReqV1",
+        "type": "object",
+        "description": "",
+        "properties": {
+          "apiVersion": {
+            "type": "string",
+            "description": "Optional: Events sent to this endpoint will be generated with this version."
+          },
+          "description": {
+            "type": "string",
+            "description": "An optional description of what the webhook is used for."
+          },
+          "enabledEvents": {
+            "$ref": "#/components/schemas/eventEnum.v1"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format."
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the webhook. It can be enabled or disabled."
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL of the webhook endpoint.",
+            "x-oapi-codegen-extra-tags": {
+              "validate": "url,required"
+            }
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "x-examples": {
+          "EndpointRequest example": {
+            "value": {
+              "description": "Description",
+              "enabledEvents": [
+                "contract.created",
+                "contract.deleted"
+              ],
+              "metadata": {},
+              "status": "enabled",
+              "url": "https://mywebhooks.com/payload"
+            }
+          }
+        }
+      }
+    }
+  }
+}

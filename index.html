@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OPNC API Docs Index</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.2rem;
+    }
+    .timestamp {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 0.75rem;
+      padding: 1rem 1.2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      border-left: 6px solid #0078d7;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #0078d7;
+    }
+    .card p {
+      margin: 0.5rem 0 1rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .card .status {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .card a {
+      text-decoration: none;
+      color: white;
+      background-color: #0078d7;
+      padding: 0.4rem 0.7rem;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .card .failed {
+      background-color: #f87171;
+    }
+  </style>
+</head>
+<body>
+  <h1>📘 API Documentation Index</h1>
+  <div class="timestamp">Last updated: 2025-07-09 14:15 UTC</div>
+  <div class="grid">
+<div class='card'>
+      <h2>PCP API</h2>
+      <p class='status'>✅ Successfully Generated</p>
+      <a href='pcp/index.html'>View Docs</a>
+    </div>
+<div class='card'>
+      <h2>EVENT API</h2>
+      <p class='status'>✅ Successfully Generated</p>
+      <a href='event/index.html'>View Docs</a>
+    </div>
+<div class='card'>
+      <h2>CPS API</h2>
+      <p class='status'>❌ Failed to Generate</p>
+      <a class='failed' href='#'>No Docs</a>
+    </div>
+<div class='card'>
+      <h2>RCP API</h2>
+      <p class='status'>❌ Failed to Generate</p>
+      <a class='failed' href='#'>No Docs</a>
+    </div>
+<div class='card'>
+      <h2>CCP API</h2>
+      <p class='status'>❌ Failed to Generate</p>
+      <a class='failed' href='#'>No Docs</a>
+    </div>
+<div class='card'>
+      <h2>PKI API</h2>
+      <p class='status'>❌ Failed to Generate</p>
+      <a class='failed' href='#'>No Docs</a>
+    </div>
+</div>
+</body>
+</html>
