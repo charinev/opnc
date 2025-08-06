@@ -22,10 +22,10 @@
   "tags": [],
   "paths": {
       "/est/simpleenroll": {
-        "$ref": "./pki.api.v1.simpleEnroll.json"      
+        "$ref": "./pki.api.v1.simpleenroll.json"
     },
     "/est/cacerts": {
-      "$ref": "./pki.api.v1.caCerts.json"
+      "$ref": "./pki.api.v1.cacerts.json"
     },
     "/pki/revokeCertificate" : {
       "$ref": "./pki.api.v1.revokeCert.json"
