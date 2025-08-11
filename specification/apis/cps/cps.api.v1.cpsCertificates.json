@@ -26,7 +26,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "../../components/responses/GetCpsCertificatesRes.v1.json"
+                  "$ref": "../../components/responses/getCpsCertificatesRes.v1.json"
                 }
               },
               "multipart/form-data": {

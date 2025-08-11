@@ -25,7 +25,7 @@
         "$ref": "./rcp.api.v1.rootCertificateById.json"  
       },
       "/rootcertificates": {
-        "$ref": "./rcp.api.v1.rootCertificates.json"
+        "$ref": "./rcp.api.v1.rootcertificates.json"
       }
     }
     

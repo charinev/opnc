@@ -48,7 +48,7 @@ jobs:
             BUNDLE_ERR=$(npx redocly bundle "$spec_path" -o "docs/$api/$api.api.consolidated.v1.json" 2>&1)
             if [ $? -ne 0 ]; then
             echo "::warning::❌ Failed to bundle $api:\n$BUNDLE_ERR"
-            continue
+            exit 1
             else
             echo "✅ Bundled $api"
             fi
