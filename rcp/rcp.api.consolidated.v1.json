@@ -1,0 +1,475 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "RCP API",
+    "version": "1.0",
+    "description": "RCP services API.",
+    "contact": {
+      "name": "CharIN e.V.",
+      "url": "https://charin.global",
+      "email": "coordination@charin.global"
+    },
+    "license": {
+      "name": "Attribution-ShareAlike 4.0 International",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.server.test/opnc/v1/rcp"
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/rootcertificates/{rootCertificateId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "rootCertificateId",
+          "in": "path",
+          "description": "The internal ID of the root certificate in the RCP.",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GetRootCertificate",
+        "description": "The getRootCert method can be used with the unique ID (UID) of a root certificate in the pool. The UID of each root certificate can be retreived through get all endpoint.",
+        "operationId": "getRootCertificateV1",
+        "tags": [
+          "GetRootCertificate"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getRootCertificateRes.v1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.v1"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.v1"
+                },
+                "examples": {
+                  "ROOT NOT FOUND": {
+                    "value": {
+                      "errorMessages": [
+                        "Root certificate with the given ID is not found"
+                      ],
+                      "traceId": "c52fe6ad-1e39-4f6e-a0d0-e2d51aacf09f"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "delete": {
+        "summary": "DeleteRootCertificate",
+        "operationId": "deleteRootCertificateV1",
+        "description": "This method is used by the Ecosystem Operator to delete Root CAs from the Root Certificate Pool. This should not be used by other parties than the Root pool operator to prevent possible wrong usage.\nAlso 2 Factor authorization in the organization shall be considered\n\n<!-- theme: warning -->\n\n> A successful delete operation triggers events to all ecosystem users and informs about the deleletion of this Root CA. Existing OEM-Prov Certs or eMSP-Contract Certs which rely on this root CA, might not any more usable.",
+        "tags": [
+          "DeleteRootCertificate"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/rootcertificates": {
+      "get": {
+        "summary": "GetRootCertificates",
+        "description": "Get root certificates from the RCP based on (optional) query input.",
+        "operationId": "getRootCertificatesV1",
+        "tags": [
+          "GetRootCertificates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          },
+          {
+            "in": "query",
+            "name": "pkiType",
+            "description": "Optional parameter to filter for root certificates from V2G, eMSP or OEM PKI.",
+            "schema": {
+              "$ref": "#/components/schemas/pkiTypeParam.v1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getRootCertificatesRes.v1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.v1"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error.v1"
+                },
+                "examples": {
+                  "ROOT NOT FOUND": {
+                    "value": {
+                      "errorMessages": [
+                        "Root certificate with the given ID is not found"
+                      ],
+                      "traceId": "c52fe6ad-1e39-4f6e-a0d0-e2d51aacf09f"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "put": {
+        "summary": "Save a root certificate in the RCP.",
+        "operationId": "putRootCertificateV1",
+        "description": "Expects a Root Certificate Object and the Root Type.\nThis Function should not be called by other parties than the Root Certificate Pool operator to prevent possible wrong usage. Each Root CA in a Plug&Charge Ecosystem must be audited/checked upfront. All parties of the Plug&Charge Ecosystem need to relay on this audits of the different PKI Operators or consumers.\nA 2 Factor authorization in the organization shall be considered to add a Root CA into the RCP",
+        "tags": [
+          "PutRootCertificate"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/putRootCertificateReq.v1"
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "opncFromPartyType.v1": {
+        "name": "OPNC-from-party-type",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "emsp",
+            "cpo",
+            "oem",
+            "pki",
+            "cps",
+            "pcp",
+            "ccp"
+          ]
+        },
+        "in": "header",
+        "description": "Specifies the type of party that originated this request",
+        "required": false
+      },
+      "opncFromPartyId.v1": {
+        "name": "OPNC-from-party-id",
+        "schema": {
+          "type": "string"
+        },
+        "in": "header",
+        "description": "Specifies the ID of the party that originated this request. The ID format depends on the type of the party (WMI for OEM, ProviderID for EMSP, OperatorID for CPO, SHA-256 fingerprint of Root CA for PKI or CPS)",
+        "required": false
+      },
+      "opncToPartyType.v1": {
+        "name": "OPNC-to-party-type",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "emsp",
+            "cpo",
+            "oem",
+            "pki",
+            "cps",
+            "pcp",
+            "ccp"
+          ]
+        },
+        "in": "header",
+        "description": "Specifies the type of party to which this request should be addressed.",
+        "required": false
+      },
+      "opncToPartyId.v1": {
+        "name": "OPNC-to-party-id",
+        "schema": {
+          "type": "string"
+        },
+        "in": "header",
+        "description": "Specifies the party ID to which this request should be addressed. The ID format depends on the type of the party (WMI for OEM, ProviderID for EMSP, OperatorID for CPO, SHA-256 fingerprint of Root CA for PKI or CPS..)",
+        "required": false
+      }
+    },
+    "schemas": {
+      "rootCertificate.v1": {
+        "type": "object",
+        "title": "RootCertificateV1",
+        "description": "Object containing a root certificate registered in the Root Certificate Pool.\n\nFields marked with _informative_ are for information purpose only. Any certificate-based validations should refer to the certificates signed values instead of relying these fields.",
+        "x-examples": {},
+        "minProperties": 1,
+        "maxProperties": 1,
+        "properties": {
+          "rootCertificateId": {
+            "type": "string",
+            "description": "The UUID of each root certificate is generated by thy system when the root certificate gets registered. It can be used to request an individual certificate using the REST API.",
+            "format": "uuid",
+            "example": "896b6655-180e-4304-b642-606bb00df8f0",
+            "pattern": "^[0-9a-fA-F]{8}\\-([0-9a-fA-F]{4}\\-){3}[0-9a-fA-F]{12}$"
+          },
+          "distinguishedName": {
+            "type": "string",
+            "example": "DC=V2G, CN=V2G Root CA QA G1, O=V2G",
+            "pattern": "^((CN|OU|O|C|DC|ST)=[^,]+,? ?)+$",
+            "description": "Reflects the subjects distinguished name field. (informative)"
+          },
+          "rootCtlList": {
+            "type": "array",
+            "description": "Present the list of the Certificate Trust List (CTL) that recognize the Root CA",
+            "enum": [
+              "European CTL",
+              "American CTL",
+              "No CTL"
+            ]
+          },
+          "rootTypeList": {
+            "type": "array",
+            "description": "Present the types linked to the Root CA, e.g. a unique Root certificate could be used as an OEM Root and a eMSP Root",
+            "enum": [
+              "eMSP",
+              "V2G",
+              "OEM",
+              "PE"
+            ]
+          },
+          "caCertificate": {
+            "type": "string",
+            "example": "MIICUzCCAfmgAwIBAgIQaasA0lm730LOgFKa0wzl7TAKBggqhkjOPQQDAjBVMQswCQYDVQQGEwJERTEVMBMGA1UEChMMSHViamVjdCBHbWJIMRMwEQYKCZImiZPyLGQBGRYDVjJHMRowGAYDVQQDExFWMkcgUm9vdCBDQSBRQSBHMTAgFw0xOTA0MjYwODM3MTVaGA8yMDU5MDQyNjA4MzcxNVowVTELMAkGA1UEBhMCREUxFTATBgNVBAoTDEh1YmplY3QgR21iSDETMBEGCgmSJomT8ixkARkWA1YyRzEaMBgGA1UEAxMRVjJHIFJvb3QgQ0EgUUEgRzEwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAShT8kSNcC+74TND82On2Y2TOf8mYfxw73lKZ7t9cmEXHpMdAgsWBQ4LI+pOMhe6NOHzJbzP38kQTg4zLfw3kU0o4GoMIGlMBMGA1UdJQQMMAoGCCsGAQUFBwMJMA8GA1UdEwEB/wQFMAMBAf8wEQYDVR0OBAoECEtF/4Il/BCWMEUGA1UdIAQ+MDwwOgYMKwYBBAGCxDUBAgEAMCowKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3Lmh1YmplY3QuY29tL3BraS8wEwYDVR0jBAwwCoAIS0X/giX8EJYwDgYDVR0PAQH/BAQDAgEGMAoGCCqGSM49BAMCA0gAMEUCIQCq3Qx2BLYVFb7Lt5XXpSlUViYv4cIUOQE1Ce9o2Jyy1QIgZRmVzMVjHZA+toiM000PCUrLppqbLpcRN4MP8kE0OhU=",
+            "pattern": "^[-A-Za-z0-9+/]+={0,3}$",
+            "description": "The root certificate in DER format encoded in Base64.",
+            "maxLength": 800
+          },
+          "commonName": {
+            "type": "string",
+            "description": "Reflects the subjects common name value. (informative)",
+            "example": "V2G Root CA QA G1"
+          },
+          "rootAuthorityKeyIdentifier": {
+            "type": "string",
+            "description": "SHA-1 hash of the certificates public key (informative)",
+            "example": "S0X/giX8EJY="
+          },
+          "rootIssuerSerialNumber": {
+            "type": "string",
+            "description": "serial number in hex format of the certificate (informative)",
+            "example": "69ab00d259bbdf42ce80529ad30ce5ed"
+          },
+          "validFrom": {
+            "type": "string",
+            "description": "Reflects the subjects not before date. (infotmative)",
+            "format": "date-time",
+            "example": "2017-12-07T14:08:30Z"
+          },
+          "validTo": {
+            "type": "string",
+            "description": "Reflects the subjects not after date. (infotmative)",
+            "format": "date-time",
+            "example": "2057-12-07T14:08:30Z"
+          },
+          "organizationName": {
+            "type": "string",
+            "description": "Reflects the subjects organization name value. (informative)",
+            "example": "CharIN GmbH"
+          },
+          "certificateRevocationList": {
+            "type": "string",
+            "description": ""
+          },
+          "crossCertificatePair": {
+            "type": "string"
+          },
+          "labeledUri": {
+            "type": "string",
+            "description": "RFC 2079 labeledURI"
+          },
+          "fingerprint": {
+            "type": "string",
+            "description": "SHA256 certificate fingerprint (informative)",
+            "example": "4e05b8922d43923cdf20b202cdd0d849770b50038c39f104f506d7f1030ff809"
+          }
+        },
+        "required": [
+          "rootType",
+          "caCertificate"
+        ]
+      },
+      "getRootCertificateRes.v1": {
+        "title": "GetRootCertificateResponseV1",
+        "type": "object",
+        "properties": {
+          "roootCertificate": {
+            "$ref": "#/components/schemas/rootCertificate.v1"
+          }
+        }
+      },
+      "error.v1": {
+        "title": "ErrorV1",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "errorMessages": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "traceId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "pkiTypeParam.v1": {
+        "title": "pkiTypeParamV1",
+        "description": "",
+        "type": "string",
+        "enum": [
+          "emsp",
+          "v2g",
+          "oem",
+          "pe"
+        ]
+      },
+      "getRootCertificatesRes.v1": {
+        "title": "GetRootCertificatesResponseV1",
+        "type": "object",
+        "properties": {
+          "rootCertificateCollection": {
+            "type": "array",
+            "description": "A list of selected root certificates.",
+            "items": {
+              "$ref": "#/components/schemas/rootCertificate.v1"
+            }
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "putRootCertificateReq.v1": {
+        "description": "Expects a V2G Root CA and the Root Type\n\n",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/rootCertificate.v1"
+            }
+          }
+        }
+      }
+    }
+  }
+}

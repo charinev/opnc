@@ -1,0 +1,376 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "PKI API",
+    "version": "1.0",
+    "description": "PKI services API.",
+    "contact": {
+      "name": "CharIN e.V.",
+      "url": "https://charin.global",
+      "email": "coordination@charin.global"
+    },
+    "license": {
+      "name": "Attribution-ShareAlike 4.0 International",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.server.test/opnc/v1/pki"
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/est/simpleenroll": {
+      "post": {
+        "summary": "SimpleEnrollCert",
+        "operationId": "simpleEnrollCertV1",
+        "tags": [
+          "SimpleEnrollCert"
+        ],
+        "description": "The EST interface receives CSRs from CPOs, eMSPs, OEMs, and CPSs, signs them, and delivers an ISO 15118 leaf certificate. The PKI Gateway/Certificate Manager creates the leaf certificates from the Sub 2 CA of the respective role. This interface can create leaf certificates for CPOs (SECC Certificate), eMSPs (Contract Certificate), OEMs (Provisioning Certificate), and CPSs (Provisioning Signing Certificates). An EST interface is a standard implementation described in RFC7030.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          },
+          {
+            "name": "caDomain",
+            "in": "query",
+            "description": "The domain of the subCA the certificate is requested from.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/caDomainParam"
+            }
+          },
+          {
+            "name": "iso15118Version",
+            "in": "query",
+            "description": "The ISO version which shall be used. If not set, ISO15118:2 will be used as default.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/iso15118VersionParam"
+            }
+          },
+          {
+            "name": "algorithm",
+            "in": "path",
+            "description": "Defines the algorithm for the PKI which shall be used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "secp256r1",
+                "secp521r1",
+                "ed448"
+              ],
+              "default": "secp256r1",
+              "example": "secp521r1"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/pkcs10": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "description": "The body is the base64 encoded CSR (Certificate Siging Request).\n\n+++Requirements for EVSE Leafs+++\n\nWhen `{ca}` path parameter is `cpo`, the CSR CommonName must match to the <EVSID> regex format `^[A-Za-z]{2}[\\*]?\\w{3}[\\*]?[E][\\w\\*]{1,30}$`. \n\nWhere `EVSEID` = `<Country Code>` `<S>` `<EVSE Operator ID>` `<S>` `<ID Type>` `<Power Outlet ID>` \n\n `Country Code` = 2 ALPHA two alphanumeric characters \n\n `EVSE Operator ID` = 3 (ALPHA / DIGIT) three alphanumeric characters, defined and listed by eMI3 group \n\n `ID Type` = “E” one character “E” indicating that this ID represents an “EVSE” \n\n `Power Outlet ID` = (ALPHA / DIGIT) *30 (ALPHA / DIGIT / S) sequence of alphanumeric characters or separators \n\n `S` = optional separator \n\n Reference: ISO 15118-2:2014, Annex H, H.2.1 EVSEID Syntax"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/pkcs7": {
+                "schema": {
+                  "type": "string",
+                  "description": "The response body is the base64 encoded PKCS7 blobb of the certificate"
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "application/pkcs7-mime; smime-type=certs-only"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "5XX": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/est/cacerts": {
+      "get": {
+        "summary": "GetCaCerts",
+        "operationId": "getCaCertsV1",
+        "tags": [
+          "GetCaCerts"
+        ],
+        "description": "Get the chain of CA certificates incl. Root CA.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/opncFromPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncFromPartyId.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyType.v1"
+          },
+          {
+            "$ref": "#/components/parameters/opncToPartyId.v1"
+          },
+          {
+            "name": "caDomain",
+            "in": "query",
+            "description": "The domain of the subCA the certificate is requested from.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/caDomainParam"
+            }
+          },
+          {
+            "name": "iso15118Version",
+            "in": "query",
+            "description": "The ISO version which shall be used. If not set, ISO15118:2 will be used as default.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/iso15118VersionParam"
+            }
+          },
+          {
+            "name": "algorithm",
+            "in": "path",
+            "description": "Defines the algorithm for the PKI which shall be used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "secp256r1",
+                "secp521r1",
+                "ed448"
+              ],
+              "default": "secp256r1",
+              "example": "secp521r1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "content-transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "base64"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "application/pkcs7-mime; smime-type=certs-only"
+              }
+            },
+            "content": {
+              "application/pkcs7": {
+                "schema": {
+                  "type": "string",
+                  "description": "The CA certificates"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "5XX": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pki/revokeCertificate": {
+      "post": {
+        "summary": "RevokeCert",
+        "operationId": "revokeCertV1",
+        "tags": [
+          "RevokeCert"
+        ],
+        "description": "Revocation service for leaf certificates (SECC Certificate, Contract Certificate, OEM Contract Certificate, OEM Vehicle Certificate).\n\n *NB: A PKI certificate subscriber can only ask the revocation on one of his own certificates.* \n\n *NB2: A certificate can be revoked only by the Certificate Authority that delivered it.*",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/revokeCertificateReq.v1"
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "certificate": "MIIC8jCCApegAwIBAgIIVgSOEtL5U+owCgYIKoZIzj0EAwIwbjElMCMGA1UEAwwcU3ViQ0EyLUEtZU1TUF9Gb3JfQ0MtR2VuZXJpYzEMMAoGA1UECwwDU1RHMQ8wDQYDVQQKDAZHSVJFVkUxGTAXBgoJkiaJk/IsZAEZFglTdWJDQTItQ0MxCzAJBgNVBAYTAkZSMB4XDTI0MDEyMjEwMDE0NVoXDTI2MDEyMTEwMDE0NFowOTEYMBYGA1UEAwwPVFVBQUJjQXoyQks3SlJhMQwwCgYDVQQLDANTVEcxDzANBgNVBAoMBkdJUkVWRTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABAJdgL7lS8wUMIy8IOiM6SpH1Bjp5GWKFFCYx55bBoHC7yyo2b+GcQSnGRMKaB4F5t06fk1w9+P7uehhjmXwLFGjggFSMIIBTjAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFMgAjDsX1OyW40YHz/CTyEQx8iGrMFEGCCsGAQUFBwEBBEUwQzBBBggrBgEFBQcwAYY1aHR0cDovL29jc3AudGttZ2lydi5ldzEuYWlzLXN0ZzAzLmFjbG91ZC5nZW1hbHRvLmNvbS8wgZoGA1UdHwSBkjCBjzCBjKCBiaCBhoaBg2h0dHA6Ly9jcmwudGttZ2lydi5ldzEuYWlzLXN0ZzAzLmFjbG91ZC5nZW1hbHRvLmNvbTo4MC9jcmwvaXNzdWVyL0NOPVN1YkNBMi1BLWVNU1BfRm9yX0NDLUdlbmVyaWMsT1U9U1RHLE89R0lSRVZFLERDPVN1YkNBMi1DQyxDPUZSMB0GA1UdDgQWBBQ/vmRczFWeeSwQl28yZuABoCCj2jAOBgNVHQ8BAf8EBAMCA+gwCgYIKoZIzj0EAwIDSQAwRgIhAP13OVb18cdam6r+pbmqzy4n7332OZUMt7qK2W1a7Ns6AiEA0QKHeNa2ZSuv6jIhr1Z01XZUZHOROA1o2s/dNvfBKp8=",
+                    "revocationReason": "privilegeWithdrawn"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "5XX": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "opncFromPartyType.v1": {
+        "name": "OPNC-from-party-type",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "emsp",
+            "cpo",
+            "oem",
+            "pki",
+            "cps",
+            "pcp",
+            "ccp"
+          ]
+        },
+        "in": "header",
+        "description": "Specifies the type of party that originated this request",
+        "required": false
+      },
+      "opncFromPartyId.v1": {
+        "name": "OPNC-from-party-id",
+        "schema": {
+          "type": "string"
+        },
+        "in": "header",
+        "description": "Specifies the ID of the party that originated this request. The ID format depends on the type of the party (WMI for OEM, ProviderID for EMSP, OperatorID for CPO, SHA-256 fingerprint of Root CA for PKI or CPS)",
+        "required": false
+      },
+      "opncToPartyType.v1": {
+        "name": "OPNC-to-party-type",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "emsp",
+            "cpo",
+            "oem",
+            "pki",
+            "cps",
+            "pcp",
+            "ccp"
+          ]
+        },
+        "in": "header",
+        "description": "Specifies the type of party to which this request should be addressed.",
+        "required": false
+      },
+      "opncToPartyId.v1": {
+        "name": "OPNC-to-party-id",
+        "schema": {
+          "type": "string"
+        },
+        "in": "header",
+        "description": "Specifies the party ID to which this request should be addressed. The ID format depends on the type of the party (WMI for OEM, ProviderID for EMSP, OperatorID for CPO, SHA-256 fingerprint of Root CA for PKI or CPS..)",
+        "required": false
+      }
+    },
+    "schemas": {
+      "caDomainParam": {
+        "title": "caDomainParamV1",
+        "description": "",
+        "type": "string",
+        "example": "emsp",
+        "pattern": "^(\\w+-)?(emsp|cpo|oem|cps|veh)$",
+        "enum": [
+          "emsp",
+          "cpo",
+          "oem",
+          "cps",
+          "veh"
+        ]
+      },
+      "iso15118VersionParam": {
+        "title": "iso15118VersionParamV1",
+        "description": "",
+        "type": "string",
+        "example": "ISO15118-20",
+        "enum": [
+          "ISO15118-20",
+          "ISO15118-2"
+        ],
+        "default": "ISO15118-2"
+      },
+      "revokeCertificateReq.v1": {
+        "title": "RevokeCertificateDataReqV1",
+        "type": "object",
+        "description": "",
+        "properties": {
+          "certificate": {
+            "type": "string",
+            "description": "Certificate in base64 encoded PEM form",
+            "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+          },
+          "revocationReason": {
+            "type": "string",
+            "enum": [
+              "privilegeWithdrawn",
+              "affiliationChanged",
+              "superseded",
+              "unspecified",
+              "keyCompromise",
+              "aACompromise",
+              "cessationOfOperation"
+            ],
+            "description": "Description of revocation reasons :\n\n* `privilegeWithdrawn` - indicates that the privileges granted to the subject of the certificate have been withdrawn \n\n* `affiliationChanged` - indicates that the subject's name or other information has changed.\n\n* `superseded` - indicates that the certificate has been superseded.\n\n* `unspecified` - indicates that it is unspecified as to why the certificate has been revoked.\n\n* `keyCompromise` - indicates that it is known or suspected that the certificate subject's private key has been compromised.\n\n* `aACompromise` - indicates that it is known or suspected that the certificate subject's private key has been compromised. It applies to authority attribute (AA) certificates only.\n\n* `cessationOfOperation` - indicates that the certificate is no longer needed."
+          }
+        },
+        "required": [
+          "certificate",
+          "revocationReason"
+        ]
+      }
+    }
+  }
+}
