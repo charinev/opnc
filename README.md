@@ -27,6 +27,8 @@ The OPNC Project is an open-source project. The goal of the project is to specif
 This protocol description does not yet cover extended use cases nor defines every OSI-layer. This protocol is to be seen as addition to available industry standards and best practices.
 The protocol is developed by the community and everyone is free and invited to contribute.
 
+## API Documentation
+An automatic routine was developed that will generate readable API documentation from the JSON files. This documentation is available in https://charinev.github.io/opnc/ and will be updated automatically if there are any changes in the code.
 
 ## Governance / EU PKI EcoSystem
 
